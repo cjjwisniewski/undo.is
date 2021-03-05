@@ -1,0 +1,43 @@
+section-title: Professional Experience
+content:
+  - company: Crown Castle
+    location: Canonsburg, PA
+    title: Senior Desktop Analyst<br>Desktop Analyst
+    dates: May 2018 to Present<br>August 2017 to May 2018
+    description:
+      Implement and administer workstation and other client-facing technologies in a nationwide environment of over 6000 devices. Evaluate and 
+      pilot new technology, designing roadmaps and leading projects from inception to completion. Manage and maintain workstation configuration 
+      to ensure a consistent, seamless, and secure end user experience. Assist in the training and mentoring of Help Desk and Desktop staff to 
+      provide high quality customer service. 
+    description-bullets:
+      - bullet: Manage and maintain Crown Castle's SCCM environment, ensuring consistent configuration of workstation devices.
+      - bullet: Deploy quality, security, and feature updates for Windows and third-party software to ensure endpoint security and compliance. 
+      - bullet: Transitioned operating system deployment to SCCM from MDT, reducing management overhead through centralization and removing redundant infrastructure. 
+      - bullet: Served on the architecture and implementation team for Crown Castle's Citrix environment, and joined the team overseeing ongoing operations. 
+      - bullet: Automated components of operating system deployment and other departmental processes, vastly reducing hours spent on otherwise manual tasks. 
+  - company: Carlow University
+    location: Pittsburgh, PA
+    title: Computer and Media Specialist
+    dates: June 2014 to August 2017
+    description:
+      As a Computer and Media Specialist, I was responsible for performing incident management for tier two tasks for the constituents of 
+      the University and administering various production systems. During my time at Carlow, I implemented and maintained WDS to simplify the 
+      existing new build processes, improved the processes surrounding campus lab management with Faronics Deep Freeze, and rebuilt our Pharos print 
+      management system to improve administration, billing, and the end user experience. I was also part of the implementation team for our Dell 
+      KACE instance, and was solely responsible for developing it as a solution for software updates, for use as a Service Desk platform across 
+      multiple departments, and for asset management.
+    description:
+      Performed incident management for tier two tasks for the constituents of the University and administered various production systems. Assisted 
+      with the implementation of new hardware and software to improve the technology experience for the University's students. 
+    description-bullets:
+      - bullet: Served on the implementation team for Carlow's Dell KACE environment, and was solely responsible for developing it as a solution for software updates, 
+                for use as a Service Desk platform across multiple departments, and for asset management.
+      - bullet: Implemented and maintained WDS, replacing the existing PC build process and reducing build times by 50%.
+      - bullet: Designed and implemented a new architecture for the Pharos Print Management system, reducing administration and billing overhead and improving the end user experience. 
+  - company: Saint Vincent College
+    location: Latrobe, PA
+    title: Senior Service Desk Technician
+    dates: August 2010 to May 2014
+    description: 
+      Followed standard ITIL methodology to provide customers with a superior customer service experience. Performed incident management for a variety of issues, 
+      assisting faculty, staff, and students to restore service consistent with SLA.

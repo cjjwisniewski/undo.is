@@ -1,0 +1,566 @@
+body {
+    height: 100%;
+    background: #b4b4b4;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8em;    
+    color: #000000;
+}
+.wrapper {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+p {
+    margin: 0;
+    padding: 0;
+}
+.header {
+    margin: 1em;
+}
+.list-pipe > li:not(:last-child)::after {
+    content: "|";
+    margin: 0em 0.25em 0em 0.5em;
+}
+.fontawesome-icon {
+    color: #000000;
+    margin-right: 0.5em;
+}
+
+.resume {
+    background: #ffffff;
+    box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
+    padding: 1em 0em 1em 0em;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "profile"
+    "objective"
+    "experience"
+    "certifications"
+    "skills"
+    "education"
+    "volunteering"
+    "interests"
+    "references";
+    
+}
+@media (min-width: 1200px), print {
+    .resume {
+        width: 210mm;
+        background: #ffffff;
+        box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
+        padding: 1em 0em 1em 0em;
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: 1fr 5fr;
+        grid-template-areas:
+        "profile profile"
+        "objective objective"
+        "experience experience"
+        "certifications certifications"
+        "skills skills"
+        "education education"
+        "volunteering volunteering"
+        "interests interests"
+        "references references";       
+    }
+}
+
+.content-section {
+    margin: 0em 1em 0em 1em;
+}
+.content-section-title {
+    color: #000000;
+    text-align: center;
+    font-weight: 800;
+    padding: 1em 1em 0em 1em;   
+}
+@media (min-width: 1200px), print {
+    .content-section-title {
+        text-align: right;
+        padding: 1em 1em 0em 1em;   
+    }
+}
+.content-section-content {
+    text-align: justify;
+    padding: 1em 1em 0em 1em;
+}
+@media (min-width: 1200px), print {
+    .content-section-content {
+        text-align: justify;
+        padding: 1em 1em 0em 1em;   
+    }
+}
+.css-grid {
+    display: grid;
+    grid-gap: 5px;
+}
+.css-inline-block {
+    display: inline-block;
+}
+
+.profile {
+    text-align: center;
+    grid-area: profile;
+}
+.profile-name {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.profile-title {
+    font-size: 1em;
+}
+.profile-info {
+    font-size: 0.9em;
+    margin-top: 0.3em;
+}
+.profile ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.profile ul li {
+    display: inline;
+}
+
+.objective {
+    grid-area: objective;
+}
+.objective-section {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+    "objective-section-title"
+    "objective-section-content";
+}
+@media (min-width: 1200px), print {
+    .objective-section {
+        display: grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-areas:
+        "objective-section-title objective-section-content";
+    }
+}
+.objective-section-title {
+    grid-area: objective-section-title;
+}
+.objective-section-content {
+    grid-area: objective-section-content;
+}
+
+.experience {
+    grid-area: experience;
+}
+.experience-section {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+    "experience-section-title"
+    "experience-section-content";
+}
+@media (min-width: 1200px), print {
+    .experience-section {
+        display: grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-areas:
+        "experience-section-title experience-section-content";
+    }
+}
+.experience-section-title {
+    grid-area: experience-section-title;
+}
+.experience-section-content {
+    grid-area: experience-section-content;
+}
+.experience-section-content-details{
+    display: grid;
+    grid-template-columns: 4fr;
+    grid-template-areas:
+    "experience-section-content-details-company"
+    "experience-section-content-details-location"
+    "experience-section-content-details-title"
+    "experience-section-content-details-dates"
+    "experience-section-content-details-description"
+    "experience-section-content-details-description-bullets";
+}
+@media (min-width: 1200px), print {
+    .experience-section-content-details{
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-template-areas:
+        "experience-section-content-details-company experience-section-content-details-location"
+        "experience-section-content-details-title experience-section-content-details-dates"
+        "experience-section-content-details-description experience-section-content-details-description"
+        "experience-section-content-details-description-bullets experience-section-content-details-description-bullets";
+    }
+}
+.experience-section-content-details-company {
+    grid-area: experience-section-content-details-company;
+    font-weight: bold;
+}
+.experience-section-content-details-location {
+    grid-area: experience-section-content-details-location;
+}
+.experience-section-content-details-title {
+    grid-area: experience-section-content-details-title;
+}
+.experience-section-content-details-dates {
+    grid-area: experience-section-content-details-dates;
+}
+.experience-section-content-details-description {
+    grid-area: experience-section-content-details-description;
+    padding-top: 1em;
+}
+.experience-section-content-details-description-bullets {
+    grid-area: experience-section-content-details-description-bullets;
+}
+.experience-section-content-details-description-bullets ul {
+    margin: 0.5em 0em 0em 0em;
+}
+
+.skills {
+    grid-area: skills;
+}
+.skills-section {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+    "skills-section-title"
+    "skills-section-content";
+}
+@media (min-width: 1200px), print {
+    .skills-section {
+        display: grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-areas:
+        "skills-section-title skills-section-content";
+    }
+}
+.skills-section-title {
+    grid-area: skills-section-title;
+}
+.skills-section-content {
+    grid-area: skills-section-content;
+}
+.skills-section-content-details{
+    display: grid;
+    grid-template-columns: 4fr;
+}
+.skills-section-content-details:not(:first-child){
+    padding-top: 0em;
+}
+.skills-section-content-details-category {
+    grid-area: skills-section-content-details-category;
+    font-weight: bold;
+}
+.skills-section-content-details-items {
+    grid-area: skills-section-content-details-items;
+}
+
+.certifications {
+    grid-area: certifications;
+}
+.certifications-section {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+    "certifications-section-title"
+    "certifications-section-content";
+}
+@media (min-width: 1200px), print {
+    .certifications-section {
+        display: grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-areas:
+        "certifications-section-title certifications-section-content";
+    }
+}
+.certifications-section-title {
+    grid-area: certifications-section-title;
+}
+.certifications-section-content {
+    grid-area: certifications-section-content;
+}
+.certifications-section-content-details {
+    display: grid;
+    grid-template-columns: 4fr;
+    grid-template-areas:
+    "certifications-section-content-details-certification"
+    "certifications-section-content-details-date-obtained";
+}
+@media (min-width: 1200px), print {
+    .certifications-section-content-details {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-areas:
+        "certifications-section-content-details-certification certifications-section-content-details-date-obtained";
+    }
+}
+.certifications-section-content-details:not(:first-child){
+    padding-top: 0em;
+}
+.certifications-section-content-details-certification {
+    grid-area: certifications-section-content-details-certification;
+    font-weight: bold;
+}
+.certifications-section-content-details-date-obtained {
+    grid-area: certifications-section-content-details-date-obtained;
+}
+
+
+.education {
+    grid-area: education;
+}
+.education-section {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+    "education-section-title"
+    "education-section-content";
+}
+@media (min-width: 1200px), print {
+    .education-section {
+        display: grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-areas:
+        "education-section-title education-section-content";
+    }
+}
+.education-section-title {
+    grid-area: education-section-title;
+}
+.education-section-content {
+    grid-area: education-section-content;
+}
+.education-section-content-details {
+    display: grid;
+    grid-template-columns: 4fr;
+    grid-template-areas:
+    "education-section-content-details-school"
+    "education-section-content-details-location"
+    "education-section-content-details-degree-type"
+    "education-section-content-details-dates"
+    "education-section-content-details-major"
+    "education-section-content-details-minor";
+}
+@media (min-width: 1200px), print {
+    .education-section-content-details {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-template-areas:
+        "education-section-content-details-school education-section-content-details-location"
+        "education-section-content-details-degree-type education-section-content-details-dates"
+        "education-section-content-details-major education-section-content-details-minor";
+    }
+}
+.education-section-content-details-school {
+    grid-area: education-section-content-details-school;
+    font-weight: bold;
+}
+.education-section-content-details-location {
+    grid-area: education-section-content-details-location;
+}
+.education-section-content-details-degree-type {
+    grid-area: education-section-content-details-degree-type;
+}
+.education-section-content-details-major {
+    grid-area: education-section-content-details-major;
+}
+.education-section-content-details-minor {
+    grid-area: education-section-content-details-minor;
+}
+.education-section-content-details-dates {
+    grid-area: education-section-content-details-dates;
+}
+.volunteering {
+    grid-area: volunteering;
+}
+.volunteering-section {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+    "volunteering-section-title"
+    "volunteering-section-content";
+}
+@media (min-width: 1200px), print {
+    .volunteering-section {
+        display: grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-areas:
+        "volunteering-section-title volunteering-section-content";
+    }
+}
+.volunteering-section-title {
+    grid-area: volunteering-section-title;
+}
+.volunteering-section-content {
+    grid-area: volunteering-section-content;
+}
+.volunteering-section-content-details{
+    display: grid;
+    grid-template-columns: 4fr;
+    grid-template-areas:
+    "volunteering-section-content-details-company"
+    "volunteering-section-content-details-location"
+    "volunteering-section-content-details-title"
+    "volunteering-section-content-details-dates"
+    "volunteering-section-content-details-description";
+}
+@media (min-width: 1200px), print {
+    .volunteering-section-content-details{
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-template-areas:
+        "volunteering-section-content-details-company volunteering-section-content-details-location"
+        "volunteering-section-content-details-title volunteering-section-content-details-dates"
+        "volunteering-section-content-details-description volunteering-section-content-details-description";
+    }
+}
+.volunteering-section-content-details-company {
+    grid-area: volunteering-section-content-details-company;
+    font-weight: bold;
+}
+.volunteering-section-content-details-location {
+    grid-area: volunteering-section-content-details-location;
+}
+.volunteering-section-content-details-title {
+    grid-area: volunteering-section-content-details-title;
+}
+.volunteering-section-content-details-dates {
+    grid-area: volunteering-section-content-details-dates;
+}
+.volunteering-section-content-details-description {
+    grid-area: volunteering-section-content-details-description;
+    padding-top: 1em;
+}
+
+.interests {
+    grid-area: interests;
+}
+.interests-section {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+    "interests-section-title"
+    "interests-section-content";
+}
+@media (min-width: 1200px), print {
+    .interests-section {
+        display: grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-areas:
+        "interests-section-title interests-section-content";
+    }
+}
+.interests-section-title {
+    grid-area: interests-section-title;
+}
+.interests-section-content {
+    grid-area: interests-section-content;
+}
+.interests-section-content-details{
+    display: grid;
+    grid-template-columns: 4fr;
+}
+.interests-section-content-details:not(:first-child){
+    padding-top: 0em;
+}
+.interests-section-content-details-category {
+    grid-area: interests-section-content-details-category;
+    font-weight: bold;
+}
+.interests-section-content-details-items {
+    grid-area: interests-section-content-details-items;
+}
+
+.references {
+    grid-area: references;
+}
+.references-section {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+    "references-section-title"
+    "references-section-content";
+}
+@media (min-width: 1200px), print {
+    .references-section {
+        display: grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-areas:
+        "references-section-title references-section-content";
+    }
+}
+.references-section-title {
+    grid-area: references-section-title;
+}
+.references-section-content {
+    grid-area: references-section-content;
+}
+.references-section-content-details {
+    display: grid;
+    grid-template-columns: 4fr;
+    grid-template-areas:
+    "references-section-content-details-name"
+    "references-section-content-details-company"
+    "references-section-content-details-contact"
+    "references-section-content-details-title";
+}
+@media (min-width: 1200px), print{
+    .references-section-content-details {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-template-areas:
+        "references-section-content-details-name references-section-content-details-company"
+        "references-section-content-details-contact references-section-content-details-title";
+    }
+}
+.references-section-content-details-name {
+    grid-area: references-section-content-details-name;
+    font-weight: bold;
+}
+.references-section-content-details-company {
+    grid-area: references-section-content-details-company;
+}
+.references-section-content-details-title {
+    grid-area: references-section-content-details-title;
+}
+.references-section-content-details-contact {
+    grid-area: references-section-content-details-contact;
+}
+
+.footer {
+    margin: 1em;
+}
+.footer a {
+    text-decoration: none;
+    color: #636363;
+}
+.footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.footer ul li {
+    display: inline;
+}
+@media print {
+    header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
+        display: none;
+    }
+    .resume {
+        box-shadow: none;
+    }
+    div {
+        page-break-inside: avoid;
+    }
+    @page {
+        margin: 2em 0em 2em 0em;
+    }
+    @page:first {
+        margin: 0em 0em 2em 0em;
+    }
+}

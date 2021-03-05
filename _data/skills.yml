@@ -1,0 +1,18 @@
+section-title: Technical Summary
+content:
+  - category: Automation Technologies
+    skills:
+      - item: Powershell
+      - item: SCCM
+      - item: Docker
+      - item: Ansible
+  - category: Cloud Technologies
+    skills:
+      - item: Microsoft Azure
+      - item: Citrix Cloud
+      - item: Office 365
+  - category: Virtualization Technologies
+    skills:
+      - item: VMWare
+      - item: XCP-NG
+      - item: Hyper-V

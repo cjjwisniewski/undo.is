@@ -1,0 +1,43 @@
+# Site settings
+title: naiad.io
+email: cameron@naiad.io
+description: automate your workflow
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://naiad.io" # the base hostname & protocol for your site
+
+# Homepage tiles
+tiles-source: posts # accepts "posts" or "pages"
+tiles-count: 3
+
+# Misc settings
+featured-image-source:
+
+# Social settings
+500px_url:
+facebook_url:
+github_url: https://www.github.com/cjjwisniewski
+gitlab_url: 
+googleplus_url: 
+instagram_url:
+linkedin_url: https://www.linkedin.com/in/cameronwisniewski
+pinterest_url:
+slack_url:
+twitter_url:
+
+# Build settings
+markdown: kramdown
+
+# Resume settings
+fontawesome_link: https://kit.fontawesome.com/257f475bba.js
+fontawesome_enable_header: true
+fontawesome_enable_content: false
+
+enable_profile: true
+enable_objective: true
+enable_experience: true
+enable_skills: true
+enable_certifications: true
+enable_education: true
+enable_volunteering: true
+enable_interests: true
+enable_references: true
