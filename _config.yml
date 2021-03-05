@@ -1,9 +1,9 @@
 # Site settings
-title: naiad.io
-email: cameron@naiad.io
+title: undo.is
+email: cameron@undo.is
 description: automate your workflow
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://naiad.io" # the base hostname & protocol for your site
+url: "https://undo.is" # the base hostname & protocol for your site
 
 # Homepage tiles
 tiles-source: posts # accepts "posts" or "pages"
