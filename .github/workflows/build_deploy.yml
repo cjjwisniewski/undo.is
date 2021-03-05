@@ -24,4 +24,3 @@ jobs:
         enabled-static-website: 'true'
         folder: '_site'
         connection-string: ${{ secrets.AZURE_CONNECTION_STRING }}
-          echo test, and deploy your project.
