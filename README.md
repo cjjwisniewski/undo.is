@@ -1,3 +1,3 @@
-# naiad.io
+# undo.is
 
-Repository for naiad.io. Uses Spectral template from HTTP5UP converted to Jekyll by Andrew Banchich.
+Repository for undo.is. Uses Spectral template from HTTP5UP converted to Jekyll by Andrew Banchich.
