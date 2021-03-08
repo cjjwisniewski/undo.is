@@ -3,7 +3,7 @@ layout: post
 title: Getting my head in the cloud!
 date: 2020-04-27
 description: The future is cloud, and I'm on my way there. 
-image: blog/azure.jpg
+image: azure.jpg
 ---
 
 <i>Note: I'd originally intended this to be a pretty long piece about studying for the MCAAA, but
