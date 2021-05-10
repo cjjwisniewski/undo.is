@@ -15,7 +15,7 @@
 									<li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
 								{% endif %} 
 							{% endfor %}
-							<li><a href="/resume/">Resume</a></li>
+							<li><a href="{{ site.url }}/resume/">Resume</a></li>
 							{% assign navigation_pages = site.pages | sort: 'navigation_weight' %}
 							{% for page in navigation_pages %} 
 								{% if page.layout == "page" %}
