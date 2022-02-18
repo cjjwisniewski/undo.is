@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://www.undo.is/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.undo.is/" rel="alternate" type="text/html" /><updated>2022-02-18T11:37:06-05:00</updated><id>https://www.undo.is/feed.xml</id><title type="html">undo.is</title><subtitle>automate your workflow</subtitle><entry><title type="html">Terraform &amp;amp; Azure CIS 1.3 5.3.x Controls</title><link href="https://www.undo.is/blog/2022/02/18/azure-cis-1.3-5.3-terraform.html" rel="alternate" type="text/html" title="Terraform &amp;amp; Azure CIS 1.3 5.3.x Controls" /><published>2022-02-18T00:00:00-05:00</published><updated>2022-02-18T00:00:00-05:00</updated><id>https://www.undo.is/blog/2022/02/18/azure-cis-1.3-5.3-terraform</id><content type="html" xml:base="https://www.undo.is/blog/2022/02/18/azure-cis-1.3-5.3-terraform.html">&lt;p&gt;It’s been a bit since I’ve made a new post here, but recently at work I ran into an interesting situation that I thought was worth documenting. At work, we recentlyreceived a directive to ensure that all of our Azure resources were compliant with the Azure CIS 1.3 controls, and I was handed a good portion of that work. As I was working through section 5.3.x requiring Diagnostic Logs to be enabled for a handful of different resource types, I noticed that we had a fair amount that were noncompliant - way too many to go through and fix by hand, at least. As our solution required these logs to be forwarded to an event hub rather than a storage account, we were unable to use the “quick fix” button in the portal, and I had to come up with another way to make all of these resources compliant.&lt;/p&gt;
+
+&lt;p&gt;Enter Terraform.&lt;/p&gt;
+
+&lt;p&gt;Our standard practice for deploying any cloud resource involves creating them through Terraform rather than through the portal or any other means, as Terraform is repeatable and self-documenting. I might go over bits of my Terraform learning journey in another post eventually, but I’ve fallen in love with this tool so much that I’ve even started using it for resource deployments in my homelab!&lt;/p&gt;
+
+&lt;p&gt;My end goal for this was to have my Terraform scripts do the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Utilize an exported list of affected resources from the Microsoft Defender for Cloud portal.&lt;/li&gt;
+&lt;li&gt;Determine which diagnostic logging settings were appropriate for that resource.&lt;/li&gt;
+&lt;li&gt;Not interfere with any existing logging setting.&lt;/li&gt;
+&lt;li&gt;Set these settings on only the resources in the targeted subscription.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The second bullet was the tricky bit in this project. Every type of resource in Azure has the capability of forwarding diagnostic settings specific to itself, and those are obviously not going to be the same for each resource type. Rather than setting specifications for each resource type manually, I needed to have this script determine which logging settings were available for any given resource and reference them later when creating the logging setting. Using a data block, I ended up doing the following:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;
+#Import list of resources to act upon
+locals {
+    resources = csvdecode(file(var.path_to_resource_file))
+}
+#Define available diagnostic categories for specified resource
+data &quot;azurerm_monitor_diagnostic_categories&quot; &quot;this&quot; {
+    provider = azurerm.subscription2
+    for_each = {for key, val in local.resources: key =&amp;gt; val if val.SUBSCRIPTION_ID == var.sub_id}
+    resource_id = each.value.RESOURCE_ID
+}
+&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Using the csvdecode functionality in Terraform, I imported the list of resources I needed to act upon and created an object map of available diagnostic categories for all resources in the subscription I was currently working in with a for_each argument. From here, I could then reference values in this map in future blocks to connect a given resource to the diagnostic categories available to it. With this data available, I then moved to use another for_each argument on the azurerm_monitor_diagnostic_setting resource in combination with a dynamic block for each of the settings available to that resource to ensure that logging for all available categories was enabled.&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;
+#Set up diagnostic forwarding to event hub
+resource &quot;azurerm_monitor_diagnostic_setting&quot; &quot;this&quot; {
+    provider = azurerm.subscription2
+    for_each = {for key, val in local.resources: key =&amp;gt; val if val.SUBSCRIPTION_ID == var.sub_id}
+    name = format(&quot;%s%s&quot;,each.value.NAME,&quot;-diagsetting&quot;)
+    target_resource_id = each.value.RESOURCE_ID
+    eventhub_name = var.event_hub_name
+    eventhub_authorization_rule_id = data.azurerm_eventhub_namespace_authorization_rule.this.id
+
+    dynamic &quot;log&quot; {
+      for_each = data.azurerm_monitor_diagnostic_categories.this[each.key].logs
+      content {
+        category = log.value
+        enabled = var.log_enabled
+        retention_policy {
+          days = var.log_retention_policy_days
+          enabled = var.log_retention_policy_enabled
+        }
+        }
+    }
+
+    dynamic &quot;metric&quot; {
+      for_each = data.azurerm_monitor_diagnostic_categories.this[each.key].metrics
+      content {
+        category = metric.value
+        enabled = var.metric_enabled
+        retention_policy {
+          days = var.metric_retention_policy_days
+          enabled = var.metric_retention_policy_enabled
+        }
+      }
+    }
+}
+&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;The key part here is this bit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;data.azurerm_monitor_diagnostic_categories.this[each.key].logs&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As we are using the same source data for both the diagnostic category data block and the diagnostic setting resource block, they use the same key/value mapping scheme. We can then use that to join two unrelated object maps together to create the desired result; in this case, enabling all available logging categories for the resource currently being acted upon. After all is said and done, I ended up with this to execute on each environment:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;
+#Import list of resources to act upon
+locals {
+    resources = csvdecode(file(var.path_to_resource_file))
+}
+
+#Define eventhub RG
+data &quot;azurerm_resource_group&quot; &quot;this&quot; {
+    provider = azurerm.subscription1
+    name = var.event_hub_resource_group_name
+}
+
+#Define eventhub 
+data &quot;azurerm_eventhub_namespace_authorization_rule&quot; &quot;this&quot; {
+    provider = azurerm.subscription1
+    name = var.event_hub_authorization_rule_name
+    resource_group_name = data.azurerm_resource_group.this.name
+    namespace_name = var.event_hub_namespace_name
+}
+
+#Define available diagnostic categories for specified resource
+data &quot;azurerm_monitor_diagnostic_categories&quot; &quot;this&quot; {
+    provider = azurerm.subscription2
+    for_each = {for key, val in local.resources: key =&amp;gt; val if val.SUBSCRIPTION_ID == var.sub_id}
+    resource_id = each.value.RESOURCE_ID
+}
+
+#Set up diagnostic forwarding to event hub
+resource &quot;azurerm_monitor_diagnostic_setting&quot; &quot;this&quot; {
+    provider = azurerm.subscription2
+    for_each = {for key, val in local.resources: key =&amp;gt; val if val.SUBSCRIPTION_ID == var.sub_id}
+    name = format(&quot;%s%s&quot;,each.value.NAME,&quot;-diagsetting&quot;)
+    target_resource_id = each.value.RESOURCE_ID
+    eventhub_name = var.event_hub_name
+    eventhub_authorization_rule_id = data.azurerm_eventhub_namespace_authorization_rule.this.id
+
+    dynamic &quot;log&quot; {
+      for_each = data.azurerm_monitor_diagnostic_categories.this[each.key].logs
+      content {
+        category = log.value
+        enabled = var.log_enabled
+        retention_policy {
+          days = var.log_retention_policy_days
+          enabled = var.log_retention_policy_enabled
+        }
+      }
+    }
+
+    dynamic &quot;metric&quot; {
+      for_each = data.azurerm_monitor_diagnostic_categories.this[each.key].metrics
+      content {
+        category = metric.value
+        enabled = var.metric_enabled
+        retention_policy {
+          days = var.metric_retention_policy_days
+          enabled = var.metric_retention_policy_enabled
+        }
+      }
+    }
+}
+&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;This was a fun exercise in learning more about how to use Terraform in our environment, and it certainly will help if I need to come up with any other similarly creative solutions in the future!&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">It’s been a bit since I’ve made a new post here, but recently at work I ran into an interesting situation that I thought was worth documenting. At work, we recentlyreceived a directive to ensure that all of our Azure resources were compliant with the Azure CIS 1.3 controls, and I was handed a good portion of that work. As I was working through section 5.3.x requiring Diagnostic Logs to be enabled for a handful of different resource types, I noticed that we had a fair amount that were noncompliant - way too many to go through and fix by hand, at least. As our solution required these logs to be forwarded to an event hub rather than a storage account, we were unable to use the “quick fix” button in the portal, and I had to come up with another way to make all of these resources compliant.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.undo.is/cis1.3.png" /><media:content medium="image" url="https://www.undo.is/cis1.3.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Getting my head in the cloud!</title><link href="https://www.undo.is/blog/2020/04/27/getting-my-head-in-the-cloud.html" rel="alternate" type="text/html" title="Getting my head in the cloud!" /><published>2020-04-27T00:00:00-04:00</published><updated>2020-04-27T00:00:00-04:00</updated><id>https://www.undo.is/blog/2020/04/27/getting-my-head-in-the-cloud</id><content type="html" xml:base="https://www.undo.is/blog/2020/04/27/getting-my-head-in-the-cloud.html">&lt;p&gt;&lt;i&gt;Note: I’d originally intended this to be a pretty long piece about studying for the MCAAA, but
+it never came out the way I wanted it to. Sorry!&lt;/i&gt;&lt;/p&gt;
+
+&lt;p&gt;I feel pretty lucky in my current position that I get to touch a &lt;i&gt;lot&lt;/i&gt; of new technology as we experiment with it and look to the future of our tech. The more I see, the more convinced I am that the future of technology (at the moment, anyway) isn’t in our datacenter; it’s in someone else’s. With that in mind, I started to seriously look into getting certified in a cloud technology with my business’s primary vendor: Microsoft. While it seems like a large portion of the world looks to Amazon for their cloud needs, Azure interested me for a few reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;My current workplace has a heavy investment in the Microsoft stack. If I took this route, not only would I improve myself, but I could also help invest some of that time back into the business.&lt;/li&gt;
+&lt;li&gt;A lot of my existing knowledge of Microsoft products seemed to transfer over with little adaptation. They built their platform with the intention of having businesses already using MS products adopt it, and it worked.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Strictly speaking, I started this journey last year; I’d promised myself that I’d make an effort to get a basic cloud certification in 2019 for self-improvement purposes, and passed the AZ900 for my Azure Fundamentals certification in December. With that in hand, though, I was even more interested and made it a point to study even harder in Q1 2020. A lot of time watching online courses and even more time brushing up on my Azure networking skills, I scheduled my AZ103 exam for a weekday in February.&lt;/p&gt;
+
+&lt;p&gt;A few hours and one test later, I was officially a Microsoft Certified Azure Administrator Associate.&lt;/p&gt;
+
+&lt;p&gt;I’m hopeful that I’ll be able to apply this knowledge in a meaningful way in the coming months. I have my head in the cloud for now, at least; I just have to get the rest of myself there too!&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">Note: I’d originally intended this to be a pretty long piece about studying for the MCAAA, but it never came out the way I wanted it to. Sorry!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.undo.is/azure.jpg" /><media:content medium="image" url="https://www.undo.is/azure.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Automating your resume</title><link href="https://www.undo.is/blog/2020/02/11/automating-your-resume.html" rel="alternate" type="text/html" title="Automating your resume" /><published>2020-02-11T00:00:00-05:00</published><updated>2020-02-11T00:00:00-05:00</updated><id>https://www.undo.is/blog/2020/02/11/automating-your-resume</id><content type="html" xml:base="https://www.undo.is/blog/2020/02/11/automating-your-resume.html">&lt;p&gt;In the past few weeks I’ve been faced once again with an issue that had always annoyed me a bit - updating a
+resume. My significant other has been on the hunt for new employment, and as we look to make sure it’s tailored
+to each posting, we are finding that our preferred format gets knocked all out of order every time a line is 
+changed. Usually that would be simple enough to fix, but hey, when you have the time and desire to overengineer
+something, &lt;i&gt;why not&lt;/i&gt;?&lt;/p&gt;
+
+&lt;p&gt;I’d recently had an article pop up in my Google News feed about using CSS grid formatting to organize your resume
+content, and had a thought from there that I could combine that with the recently-discovered (well, to me anyway) 
+magic of Jekyll to make my dreams come true. No longer would I have to adjust font sizes in whitespace to make 
+things line up properly! No longer would I need to curse every time I opened up the document in Google Drive, accidentally
+destroying the formatting!&lt;/p&gt;
+
+&lt;p&gt;Still somewhat new to this, the exact formatting of some of the Liquid used in the Jekyll template took a bit of trial 
+and error to work out, but in the end I was able to replicate - column for column, block for block - the format that I’d
+always used in Word. This time, though, it was all done in CSS and HTML. An update to the resume was as simple as an update 
+to a text file, and I’d never have to worry about wrecking the formatting ever again. Best of all? It even looks okay in a 
+mobile view!&lt;/p&gt;
+
+&lt;div style=&quot;width: 100%; margin-left: auto; margin-right: auto;&quot;&gt;
+&lt;img src=&quot;https://i.imgur.com/agjE99e.png&quot; style=&quot;max-width: 500px;&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can check out the source code &lt;a href=&quot;https://github.com/cjjwisniewski/html_resume&quot;&gt;here&lt;/a&gt;, or see it in action on my &lt;a href=&quot;https://naiad.io/portfolio/html_resume&quot;&gt;Portfolio&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">In the past few weeks I’ve been faced once again with an issue that had always annoyed me a bit - updating a resume. My significant other has been on the hunt for new employment, and as we look to make sure it’s tailored to each posting, we are finding that our preferred format gets knocked all out of order every time a line is changed. Usually that would be simple enough to fix, but hey, when you have the time and desire to overengineer something, why not?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.undo.is/spongebob_resume.png" /><media:content medium="image" url="https://www.undo.is/spongebob_resume.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Microsoft Ignite 2019 Recap</title><link href="https://www.undo.is/blog/2019/11/20/microsoft-ignite-recap.html" rel="alternate" type="text/html" title="Microsoft Ignite 2019 Recap" /><published>2019-11-20T00:00:00-05:00</published><updated>2019-11-20T00:00:00-05:00</updated><id>https://www.undo.is/blog/2019/11/20/microsoft-ignite-recap</id><content type="html" xml:base="https://www.undo.is/blog/2019/11/20/microsoft-ignite-recap.html">&lt;p&gt;When I was told that I was going to have the opportunity to attend Microsoft Ignite 
+earlier this year, I was really excited. Not only was I going to get the chance to 
+escape the bitter Pennsylvania cold, but I’d also get the chance to learn a ton and 
+experiment with Microsoft’s cutting-edge tech. Monday started off strong with Satya’s 
+Vision Keynote; Satya is a brilliant speaker, and the announcements this year were 
+everything I could have hoped for. While I’d hardly consider Microsoft Endpoint
+Manager to be something ‘new,’ I’m very happy thaty they’re finally unifying their
+branding all the same. Microsoft has been very vocal about the future of endpoint 
+management in the enterprise being co-management, but SCCM and Intune have seemingly
+always been treated as two completely unrelated products. With any luck this will 
+eventually lead to simultaneous feature availability and, eventually, to the fabled
+single pane of glass for endpoint management.&lt;/p&gt;
+
+&lt;p&gt;I was also very interested in the applications of Project Cortex and in what they’re 
+doing with Power Automate (formerly Flow). While Cortex is only capable of scraping
+your 365 stack currently, the (confirmed) plans for third-party connectors are very
+exciting. Nobody &lt;i&gt;likes&lt;/i&gt; writing documentation, so imagine if you could have 
+the power of machine learning write KB articles for you after having scanned your 
+ServiceNow instance for common issues. Think of a world where you are notified about
+about a major issue before your help desk even knows it’s happening. That would
+be amazing enough, and that’s before we start to get into the other applications of 
+this sort of tech. If you already have something scraping your 365 stack for
+reoccurrances of certain keywords, there’s no reason why you couldn’t be automatically 
+alerted if people outside of a given department start talking about potentially classified
+information. We were also shown the TruGreen demo about 100 times through the course of the 
+week, but honestly it was probably warranted. Flow/Power Automate has always been a really
+cool piece of tech, but now that it can easily integrate with legacy LoB applications
+I can foresee much wider adoption.&lt;/p&gt;
+
+&lt;p&gt;The sessions I attended mostly lined up with what I could see myself using in the workplace; 
+I put a heavy emphasis on MEM and the Azure endpoint security features, with a sprinkling of 
+other topics as I could make time for them. I learned a ton about what’s coming down the pipeline
+with Autopilot, with Azure Active Directory, and with a slew of other technologies that I’m 
+really looking forward to implementing. And, of course, when I wasn’t in sessions, I spent a 
+lot of time talking to vendors (both ones we work with currently and new ones) in The Hub.&lt;/p&gt;
+
+&lt;div style=&quot;width: 100%; margin-left: auto; margin-right: auto;&quot;&gt;
+&lt;img src=&quot;https://i.imgur.com/EHMamoW.png&quot; style=&quot;max-width: 500px;&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Microsoft is far from the only company that makes annoucements during Ignite, and I was 
+happy to have the opportunity to get demos on some of the other stuff released during the
+week. The wonderful people at Citrix provided us with a great demo on their Intelligent Workspace,
+which I’ve always been really curious about. Our HRIS system at work is far from easy to work with, 
+so the possibility of integrating “microapps” for common uses like inputting PTO or timesheets 
+into something that our users are already familiar with sounds awesome. We also had a great talk 
+with the Program Lead for Windows Update for Business at a Microsoft-sponsored social one night that
+was hugely informative; as I’m in the process of implementing WuFB in our environment currently,
+it was great to have her validate some of my concerns and confirm that my approach is following
+best practices.&lt;/p&gt;
+
+&lt;p&gt;All in all, Ignite was an incredible experience, and I’d love to do it again next year. In the meantime,
+though, I’m going to do my best to apply what I’ve learned so that we can use this new tech as a stepping 
+stone to what’s coming in the future! See you next year, Orlando!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/CbgR3sr.png&quot; class=&quot;image-content&quot; style=&quot;max-width: 500px;&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">When I was told that I was going to have the opportunity to attend Microsoft Ignite earlier this year, I was really excited. Not only was I going to get the chance to escape the bitter Pennsylvania cold, but I’d also get the chance to learn a ton and experiment with Microsoft’s cutting-edge tech. Monday started off strong with Satya’s Vision Keynote; Satya is a brilliant speaker, and the announcements this year were everything I could have hoped for. While I’d hardly consider Microsoft Endpoint Manager to be something ‘new,’ I’m very happy thaty they’re finally unifying their branding all the same. Microsoft has been very vocal about the future of endpoint management in the enterprise being co-management, but SCCM and Intune have seemingly always been treated as two completely unrelated products. With any luck this will eventually lead to simultaneous feature availability and, eventually, to the fabled single pane of glass for endpoint management.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.undo.is/ignite2019.png" /><media:content medium="image" url="https://www.undo.is/ignite2019.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Powered by Jekyll!</title><link href="https://www.undo.is/blog/2019/10/24/powered-by-jekyll.html" rel="alternate" type="text/html" title="Powered by Jekyll!" /><published>2019-10-24T00:00:00-04:00</published><updated>2019-10-24T00:00:00-04:00</updated><id>https://www.undo.is/blog/2019/10/24/powered-by-jekyll</id><content type="html" xml:base="https://www.undo.is/blog/2019/10/24/powered-by-jekyll.html">&lt;p&gt;Some time after I finished putting my homelab together (more on that in another post)
+I decided that I should probably put together some kind of website while I was at it.
+I wasn’t necessarily hellbent on hosting it on my own hardware, but if I ever wanted 
+to host any of it myself I at least now had that capacity. I went into making this site
+with a few requirements in mind:&lt;/p&gt;
+
+&lt;li&gt;The site had to be easy to maintain&lt;/li&gt;
+&lt;li&gt;The site had to be at least partially cloud hosted to prevent downtime&lt;/li&gt;
+&lt;li&gt;I wanted to be able to make the site and have to look good enough to serve as my personal portfolio&lt;/li&gt;
+
+&lt;p&gt;I’ll leave the decision on whether or not I achieved that third one to you.&lt;/p&gt;
+
+&lt;p&gt;I bounced around on the cloud hosting point for a bit after experimenting with a few
+options. I knew that, as I was looking toward learning more about enterprise level cloud
+offerings, I probably wanted to focus in on the big three rather than use some web hosting
+service. I have a self-admitted love of all things Google, and host another domain for
+personal stuff on GCP, so I already had some experience there. Azure was my next stop; we
+leverage Azure pretty heavily at work, and learning more about other ways to utilize it
+was really appealing to me. Blob storage integration with VS Code made upkeep and
+minor changes a breeze, and everything worked mostly as I expected it to. What was NOT
+appealing, though, was the lack of a free/low cost tier on which I could use my own domain,
+and that ultimately killed it for me at the end of the day as a solution to this particular
+issue.&lt;/p&gt;
+
+&lt;p&gt;I started looking into hosting on AWS, but before I got very far into that, I stumbled upon
+the thing I eventually ended up using: Github pages. This gave me Github’s awesome version 
+control and doubled as an excuse to actually start using Github as a repo for some of my 
+scripts and projects (something that I’ve been putting off for ages for some reason). That
+will be a work in progress for some time, but as far as the personal site went I had liftoff.&lt;/p&gt;
+
+&lt;p&gt;That brought me to the final requirement, ease of upkeep. I wanted to get some semblance
+of a blog running, I wanted a portfolio, I wanted a profile page, and I wanted to 
+be able to maintain it all without having to touch every single page every time I did 
+anything. Enter: &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;. I’m not going to go into a 
+tutorial on exactly how it works (there’s plenty of that online already), but it was a perfect
+solution for my needs. Layouts allowed me to reuse page templates time and time again,
+spinning up new pages in a matter of minutes and adding blog posts as quickly as I could 
+write them. Any time I would make a change that needed to happen on every page on the site, 
+I’d only have to do it once in the default layout! This thing is magical, and I’d wholeheartedly
+recommend it to anyone that wanted to easily build their own site without relying heavily
+on Wordpress or something similar.&lt;/p&gt;
+
+&lt;p&gt;Honestly, I’m not sure what the future for this project will look like, but for the time being
+the combination of Jekyll &amp;amp; Github Pages gives me everything that I’m looking for: a simple,
+static site where the only bounds are my creativity.&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">Some time after I finished putting my homelab together (more on that in another post) I decided that I should probably put together some kind of website while I was at it. I wasn’t necessarily hellbent on hosting it on my own hardware, but if I ever wanted to host any of it myself I at least now had that capacity. I went into making this site with a few requirements in mind:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.undo.is/jekyll.jpeg" /><media:content medium="image" url="https://www.undo.is/jekyll.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
