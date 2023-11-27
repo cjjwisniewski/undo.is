@@ -28,4 +28,4 @@ mobile view!
 <img src = "https://i.imgur.com/agjE99e.png" style = "max-width: 500px;"/>
 </div>
 
-You can check out the source code <a href="https://github.com/cjjwisniewski/html_resume">here</a>, or see it in action on my <a href="https://naiad.io/portfolio/html_resume">Portfolio</a>.
+You can check out the source code <a href="https://github.com/cjjwisniewski/html_resume">here</a>, or see it in action on my <a href="https://undo.is/portfolio/html_resume">Portfolio</a>.
