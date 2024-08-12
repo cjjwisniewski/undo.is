@@ -23,8 +23,8 @@ jobs:
         target_path: '_site'
         build_dir: '_site'
         build_only: 'true'
-    - name: chmod
-      run: sudo chmod -R 777 ~/work/undo.is/_site/
+    #- name: chmod
+    #  run: sudo chmod -R 777 ~/work/undo.is/_site/
     - uses: bacongobbler/azure-blob-storage-upload@main
       with:
         cli_version: 2.34.1
