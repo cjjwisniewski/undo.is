@@ -1,4 +1,4 @@
-name: Jekyll site build CI
+name: Build and deploy Jekyll site to Azure Blob static page
 
 on:
   push:
@@ -7,20 +7,29 @@ on:
     branches: [ main ]
 
 jobs:
-  build_deploy:
-    runs-on: ubuntu-latest
-
+  jekyll:
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod a+w /srv/jekyll/Gemfile.lock && chmod 777 /srv/jekyll && jekyll build --future"
-    - name: Deploy Jekyll build to Azure static site
-      uses: tibor19/static-website-deploy@v1
+    - uses: actions/cache@v1
       with:
-        enabled-static-website: 'true'
-        folder: '_site'
-        connection-string: ${{ secrets.AZURE_CONNECTION_STRING }}
+        path: vendor/bundle
+        key: $-gems-$
+        restore-keys: |
+          $-gems-
+    - uses: helaili/jekyll-action@v2
+      with:
+        jekyll_src: 'jekyll'
+        target_path: '_site'
+        build_dir: '_site'
+        build_only: 'true'
+    - name: chmod
+      run: sudo chmod -R 777 ~/work/undo.is/_site/
+    - uses: bacongobbler/azure-blob-storage-upload@main
+      with:
+        cli_version: 2.34.1
+        source_dir: 'jekyll/_site/_site/'
+        container_name: '$web'
+        sas_token: ${{ secrets.SAS_TOKEN }}
+        account_name: ${{ secrets.STORAGE_ACCOUNT_NAME }}
+        overwrite: 'true'
