@@ -24,11 +24,11 @@ jobs:
         build_dir: '_site'
         build_only: 'true'
     - name: chmod
-      run: sudo chmod -R 777 /github/workspace/_site/
+      run: sudo chmod -R 777 /home/runner/work/undo.is/undo.is/_site/
     - uses: bacongobbler/azure-blob-storage-upload@main
       with:
         cli_version: 2.34.1
-        source_dir: '/github/workspace/_site/_site'
+        source_dir: '/home/runner/work/undo.is/undo.is/_site/'
         container_name: '$web'
         sas_token: ${{ secrets.SAS_TOKEN }}
         account_name: ${{ secrets.STORAGE_ACCOUNT_NAME }}
