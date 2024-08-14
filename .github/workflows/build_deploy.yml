@@ -28,7 +28,6 @@ jobs:
     - uses: bacongobbler/azure-blob-storage-upload@main
       with:
         source_dir: '/home/runner/work/undo.is/undo.is/_site/'
-        source_dir: 'jekyll/_site/_site/'
         container_name: '$web'
         connection_string: ${{ secrets.AZURE_CONNECTION_STRING }}
         #sas_token: ${{ secrets.SAS_TOKEN }}
