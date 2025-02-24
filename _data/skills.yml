@@ -1,0 +1,36 @@
+section-title: Technical Summary
+content:
+  - category: Automation
+    skills:
+      - item: Terraform
+      - item: GitHub
+      - item: Harness
+      - item: PowerShell
+      - item: SCCM
+      - item: Bash
+      - item: CI/CD
+  - category: Cloud
+    skills:
+      - item: Microsoft Azure
+      - item: Amazon Web Services
+      - item: Office 365
+      - item: Citrix Cloud
+      - item: EKS
+      - item: EC2
+      - item: S3
+      - item: VPC
+  - category: Systems Administration
+    skills:
+      - item: Kubernetes
+      - item: Docker
+      - item: VMWare
+      - item: Hyper-V
+      - item: Virtualization
+      - item: Linux
+      - item: Windows
+  - category: Security
+    skills:
+      - item: AWS Cloud Security
+      - item: Microsoft 365 Defender
+      - item: Microsoft 365 Compliance
+      - item: Guardicore

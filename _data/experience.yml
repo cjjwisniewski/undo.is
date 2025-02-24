@@ -1,0 +1,60 @@
+section-title: Professional Experience
+content:
+  - company: Crown Castle
+    location: Canonsburg, PA
+    title: Senior Cloud Platform Engineer
+    dates: March 2024 to Present
+    description:
+      Architect and build Crown Castle's cloud platform, prioritizing security and scalability. Implement CI/CD processes to improve engineering efficiency. Foster technology innovation through 
+      proof-of-concept development and research. Manage platform risks and adapt solutions to support rapid business growth.
+    description-bullets:
+      - bullet: Architected, engineered, and deployed Crown Castle's first external-facing REST API utilizing Amazon API Gateway, establishing a robust foundation for customer integrations. 
+      - bullet: Proposed and established a tech lead program within the Platform Engineering team to elevate engineering capabilities, fostering technical leadership, mentorship, and knowledge sharing, resulting in improved team efficiency and accelerating project outcomes.
+      - bullet: Developed and implemented a comprehensive requirements framework for all platform services, standardizing and streamlining the new project intake process.
+      - bullet: Founded and directed a cloud platform training program, enhancing the organization's technical proficiency and accelerating cloud adoption initiatives. 
+      - bullet: Developed reusable services and modules for platform service offerings, offering low code solutions to internal customers and significantly improving time to market.
+  - title: Cloud Platform Engineer III
+    dates: June 2022 to March 2024
+    description:
+      Architected and developed cloud-native microservices, adhering to security and architectural best practices. Drove technology innovation through POCs and collaboration with development teams, ensuring platform alignment with Agile methodologies.
+    description-bullets:
+      - bullet: Directed a project to implement Teleport for AWS, transforming privileged access management by eliminating all permanently elevated identities.
+      - bullet: Built a secure and automated Terraform CI/CD process, including Checkov for code quality and compliance, to accelerate infrastructure deployment.
+      - bullet: Implemented tag validation within CD pipelines to enforce compliance with ServiceNow CMDB standards, enhancing cost visibility and chargeback accuracy.
+      - bullet: Drove the transition of infrastructure and applications from Azure to AWS as part of the Crown Castle Platform initiative, delivering improved cost efficiency and reliability.
+  - title: Systems Engineer III
+    dates: July 2020 to June 2022
+    description:
+      Architected and managed Azure and on-premise virtualization infrastructure for a 5,000+ employee enterprise. Implemented automated workflows, optimized Office 365, and maintained server compliance with corporate standards. 
+    description-bullets:
+      - bullet: Developed and maintained Crown Castle's Azure environment using Infrastructure as Code (IaC) principles with Terraform, accelerating resource provisioning and minimizing configuration discrepancies.
+      - bullet: Collaborated with the team to maintain consistent DevOps practices across IaC repositories, enhancing infrastructure visibility and control.
+      - bullet: Implemented robust monitoring and alerting solutions to optimize infrastructure performance and availability.
+      - bullet: Enforced industry-standard security controls (CIS, SOX) across cloud and on-premise environments, optimizing audit readiness and compliance posture.
+      - bullet: Oversaw Active Directory and Office 365 environments, including Teams and Exchange Online.
+  - title: Senior Desktop Analyst<br>Desktop Analyst
+    dates: May 2018 to July 2020<br>August 2017 to May 2018
+    description:
+      Managed and administered workstations across a 6,000+ device environment, ensuring optimal end-user experience and security. Drove technology adoption through evaluation, piloting, and project management. Maintained workstation configurations while providing training and mentorship to support staff.
+    description-bullets:
+      - bullet: Optimized Crown Castle's SCCM environment to standardize workstation configurations and reduce support incidents.
+      - bullet: Ensured endpoint security and compliance by deploying critical Windows and third-party software updates, including quality, security, and feature enhancements.
+      - bullet: Consolidated operating system deployment by migrating from MDT to SCCM, streamlining management processes and eliminating redundant infrastructure.
+      - bullet: Contributed to the architecture and implementation of Crown Castle's Citrix environment, and subsequently supported ongoing operations.
+      - bullet: Automated key operating system deployment and departmental processes, significantly increasing efficiency and productivity for the Client Services team.
+  - company: Carlow University
+    location: Pittsburgh, PA
+    title: Computer and Media Specialist
+    dates: June 2014 to August 2017
+    description:
+     Managed incident resolution and production system administration for the university community. Contributed to technology enhancements by implementing new hardware and software solutions.
+    description-bullets:
+      - bullet: Led the implementation of Carlow's Dell KACE environment, developing a comprehensive solution for software updates, service desk operations, and asset management across multiple departments.
+      - bullet: Implemented and maintained Windows Deployment Services, replacing the existing PC build process and reducing build times by 50%.
+      - bullet: Architected and implemented a modernized Pharos Print Management system, significantly reducing administrative and billing costs while enhancing the end-user experience.
+  - company: Saint Vincent College
+    location: Latrobe, PA
+    title: Senior Service Desk Technician
+    dates: August 2010 to May 2014
+    description: 
+     Leveraged ITIL best practices to deliver exceptional customer service. Managed incident resolution for faculty, staff, and students, restoring services within SLA guidelines.

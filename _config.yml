@@ -1,0 +1,46 @@
+# Site settings
+title: undo.is
+email: cameron@undo.is
+description: undo.is
+name: Cameron Wisniewski
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://www.undo.is" # the base hostname & protocol for your site
+
+# Homepage tiles
+tiles-source: posts # accepts "posts" or "pages"
+tiles-count: 3
+
+# Misc settings
+featured-image-source: ./assets/images/
+
+# Social settings
+500px_url:
+facebook_url:
+github_url: https://www.github.com/cjjwisniewski
+gitlab_url: 
+googleplus_url: 
+instagram_url:
+linkedin_url: https://www.linkedin.com/in/cameronwisniewski
+pinterest_url:
+slack_url:
+twitter_url:
+mastodon_url:
+bluesky_url: https://bsky.app/profile/undo.is
+
+# Build settings
+markdown: kramdown
+
+# Resume settings
+fontawesome_link: https://kit.fontawesome.com/257f475bba.js
+fontawesome_enable_header: true
+fontawesome_enable_content: false
+
+enable_profile: true
+enable_objective: true
+enable_experience: true
+enable_skills: true
+enable_certifications: true
+enable_education: true
+enable_volunteering: true
+enable_interests: true
+enable_references: true

@@ -1,0 +1,47 @@
+<!-- Footer -->
+<footer id="footer">
+	<ul class="icons">
+		{% if site.twitter_url %}
+		<li><a href="{{ site.twitter_url }}" class="icon" target="_blank"><i class="fa-brands fa-twitter" title="Twitter"></i></a></li>
+		{% endif %}{% if site.facebook_url %}
+		<li><a href="{{ site.facebook_url }}" class="icon" target="_blank"><i class="fa-brands fa-facebook" title="Facebook"></i></a></li>
+		{% endif %} {% if site.instagram_url %}
+		<li><a href="{{ site.instagram_url }}" class="icon" target="_blank"><i class="fa-brands fa-instagram" title="Instagram"></i></a></li>
+		{% endif %} {% if site.pinterest_url %}
+		<li><a href="{{ site.pinterest_url }}" class="icon" target="_blank"><i class="fa-brands fa-pinterest" title="Pinterest"></i></a></li>
+		{% endif %} {% if site.500px_url %}
+		<li><a href="{{ site.500px_url }}" class="icon" target="_blank"><i class="fa-brands fa-500px" title="500px"></i></a></li>
+		{% endif %} {% if site.gitlab_url %}
+		<li><a href="{{ site.gitlab_url }}" class="icon" target="_blank"><i class="fa-brands fa-gitlab" title="GitLab"></i></a></li>
+		{% endif %} {% if site.github_url %}
+		<li><a href="{{ site.github_url }}" class="icon" target="_blank"><i class="fa-brands fa-github" title="GitHub"></i></a></li>
+		{% endif %} {% if site.slack_url %}
+		<li><a href="{{ site.slack_url }}" class="icon" target="_blank"><i class="fa-brands fa-slack" title="Slack"></i></a></li>
+		{% endif %} {% if site.linkedin_url %}
+		<li><a href="{{ site.linkedin_url }}" class="icon" target="_blank"><i class="fa-brands fa-linkedin-in" title="LinkedIn"></i></a></li>
+		{% endif %} {% if site.mastodon_url %}
+		<li><a href="{{ site.mastodon_url }}" class="icon" target="_blank"><i class="fa-brands fa-mastodon" title="Mastodon"></i></a></li>
+		{% endif %} {% if site.bluesky_url %}
+		<li><a href="{{ site.bluesky_url }}" class="icon" target="_blank"><i class="fa-brands fa-bluesky" title="Bluesky"></i></a></li>
+		{% endif %} {% if site.email %}
+		<li><a href="mailto:{{ site.email }}" class="icon"><i class="fa-solid fa-envelope" title="Email"></i></a></li>
+		{% endif %}
+	</ul>
+	<ul class="copyright">
+		<li>&copy; {{ site.title }} {{ 'now' | date: "%Y" }}</li>
+	</ul>
+</footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="{{ "/assets/js/jquery.min.js"}}"></script>
+<script src="{{ "/assets/js/jquery.scrollex.min.js"}}"></script>
+<script src="{{ "/assets/js/jquery.scrolly.min.js"}}"></script>
+<script src="{{ "/assets/js/skel.min.js"}}"></script>
+<script src="{{ "/assets/js/util.js"}}"></script>
+<!--[if lte IE 8]><script src="{{ "./assets/js/ie/respond.min.js" | absolute_url }}"></script><![endif]-->
+<script src="{{ "/assets/js/main.js" }}"></script>
+</body>
+
+</html>
