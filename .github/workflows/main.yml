@@ -23,7 +23,7 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-            az storage blob upload-batch --account-name undoissite --auth-mode key -d '$web' -s /home/runner/work/undo.is/undo.is/_site
+            az storage blob upload-batch --account-name undoissite --auth-mode key -d '$web' -s /home/runner/work/undo.is/undo.is/_site --overwrite true
     - name: Purge CDN endpoint
       uses: azure/CLI@v1
       with:
