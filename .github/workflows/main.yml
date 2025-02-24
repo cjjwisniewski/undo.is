@@ -14,15 +14,16 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+    - name: chmod
+      run: sudo chmod -R 777 /home/runner/work/undo.is/undo.is/_site/
     - uses: azure/login@v2
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
         inlineScript: |
-            az storage blob upload-batch --account-name undoissite --auth-mode key -d '$web' -s /srv/jekyll/_site
+            az storage blob upload-batch --account-name undoissite --auth-mode key -d '$web' -s /home/runner/work/undo.is/undo.is/_site
     - name: Purge CDN endpoint
       uses: azure/CLI@v1
       with:
