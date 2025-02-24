@@ -3397,6 +3397,11 @@
 		text-align: center;
 	}
 
+	#banner li {
+		letter-spacing: 0.225em;
+		text-transform: uppercase;
+	}
+
 		#banner h2 {
 			-moz-transform: scale(1);
 			-webkit-transform: scale(1);
