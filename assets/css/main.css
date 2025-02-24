@@ -3817,6 +3817,10 @@
 
 
 /* Resume CSS */
+.resume-page {
+	background: #b4b4b4;
+}
+
 #resume {
     height: 100%;
     margin: 0;
@@ -3824,11 +3828,13 @@
     font-family: 'Montserrat', sans-serif;
     color: #000000;
 	padding-bottom: 3em;
+	padding-top: 3em;
 	letter-spacing: 0;
 	line-height: 1.05em;
 }
 body #resume {
 	font-size: 0.8em;
+	background: #b4b4b4;
 }
 #content {
 	margin-bottom: 3em;
@@ -3846,12 +3852,6 @@ body #resume {
 #resume #page-wrapper {
 	padding-top: 0em;
 	background: #b4b4b4;
-}
-#resume .wrapper {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 #resume p {
     margin: 0;
@@ -4377,28 +4377,15 @@ body #resume {
     grid-area: references-section-content-details-contact;
 }
 
-/*
-#resume .footer {
-    margin: 1em;
-}
-#resume .footer a {
-    text-decoration: none;
-    color: #636363;
-}
-#resume .footer ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-#resume .footer ul li {
-    display: inline;
-}
-*/
 @media print {
-    #resume header, #resume footer, #resume aside, #resume nav, #resume form, #resume iframe, #resume .menu, #resume .hero, #resume .adslot {
+    #resume header, #resume footer, #resume aside, #resume nav, #resume form, #resume iframe, #resume .menu, #resume .hero, #resume .adslot, .page-wrapper {
         display: none;
     }
-	.wrapper{
+	header {
+		display: none;
+		padding: 0;
+	}
+	.wrapper, #page-wrapper, #resume{
 		padding: 0;
 	}
     #resume .resume {
@@ -4413,4 +4400,7 @@ body #resume {
     @page:first {
         margin: 0em 0em 2em 0em;
     }
+	main {
+		padding: 0;
+	}
 }
