@@ -8,11 +8,11 @@ content:
       Architect and build Crown Castle's cloud platform, prioritizing security and scalability. Implement CI/CD processes to improve engineering efficiency. Foster technology innovation through 
       proof-of-concept development and research. Manage platform risks and adapt solutions to support rapid business growth.
     description-bullets:
+      - bullet: Led multiple divestment workstreams in Crown Castle's undertaking to separate the business, its cloud platforms, and its various applications into three independent entities, ensuring minimal disruption to ongoing business.
       - bullet: Architected, engineered, and deployed Crown Castle's first external-facing REST API utilizing Amazon API Gateway, establishing a robust foundation for customer integrations. 
       - bullet: Proposed and established a tech lead program within the Platform Engineering team to elevate engineering capabilities, fostering technical leadership, mentorship, and knowledge sharing, resulting in improved team efficiency and accelerating project outcomes.
       - bullet: Developed and implemented a comprehensive requirements framework for all platform services, standardizing and streamlining the new project intake process.
       - bullet: Founded and directed a cloud platform training program, enhancing the organization's technical proficiency and accelerating cloud adoption initiatives. 
-      - bullet: Developed reusable services and modules for platform service offerings, offering low code solutions to internal customers and significantly improving time to market.
   - title: Cloud Platform Engineer III
     dates: June 2022 to March 2024
     description:

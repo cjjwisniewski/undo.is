@@ -1,5 +1,7 @@
 section-title: Certifications
 content:
+  - certification: Hashicorp Certified: Terraform Authoring and Operations Professional
+    date-obtained: September 2025
   - certification: AWS Certified Solutions Architect - Associate
     date-obtained: June 2024
   - certification: Hashicorp Certified Terraform Associate
