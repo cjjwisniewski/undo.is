@@ -1,5 +1,7 @@
-section-title: Certifications
+section-title: Active Certifications<br><i>(Date Obtained)</i>
 content:
+  - certification: AWS Certified Security - Specialty
+    date-obtained: November 2025
   - certification: Hashicorp Certified - Terraform Authoring and Operations Professional
     date-obtained: September 2025
   - certification: AWS Certified Solutions Architect - Associate
