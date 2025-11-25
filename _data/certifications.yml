@@ -1,4 +1,4 @@
-section-title: Active Certifications<br><i>(Date Obtained)</i>
+section-title: Active Certifications<br><div style="font-size:0.8em"><i>(Date Obtained)</i></div>
 content:
   - certification: AWS Certified Security - Specialty
     date-obtained: November 2025
