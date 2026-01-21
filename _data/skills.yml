@@ -1,36 +1,30 @@
 section-title: Technical Summary
 content:
-  - category: Automation
+  - category: Infrastructure as Code
     skills:
       - item: Terraform
-      - item: GitHub
+      - item: GitHub Actions
       - item: Harness
-      - item: PowerShell
-      - item: SCCM
-      - item: Bash
-      - item: CI/CD
-  - category: Cloud
+      - item: Checkov
+      - item: CloudFormation
+      - item: ARM Templates
+  - category: Cloud Platforms
     skills:
+      - item: Amazon Web Services (EKS, EC2, S3, VPC, API Gateway)
       - item: Microsoft Azure
-      - item: Amazon Web Services
       - item: Office 365
       - item: Citrix Cloud
-      - item: EKS
-      - item: EC2
-      - item: S3
-      - item: VPC
-  - category: Systems Administration
+  - category: Platform Security
     skills:
-      - item: Kubernetes
-      - item: Docker
-      - item: VMWare
-      - item: Hyper-V
-      - item: Virtualization
-      - item: Linux
-      - item: Windows
-  - category: Security
-    skills:
+      - item: Teleport
+      - item: Privileged Access Management (PAM)
       - item: AWS Cloud Security
-      - item: Microsoft 365 Defender
-      - item: Microsoft 365 Compliance
-      - item: Guardicore
+      - item: Tag Validation/Governance
+      - item: CIS/SOX Compliance
+  - category: Orchestration & Systems
+    skills:
+      - item: Kubernetes (EKS)
+      - item: Docker
+      - item: VMware
+      - item: Citrix Cloud
+      - item: Linux (Bash) and Windows (PowerShell)

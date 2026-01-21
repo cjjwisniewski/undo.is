@@ -6,5 +6,10 @@ content:
       Communications Supervisor
     dates: 
       January 2017 to Present
-    description:
-      Lead communications for Tekko, a large-scale event generating over $5 million in economic impact. Cultivate strong relationships with local businesses to develop the Show Your Badge program, providing attendee discounts and boosting event revenue. Increase event visibility through strategic attendance at industry events.
+    #description:
+    #  Lead communications for Tekko, a large-scale event generating over $5 million in economic impact. Cultivate strong relationships with local businesses to develop the Show Your Badge program, providing attendee discounts and boosting event revenue. Increase event visibility through strategic attendance at industry events.
+    description-bullets:
+      - bullet: "Orchestrated the comprehensive communication strategy for Tekko: a large-scale regional event generating an annual economic impact exceeding 5 million dollars."
+      - bullet: "Developed and expanded the 'Show Your Badge' partnership framework: resulting in measurable increases in event revenue and strengthening strategic ties with local Pittsburgh businesses."
+      - bullet: "Directed multi-channel brand engagement and industry outreach initiatives to expand attendee reach and maintain a high-visibility presence within the regional cultural sector."
+      
