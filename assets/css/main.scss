@@ -1,0 +1,28 @@
+---
+---
+@use "base/reset";
+
+@use "layout/grid";
+@use "base/typography";
+@use "base/elements";
+@use "components/form";
+@use "components/box";
+@use "components/icon";
+@use "components/image";
+@use "components/list";
+@use "components/table";
+@use "components/button";
+@use "components/features";
+@use "components/spotlight";
+@use "layout/wrapper";
+@use "layout/page-wrapper";
+@use "layout/header";
+@use "layout/banner";
+@use "components/cta";
+@use "layout/main";
+@use "layout/footer";
+@use "layout/landing";
+@use "pages/resume";
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
