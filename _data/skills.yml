@@ -1,26 +1,27 @@
 section-title: Technical Summary
 content:
+  - category: Cloud & Platform
+    skills:
+      - item: AWS (EKS, EC2, VPC, S3, API Gateway)
+      - item: Microsoft Azure
+      - item: Multi-cloud architecture
   - category: Infrastructure as Code
     skills:
       - item: Terraform
+      - item: CloudFormation
+      - item: ARM Templates
+  - category: CI/CD & Governance
+    skills:
       - item: GitHub Actions
       - item: Harness
       - item: Checkov
-      - item: CloudFormation
-      - item: ARM Templates
-  - category: Cloud Platforms
+      - item: Policy-as-Code
+  - category: Security
     skills:
-      - item: Amazon Web Services (EKS, EC2, S3, VPC, API Gateway)
-      - item: Microsoft Azure
-      - item: Office 365
-      - item: Citrix Cloud
-  - category: Platform Security
-    skills:
-      - item: Teleport
       - item: Privileged Access Management (PAM)
-      - item: AWS Cloud Security
-      - item: Tag Validation/Governance
+      - item: Teleport
       - item: CIS/SOX Compliance
+      - item: Cloud Security Controls
   - category: Orchestration & Systems
     skills:
       - item: Kubernetes (EKS)

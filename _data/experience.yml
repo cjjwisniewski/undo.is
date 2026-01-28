@@ -8,39 +8,37 @@ content:
     #  Architect and build Crown Castle's cloud platform, prioritizing security and scalability. Implement CI/CD processes to improve engineering efficiency. Foster technology innovation through 
     #  proof-of-concept development and research. Manage platform risks and adapt solutions to support rapid business growth.
     description-bullets:
-      - bullet: Orchestrated the architectural decoupling of cloud platforms and applications into three independent entities, ensuring zero downtime and maintaining security compliance throughout the corporate divestment process.
-      - bullet: Architected and deployed the organization's inaugural external-facing REST API utilizing Amazon API Gateway, establishing a robust, scalable foundation for secure customer-facing integrations.
-      - bullet: Established a technical lead program within the Platform Engineering team to formalize mentorship and knowledge sharing, resulting in accelerated project delivery and improved team efficiency.
-      - bullet: Developed and implemented a comprehensive requirements framework for all platform services, standardizing the project intake process to improve organizational transparency.
-      - bullet: Founded and directed a cloud platform training program that standardized organizational technical proficiency and accelerated enterprise-wide cloud adoption initiatives.
+      - bullet: Led the architectural separation of a shared enterprise cloud platform into three independently governed environments during a corporate divestment, defining IAM boundaries, network isolation, data ownership, and migration sequencing to eliminate cross-entity blast radius while maintaining zero downtime.
+      - bullet: Designed and delivered the organization’s first external-facing API platform using Amazon API Gateway, establishing secure patterns for authentication, authorization, rate limiting, and customer integration at scale.
+      - bullet: Defined a standardized platform requirements and intake framework, transforming ad-hoc infrastructure requests into a predictable, auditable delivery model aligned with security and compliance controls.
+      - bullet: Founded and led an internal cloud platform enablement program to scale platform knowledge across engineering teams, reducing reliance on the platform team and accelerating adoption of standardized cloud patterns.
+      - bullet: Established a technical leadership program within the platform organization to formalize mentorship, architectural review, and knowledge sharing, improving delivery consistency across initiatives.
   - title: Cloud Platform Engineer III
     dates: June 2022 to March 2024
     #description:
     #  Architected and developed cloud-native microservices, adhering to security and architectural best practices. Drove technology innovation through POCs and collaboration with development teams, ensuring platform alignment with Agile methodologies.
     description-bullets:
-      - bullet: Directed the implementation of Teleport for AWS to transform privileged access management, successfully eliminating all permanently elevated identities and reducing the internal attack surface.
-      - bullet: Engineered a secure, automated Terraform CI/CD pipeline integrated with Checkov to enforce code quality and security compliance across all infrastructure deployments.
-      - bullet: Orchestrated the transition of critical infrastructure and applications from Microsoft Azure to Amazon Web Services, delivering enhanced reliability and optimized cost efficiency.
-      - bullet: Integrated automated tag validation within CD pipelines to enforce ServiceNow CMDB standards, significantly improving cloud cost visibility and chargeback accuracy.
+      - bullet: Redefined the organization’s privileged access model by eliminating standing credentials across AWS environments, designing a short-lived, identity-aware access architecture using Teleport that materially reduced lateral movement risk and improved audit posture.
+      - bullet: Designed a standardized infrastructure delivery platform using Terraform, CI/CD pipelines, and policy-as-code (Checkov), enabling teams to self-service compliant infrastructure while preventing non-conformant deployments by default.
+      - bullet: Led the architectural decision and execution to migrate critical infrastructure and workloads from Azure to AWS, balancing cost, reliability, security posture, and operational maturity.
+      - bullet: Integrated automated tag validation and governance into CI/CD pipelines to enforce CMDB standards, significantly improving cloud cost attribution, chargeback accuracy, and financial visibility.
   - title: Systems Engineer III
     dates: July 2020 to June 2022
     #description:
     #  Architected and managed Azure and on-premise virtualization infrastructure for a 5,000+ employee enterprise. Implemented automated workflows, optimized Office 365, and maintained server compliance with corporate standards. 
     description-bullets:
-      - bullet: Architected and managed a multi-region Azure environment for a 5,000+ employee enterprise using Infrastructure as Code (IaC) with Terraform to eliminate configuration drift.
-      - bullet: Enforced industry-standard security controls including CIS and SOX across hybrid cloud environments, optimizing audit readiness and maintaining a robust compliance posture.
-      - bullet: Deployed enterprise-grade monitoring and alerting solutions to optimize infrastructure performance and ensure maximum availability of mission-critical services.
-      - bullet: Administered complex Active Directory and Office 365 environments, including Teams and Exchange Online, to support seamless enterprise communication.
+      - bullet: Architected and managed a multi-region Azure environment for a 5,000+ employee enterprise using Infrastructure as Code (IaC) with Terraform to eliminate configuration drift and establish repeatable deployment patterns.
+      - bullet: Defined and enforced CIS and SOX-aligned security controls across hybrid environments, improving audit readiness and reducing compliance risk.
+      - bullet: Designed enterprise monitoring and alerting strategies to improve reliability and reduce mean time to detection for critical services.
+      - bullet: Owned complex identity and collaboration infrastructure including Active Directory, Office 365, Exchange Online, and Teams.
   - title: Senior Desktop Analyst<br>Desktop Analyst
     dates: May 2018 to July 2020<br>August 2017 to May 2018
     #description:
     #  Managed and administered workstations across a 6,000+ device environment, ensuring optimal end-user experience and security. Drove technology adoption through evaluation, piloting, and project management. Maintained workstation configurations while providing training and mentorship to support staff.
     description-bullets:
-      - bullet: Managed and standardized workstation configurations for a 6,000+ device environment, utilizing SCCM to reduce support incidents and enhance endpoint security.
-      - bullet: Consolidated operating system deployment processes by migrating from MDT to SCCM, streamlining management workflows and eliminating redundant infrastructure.
-      - bullet: Ensured endpoint security and compliance by automating the deployment of critical Windows and third-party software updates across the entire device fleet.
-      - bullet: Contributed to the architecture and implementation of the corporate Citrix environment while providing ongoing operational support for end-user virtualization.
-      - bullet: Automated key deployment and departmental processes via scripting, significantly increasing the productivity and operational efficiency of the Client Services team.
+      - bullet: Standardized endpoint configurations and deployment pipelines across 6,000+ devices using SCCM, reducing incident rates and improving security posture.
+      - bullet: Led migration from MDT to SCCM for operating system deployments, simplifying management workflows and eliminating redundant infrastructure.
+      - bullet: Contributed to the design and operation of the corporate Citrix environment supporting enterprise virtualization needs.
   - company: Carlow University
     location: Pittsburgh, PA
     title: Computer and Media Specialist
