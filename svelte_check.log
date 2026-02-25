@@ -1,0 +1,172 @@
+
+> undo.is@0.0.1 check
+> svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+
+Loading svelte-check in workspace: /home/cwisniewski/undo.is
+Getting Svelte diagnostics...
+
+/home/cwisniewski/undo.is/src/routes/+layout.svelte:21:12
+Error: Cannot find name 'children'. (ts)
+<main class="page-content">
+  {@render children()}
+</main>
+
+/home/cwisniewski/undo.is/src/routes/+page.svelte:126:9
+Warn: Also define the standard property 'background-clip' for compatibility (css)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:46:29
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                            ></i>
+                            <a>
+                                {#if profile.address.street}{profile.address
+                                        .street}{/if}<!--
+                            -->{#if profile.address.city},
+                                    {profile.address
+                                        .city}{/if}<!--
+                            -->{#if profile.address.state},
+                                    {profile.address
+                                        .state}{/if}<!--
+                            -->{#if profile.address.zip}
+                                    {profile.address
+                                        .zip}{/if}<!--
+                            -->{#if profile.address.country},
+                                    {profile.address.country}{/if}
+                            </a>
+                        {/if}
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:151:41
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                        </p>
+                                        <a
+                                            class="experience-section-content-details-description-bullets"
+                                        >
+                                            {#if exp["description-bullets"]}
+                                                <ul>
+                                                    {#each exp["description-bullets"] as bulletPoint}
+                                                        <li>
+                                                            {bulletPoint.bullet}
+                                                        </li>
+                                                    {/each}
+                                                </ul>
+                                            {/if}
+                                        </a>
+                                    </section>
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:188:45
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                        <p>
+                                            <a
+                                                class="skills-section-content-details-category"
+                                                >{skillGrp.category}</a
+                                            >
+                                            {#if skillGrp.skills}
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:195:53
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                                {#each skillGrp.skills as item, i}
+                                                    <a
+                                                        class="skills-section-content-details-items"
+                                                        >{item.item}{#if i !== skillGrp.skills.length - 1},
+                                                        {/if}</a
+                                                    >
+                                                {/each}
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:359:41
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                        </p>
+                                        <a
+                                            class="volunteering-section-content-details-description-bullets"
+                                        >
+                                            {#if vol["description-bullets"]}
+                                                <ul>
+                                                    {#each vol["description-bullets"] as volBullet}
+                                                        <li>
+                                                            {volBullet.bullet}
+                                                        </li>
+                                                    {/each}
+                                                </ul>
+                                            {/if}
+                                        </a>
+                                    </section>
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:398:45
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                        <p>
+                                            <a
+                                                class="interests-section-content-details-category"
+                                                >{interestGrp.category}</a
+                                            >
+                                            {#if interestGrp.interests}
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:405:53
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                                {#each interestGrp.interests as item, i}
+                                                    <a
+                                                        class="interests-section-content-details-items"
+                                                        >{item.item}{#if i !== interestGrp.interests.length - 1},
+                                                        {/if}</a
+                                                    >
+                                                {/each}
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:438:55
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                    >
+                                        {#if ref.name}<a
+                                                class="references-section-content-details-name"
+                                                >{ref.name}</a
+                                            >{/if}
+                                        {#if ref.company}<a
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:442:58
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                            >{/if}
+                                        {#if ref.company}<a
+                                                class="references-section-content-details-company"
+                                                >{ref.company}</a
+                                            >{/if}
+                                        {#if ref.title}<a
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:446:56
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                            >{/if}
+                                        {#if ref.title}<a
+                                                class="references-section-content-details-title"
+                                                >{ref.title}</a
+                                            >{/if}
+                                        <a
+
+/home/cwisniewski/undo.is/src/routes/resume/+page.svelte:450:41
+Warn: `<a>` element should have an href attribute
+https://svelte.dev/e/a11y_missing_attribute (svelte)
+                                            >{/if}
+                                        <a
+                                            class="references-section-content-details-contact"
+                                        >
+                                            {#if ref.phone}
+                                                <i
+                                                    class="fas fa-phone-alt fontawesome-icon"
+                                                ></i>{ref.phone}
+                                            {/if}
+                                            {#if ref.email}
+                                                <i
+                                                    class="fas fa-envelope fontawesome-icon"
+                                                ></i>{ref.email}
+                                            {/if}
+                                        </a>
+                                    </section>
+
+====================================
+svelte-check found 1 error and 12 warnings in 3 files

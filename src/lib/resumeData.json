@@ -1,0 +1,288 @@
+{
+  "certifications": {
+    "section-title": "Active Certifications (Date Obtained)",
+    "content": [
+      {
+        "certification": "AWS Certified Security - Specialty",
+        "date-obtained": "November 2025"
+      },
+      {
+        "certification": "Hashicorp Certified - Terraform Authoring and Operations Professional",
+        "date-obtained": "September 2025"
+      },
+      {
+        "certification": "AWS Certified Solutions Architect - Associate",
+        "date-obtained": "June 2024"
+      },
+      {
+        "certification": "Hashicorp Certified - Terraform Associate",
+        "date-obtained": "September 2023"
+      },
+      {
+        "certification": "AWS Certified Cloud Practitioner",
+        "date-obtained": "December 2022"
+      },
+      {
+        "certification": "Microsoft Certified - Azure Administrator Associate",
+        "date-obtained": "February 2020"
+      },
+      {
+        "certification": "Microsoft Certified - Azure Fundamentals",
+        "date-obtained": "December 2019"
+      }
+    ]
+  },
+  "education": {
+    "section-title": "Education",
+    "content": [
+      {
+        "school": "Saint Vincent College",
+        "location": "Latrobe, PA",
+        "degree-type": "Bachelor of Science",
+        "major": "Physics",
+        "minor": "Chinese Language and Culture",
+        "dates": "Graduated May 2014"
+      }
+    ]
+  },
+  "experience": {
+    "section-title": "Professional Experience",
+    "content": [
+      {
+        "company": "Crown Castle",
+        "location": "Canonsburg, PA",
+        "title": "Senior Cloud Platform Engineer",
+        "dates": "March 2024 to Present",
+        "description-bullets": [
+          {
+            "bullet": "Led the architectural separation of a shared enterprise cloud platform into three independently governed environments during a corporate divestment, defining IAM boundaries, network isolation, data ownership, and migration sequencing to eliminate cross-entity blast radius while maintaining zero downtime."
+          },
+          {
+            "bullet": "Designed and delivered the organization’s first external-facing API platform using Amazon API Gateway, establishing secure patterns for authentication, authorization, rate limiting, and customer integration at scale."
+          },
+          {
+            "bullet": "Defined a standardized platform requirements and intake framework, transforming ad-hoc infrastructure requests into a predictable, auditable delivery model aligned with security and compliance controls."
+          },
+          {
+            "bullet": "Founded and led an internal cloud platform enablement program to scale platform knowledge across engineering teams, reducing reliance on the platform team and accelerating adoption of standardized cloud patterns."
+          },
+          {
+            "bullet": "Established a technical leadership program within the platform organization to formalize mentorship, architectural review, and knowledge sharing, improving delivery consistency across initiatives."
+          }
+        ]
+      },
+      {
+        "title": "Cloud Platform Engineer III",
+        "dates": "June 2022 to March 2024",
+        "description-bullets": [
+          {
+            "bullet": "Redefined the organization’s privileged access model by eliminating standing credentials across AWS environments, designing a short-lived, identity-aware access architecture using Teleport that materially reduced lateral movement risk and improved audit posture."
+          },
+          {
+            "bullet": "Designed a standardized infrastructure delivery platform using Terraform, CI/CD pipelines, and policy-as-code (Checkov), enabling teams to self-service compliant infrastructure while preventing non-conformant deployments by default."
+          },
+          {
+            "bullet": "Led the architectural decision and execution to migrate critical infrastructure and workloads from Azure to AWS, balancing cost, reliability, security posture, and operational maturity."
+          },
+          {
+            "bullet": "Integrated automated tag validation and governance into CI/CD pipelines to enforce CMDB standards, significantly improving cloud cost attribution, chargeback accuracy, and financial visibility."
+          }
+        ]
+      },
+      {
+        "title": "Systems Engineer III",
+        "dates": "July 2020 to June 2022",
+        "description-bullets": [
+          {
+            "bullet": "Architected and managed a multi-region Azure environment for a 5,000+ employee enterprise using Infrastructure as Code (IaC) with Terraform to eliminate configuration drift and establish repeatable deployment patterns."
+          },
+          {
+            "bullet": "Defined and enforced CIS and SOX-aligned security controls across hybrid environments, improving audit readiness and reducing compliance risk."
+          },
+          {
+            "bullet": "Designed enterprise monitoring and alerting strategies to improve reliability and reduce mean time to detection for critical services."
+          },
+          {
+            "bullet": "Owned complex identity and collaboration infrastructure including Active Directory, Office 365, Exchange Online, and Teams."
+          }
+        ]
+      },
+      {
+        "title": "Senior Desktop Analyst<br>Desktop Analyst",
+        "dates": "May 2018 to July 2020<br>August 2017 to May 2018",
+        "description-bullets": [
+          {
+            "bullet": "Standardized endpoint configurations and deployment pipelines across 6,000+ devices using SCCM, reducing incident rates and improving security posture."
+          },
+          {
+            "bullet": "Led migration from MDT to SCCM for operating system deployments, simplifying management workflows and eliminating redundant infrastructure."
+          },
+          {
+            "bullet": "Contributed to the design and operation of the corporate Citrix environment supporting enterprise virtualization needs."
+          }
+        ]
+      },
+      {
+        "company": "Carlow University",
+        "location": "Pittsburgh, PA",
+        "title": "Computer and Media Specialist",
+        "dates": "June 2014 to August 2017",
+        "description-bullets": [
+          {
+            "bullet": "Implemented and maintained Windows Deployment Services to replace legacy PC build processes, achieving a 50 percent reduction in build times for the university community."
+          },
+          {
+            "bullet": "Led the implementation of a Dell KACE environment to centralize software updates, service desk operations, and asset management across multiple departments."
+          },
+          {
+            "bullet": "Architected and implemented a modernized Pharos Print Management system that significantly reduced administrative and billing costs while improving the student end-user experience."
+          }
+        ]
+      },
+      {
+        "company": "Saint Vincent College",
+        "location": "Latrobe, PA",
+        "title": "Senior Service Desk Technician",
+        "dates": "August 2010 to May 2014",
+        "description-bullets": [
+          {
+            "bullet": "Leveraged ITIL best practices to manage high-volume incident resolution, consistently restoring critical services within defined SLA guidelines for faculty, staff, and students."
+          }
+        ]
+      }
+    ]
+  },
+  "objective": {
+    "section-title": "Profile",
+    "content": "Technical leader with fifteen years of experience designing, securing, and scaling enterprise cloud platforms. Specialized in multi-tenant cloud architecture, security-by-default infrastructure, and platform enablement for large engineering organizations. Expert-level proficiency in AWS, Microsoft Azure, and Infrastructure as Code. Proven record of leading high-ambiguity initiatives, defining long-term technical direction, and creating force-multipliers to enable engineering organizations."
+  },
+  "profile": {
+    "section-title": "Profile",
+    "address": {
+      "street": null,
+      "city": null,
+      "state": null,
+      "zip": null,
+      "country": null
+    },
+    "name": "Cameron Wisniewski",
+    "email": "cameron@undo.is",
+    "title": null,
+    "twitter_un": null,
+    "github_un": "cjjwisniewski",
+    "bluesky": null,
+    "linkedin": "LinkedIn.com/in/CameronWisniewski",
+    "phone": null,
+    "personal_site": "www.undo.is"
+  },
+  "references": null,
+  "skills": {
+    "section-title": "Technical Summary",
+    "content": [
+      {
+        "category": "Cloud & Platform",
+        "skills": [
+          {
+            "item": "AWS (EKS, EC2, VPC, S3, API Gateway)"
+          },
+          {
+            "item": "Microsoft Azure"
+          },
+          {
+            "item": "Multi-cloud architecture"
+          }
+        ]
+      },
+      {
+        "category": "Infrastructure as Code",
+        "skills": [
+          {
+            "item": "Terraform"
+          },
+          {
+            "item": "CloudFormation"
+          },
+          {
+            "item": "ARM Templates"
+          }
+        ]
+      },
+      {
+        "category": "CI/CD & Governance",
+        "skills": [
+          {
+            "item": "GitHub Actions"
+          },
+          {
+            "item": "Harness"
+          },
+          {
+            "item": "Checkov"
+          },
+          {
+            "item": "Policy-as-Code"
+          }
+        ]
+      },
+      {
+        "category": "Security",
+        "skills": [
+          {
+            "item": "Privileged Access Management (PAM)"
+          },
+          {
+            "item": "Teleport"
+          },
+          {
+            "item": "CIS/SOX Compliance"
+          },
+          {
+            "item": "Cloud Security Controls"
+          }
+        ]
+      },
+      {
+        "category": "Orchestration & Systems",
+        "skills": [
+          {
+            "item": "Kubernetes (EKS)"
+          },
+          {
+            "item": "Docker"
+          },
+          {
+            "item": "VMware"
+          },
+          {
+            "item": "Citrix Cloud"
+          },
+          {
+            "item": "Linux (Bash) and Windows (PowerShell)"
+          }
+        ]
+      }
+    ]
+  },
+  "volunteering": {
+    "section-title": "Volunteering",
+    "content": [
+      {
+        "company": "Pittsburgh Japanese Culture Society",
+        "location": "Pittsburgh, PA",
+        "title": "Communications Supervisor",
+        "dates": "January 2017 to Present",
+        "description-bullets": [
+          {
+            "bullet": "Orchestrated the comprehensive communication strategy for Tekko: a large-scale regional event generating an annual economic impact exceeding 5 million dollars."
+          },
+          {
+            "bullet": "Developed and expanded the 'Show Your Badge' partnership framework: resulting in measurable increases in event revenue and strengthening strategic ties with local Pittsburgh businesses."
+          },
+          {
+            "bullet": "Directed multi-channel brand engagement and industry outreach initiatives to expand attendee reach and maintain a high-visibility presence within the regional cultural sector."
+          }
+        ]
+      }
+    ]
+  }
+}
