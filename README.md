@@ -1,42 +1,48 @@
-# sv
+# undo.is 🌐
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+The personal website and technical portfolio of Cameron Wisniewski, rebuilt from a legacy Jekyll framework into a modern, lightning-fast Static Site using SvelteKit.
 
-## Creating a project
+## Tech Stack
+* **Framework**: [SvelteKit](https://kit.svelte.dev/)
+* **Pre-processor**: TypeScript
+* **Adapter**: `@sveltejs/adapter-static` (Generates raw HTML/CSS/JS with zero Node.js server dependencies)
+* **Image Pipeline**: `vite-imagetools` (Auto WebP / AVIF compression)
+* **Styling**: Vanilla CSS with customized design tokens and CSS variables.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Key Features
+* **Modern aesthetic**: Clean "Cool Grays" (Slate) color palette with responsive glassmorphism hover interactions.
+* **Dark Mode**: Configured to natively default to a dark theme.
+* **SEO & Socials**: Dynamically generates `/sitemap.xml` and statically structures `robots.txt` + Open Graph meta tags for X, iMessage, and Discord shareability.
+* **Native Print Export**: The layout elegantly restructures itself for `window.print()` exporting via custom `@media print` CSS block logic, seamlessly acting as a digital to physical PDF resume generator.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## Local Development
 
-To recreate this project with the same configuration:
+Ensure you are running **Node.js 20+**. 
 
-```sh
-# recreate this project
-npx sv create --template minimal --types ts --install npm ./
-```
+```bash
+# Clean install the dependencies
+npm ci
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+# Start the Vite development sever on localhost:5173
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Production Build & CI/CD Pipeline
 
-To create a production version of your app:
+This application is bundled statically directly into the `/dist` directory. The routing relies on Azure Blob storage mappings (`trailingSlash: 'always'`), ensuring URL endpoints perfectly match static folders like `/resume/index.html`.
 
-```sh
+```bash
+# Compiles the raw HTML/CSS/JS static output to /dist
 npm run build
+
+# Localy preview the exact compiled payload
+npm run preview
 ```
 
-You can preview the production build with `npm run preview`.
+### Automated Deployment
+The repository utilizes **GitHub Actions** (`.github/workflows/deploy.yml`) for automated deployments. 
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+When code is pushed to the `main` branch, the Node runner cleanly builds the static `/dist` payload and utilizes Azure OIDC (`azure/login@v2`) to perform an `az storage blob upload-batch` directly into the `$web` container of the `undoissite` Azure Storage Account.
+
+## License
+MIT License. See [LICENSE](LICENSE) for details.
