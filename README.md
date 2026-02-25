@@ -1,6 +1,6 @@
 # undo.is 🌐
 
-The personal website and technical portfolio of Cameron Wisniewski, rebuilt from a legacy Jekyll framework into a modern, lightning-fast Static Site using SvelteKit.
+The personal website and technical portfolio of Cameron Wisniewski.
 
 ## Tech Stack
 * **Framework**: [SvelteKit](https://kit.svelte.dev/)
