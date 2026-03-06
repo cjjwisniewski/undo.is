@@ -114,14 +114,14 @@ print {
 
 #resume .content-section {
     padding: 0 2rem;
-    margin: 1.5rem 0;
+    margin: 0.25rem 0;
 }
 
 #resume .content-section-title {
     color: #000000;
     text-align: center;
     font-weight: 800;
-    padding: 1rem 0 0.5rem 0;
+    padding: 0.5rem 0 0.25rem 0;
 }
 
 #resume .content-section-title div {
@@ -130,7 +130,7 @@ print {
 
 #resume .content-section-content {
     text-align: justify;
-    padding: 0.5rem 0 0 0;
+    padding: 0.25rem 0 0 0;
 }
 
 #resume .css-grid {
@@ -303,7 +303,7 @@ print {
 }
 
 #resume .skills-section-content-details:not(:first-child) {
-    padding-top: 0em;
+    padding-top: 0.15rem;
 }
 
 #resume .skills-section-content-details-category {
@@ -344,7 +344,7 @@ print {
 }
 
 #resume .certifications-section-content-details:not(:first-child) {
-    padding-top: 0.25rem;
+    padding-top: 0.15rem;
 }
 
 #resume .certifications-section-content-details-certification {
@@ -707,7 +707,7 @@ print {
 #resume .volunteering-section-content-details,
 #resume .interests-section-content-details,
 #resume .references-section-content-details {
-    padding: 0.5rem 0.75rem;
+    padding: 0.15rem 0.75rem;
     margin-left: -0.75rem;
     margin-right: -0.75rem;
     border-radius: var(--border-radius);
