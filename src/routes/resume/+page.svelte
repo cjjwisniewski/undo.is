@@ -32,11 +32,6 @@
 
 <div class="resume-page">
     <div id="resume">
-        <div class="resume-actions">
-            <button class="btn-download" onclick={() => window.print()}>
-                <i class="fas fa-file-pdf"></i> Download PDF
-            </button>
-        </div>
         <article class="resume">
             {#if profile}
                 <section class="content-section profile">
