@@ -193,8 +193,7 @@
                                                 {#each skillGrp.skills as item, i}
                                                     <span
                                                         class="skills-section-content-details-items"
-                                                        >{item.item}{#if i !== skillGrp.skills.length - 1},
-                                                        {/if}</span
+                                                        >{item.item}{#if i !== skillGrp.skills.length - 1}, {/if}</span
                                                     >
                                                 {/each}
                                             {/if}
