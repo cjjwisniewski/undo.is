@@ -194,8 +194,7 @@
                                                     <span
                                                         class="skills-section-content-details-items"
                                                         >{item.item}</span
-                                                    >{#if i !== skillGrp.skills.length - 1},
-                                                    {/if}
+                                                    >{#if i !== skillGrp.skills.length - 1},&nbsp;{/if}
                                                 {/each}
                                             {/if}
                                         </p>
