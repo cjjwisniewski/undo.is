@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+  repository_dispatch:
+    types: [resume_updated]
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -15,6 +17,13 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
+
+      - name: Checkout Resume Data (Private Repo)
+        uses: actions/checkout@v4
+        with:
+          repository: cjjwisniewski/personal_resume
+          token: ${{ secrets.RESUME_SYNC_TOKEN }}
+          path: resume-data
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,8 +34,13 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Sync Resume Data
+        run: npm run sync-resume
+
       - name: Build SvelteKit Static Site
         run: npm run build
+
+
       
       - name: Azure Login
         uses: azure/login@v2

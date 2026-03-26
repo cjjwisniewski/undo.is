@@ -1,6 +1,6 @@
 {
   "certifications": {
-    "section-title": "Active Certifications (Date Obtained)",
+    "section-title": "Active Certifications<br><div style=\"font-size:0.8em; font-weight:normal\">(Date Obtained)</div>",
     "content": [
       {
         "certification": "AWS Certified Security - Specialty",
@@ -82,13 +82,13 @@
             "bullet": "Engineered a Zero Trust access architecture via Teleport across 50+ AWS accounts, eliminating 100% of standing IAM credentials. This transition replaced long-lived keys with short-lived certificates, reducing the lateral movement window to 4 hours and automating SOC2 session auditing."
           },
           {
-            "bullet": "Designed a standardized infrastructure delivery platform using Terraform, CI/CD pipelines, and policy-as-code (Checkov), enabling teams to self-service compliant infrastructure while preventing non-conformant deployments by default."
+            "bullet": "Developed a standardized infrastructure delivery platform using Terraform, CI/CD pipelines, and policy-as-code (Checkov), enabling teams to self-service compliant infrastructure while preventing non-conformant deployments by default."
           },
           {
             "bullet": "Led the architectural decision and execution to migrate critical infrastructure and workloads from Azure to AWS, balancing cost, reliability, security posture, and operational maturity."
           },
           {
-            "bullet": "Integrated automated tag validation and governance into CI/CD pipelines to enforce CMDB standards, significantly improving cloud cost attribution, chargeback accuracy, and financial visibility."
+            "bullet": "Automated tag validation and governance into CI/CD pipelines to enforce CMDB standards, significantly improving cloud cost attribution, chargeback accuracy, and financial visibility."
           }
         ]
       },
@@ -173,9 +173,7 @@
     "title": null,
     "twitter_un": null,
     "github_un": "cjjwisniewski",
-    "bluesky": null,
     "linkedin": "LinkedIn.com/in/CameronWisniewski",
-    "phone": null,
     "personal_site": "www.undo.is"
   },
   "references": null,
