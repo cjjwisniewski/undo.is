@@ -699,34 +699,6 @@ print {
     box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
 }
 
-/* Micro-interaction Hover States for Grids */
-#resume .experience-section-content-details,
-#resume .skills-section-content-details,
-#resume .certifications-section-content-details,
-#resume .education-section-content-details,
-#resume .volunteering-section-content-details,
-#resume .interests-section-content-details,
-#resume .references-section-content-details {
-    padding: 0.15rem 0.75rem;
-    margin-left: -0.75rem;
-    margin-right: -0.75rem;
-    border-radius: var(--border-radius);
-    border: 1px solid transparent;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-#resume .experience-section-content-details:hover,
-#resume .skills-section-content-details:hover,
-#resume .certifications-section-content-details:hover,
-#resume .education-section-content-details:hover,
-#resume .volunteering-section-content-details:hover,
-#resume .interests-section-content-details:hover,
-#resume .references-section-content-details:hover {
-    background-color: rgba(56, 189, 248, 0.05);
-    /* very light accent glass */
-    border-color: rgba(56, 189, 248, 0.15);
-}
-
 @media print {
     #resume .resume-actions {
         display: none !important;
