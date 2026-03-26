@@ -91,7 +91,7 @@
                             class="content-section-title objective-section-title"
                         >
                             <div>
-                                {objective["section-title"] || "Objective"}
+                                {@html objective["section-title"] || "Profile"}
                             </div>
                         </section>
                         <section
@@ -110,7 +110,8 @@
                             class="content-section-title experience-section-title"
                         >
                             <div>
-                                {experience["section-title"] || "Experience"}
+                                {@html experience["section-title"] ||
+                                    "Experience"}
                             </div>
                         </section>
                         <section class="experience-section-content">
@@ -172,7 +173,9 @@
                         <section
                             class="content-section-title skills-section-title"
                         >
-                            <div>{skills["section-title"] || "Skills"}</div>
+                            <div>
+                                {@html skills["section-title"] || "Skills"}
+                            </div>
                         </section>
                         <section class="skills-section-content">
                             <article class="css-grid">
@@ -212,7 +215,7 @@
                             class="content-section-title certifications-section-title"
                         >
                             <div>
-                                {certifications["section-title"] ||
+                                {@html certifications["section-title"] ||
                                     "Certifications"}
                             </div>
                         </section>
@@ -248,7 +251,8 @@
                             class="content-section-title education-section-title"
                         >
                             <div>
-                                {education["section-title"] || "Education"}
+                                {@html education["section-title"] ||
+                                    "Education"}
                             </div>
                         </section>
                         <section class="education-section-content">
@@ -307,7 +311,7 @@
                             class="content-section-title volunteering-section-title"
                         >
                             <div>
-                                {volunteering["section-title"] ||
+                                {@html volunteering["section-title"] ||
                                     "Volunteering"}
                             </div>
                         </section>
@@ -371,7 +375,8 @@
                             class="content-section-title interests-section-title"
                         >
                             <div>
-                                {interests["section-title"] || "Interests"}
+                                {@html interests["section-title"] ||
+                                    "Interests"}
                             </div>
                         </section>
                         <section class="interests-section-content">
@@ -412,7 +417,8 @@
                             class="content-section-title references-section-title"
                         >
                             <div>
-                                {references["section-title"] || "References"}
+                                {@html references["section-title"] ||
+                                    "References"}
                             </div>
                         </section>
                         <section class="references-section-content">
