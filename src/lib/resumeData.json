@@ -55,13 +55,16 @@
         "dates": "March 2024 to Present",
         "description-bullets": [
           {
-            "bullet": "Led the architectural separation of a shared enterprise cloud platform into three independently governed environments during a corporate divestment, defining IAM boundaries, network isolation, data ownership, and migration sequencing to eliminate cross-entity blast radius while maintaining zero downtime."
+            "bullet": "Led the architectural separation of a shared enterprise cloud platform into three independently governed environments during a corporate divestment, defining IAM boundaries, network isolation, data ownership, and migration sequencing to eliminate cross-entity blast radius while maintaining 100% uptime."
           },
           {
-            "bullet": "Designed and delivered the organization’s first external-facing API platform using Amazon API Gateway, establishing secure patterns for authentication, authorization, rate limiting, and customer integration at scale."
+            "bullet": "Directed the implementation of a production-ready agentic AI framework via AWS Bedrock and Lyzr, establishing enterprise-wide standards for LLM guardrails and identity-scoped access."
           },
           {
-            "bullet": "Defined a standardized platform requirements and intake framework, transforming ad-hoc infrastructure requests into a predictable, auditable delivery model aligned with security and compliance controls."
+            "bullet": "Launched the organization’s first external-facing API platform using Amazon API Gateway, establishing secure patterns for authentication, authorization, rate limiting, and customer integration at scale."
+          },
+          {
+            "bullet": "Codified a standardized platform requirements and intake framework, transforming ad-hoc infrastructure requests into a predictable, auditable delivery model aligned with security and compliance controls."
           },
           {
             "bullet": "Founded and led an internal cloud platform enablement program to scale platform knowledge across engineering teams, reducing reliance on the platform team and accelerating adoption of standardized cloud patterns."
@@ -76,7 +79,7 @@
         "dates": "June 2022 to March 2024",
         "description-bullets": [
           {
-            "bullet": "Redefined the organization’s privileged access model by eliminating standing credentials across AWS environments, designing a short-lived, identity-aware access architecture using Teleport that materially reduced lateral movement risk and improved audit posture."
+            "bullet": "Engineered a Zero Trust access architecture via Teleport across 50+ AWS accounts, eliminating 100% of standing IAM credentials. This transition replaced long-lived keys with short-lived certificates, reducing the lateral movement window to 4 hours and automating SOC2 session auditing."
           },
           {
             "bullet": "Designed a standardized infrastructure delivery platform using Terraform, CI/CD pipelines, and policy-as-code (Checkov), enabling teams to self-service compliant infrastructure while preventing non-conformant deployments by default."
@@ -94,7 +97,7 @@
         "dates": "July 2020 to June 2022",
         "description-bullets": [
           {
-            "bullet": "Architected and managed a multi-region Azure environment for a 5,000+ employee enterprise using Infrastructure as Code (IaC) with Terraform to eliminate configuration drift and establish repeatable deployment patterns."
+            "bullet": "Architected and managed a multi-region Azure environment for a 5,000+ employee enterprise using Infrastructure as Code (IaC) with Terraform to eliminate 100% of configuration drift and establish repeatable deployment patterns."
           },
           {
             "bullet": "Defined and enforced CIS and SOX-aligned security controls across hybrid environments, improving audit readiness and reducing compliance risk."
@@ -177,7 +180,7 @@
   },
   "references": null,
   "skills": {
-    "section-title": "Technical Summary",
+    "section-title": "Skills",
     "content": [
       {
         "category": "Cloud & Platform",
