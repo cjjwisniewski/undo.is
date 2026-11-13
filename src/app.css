@@ -72,6 +72,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
 }
 
 /* Global Typography & Micro-animations */
@@ -119,8 +120,20 @@ a:hover {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.glass-panel:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px -10px var(--glass-shadow);
-  border-color: var(--accent-color);
+@media (hover: hover) {
+  .glass-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px var(--glass-shadow);
+    border-color: var(--accent-color);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .glass-panel {
+    padding: 1.25rem;
+  }
 }

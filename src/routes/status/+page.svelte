@@ -164,7 +164,7 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     gap: 1rem;
   }
 
@@ -241,5 +241,11 @@
   .stale-note {
     color: #f87171;
     margin-left: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .status-page {
+      padding: 1.5rem 1rem;
+    }
   }
 </style>

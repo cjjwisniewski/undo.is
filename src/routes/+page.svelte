@@ -5,7 +5,6 @@
     const email = "cameron@undo.is";
     const github = "https://github.com/cjjwisniewski";
     const linkedin = "https://linkedin.com/in/CameronWisniewski";
-    const bluesky = "https://bsky.app/profile/undo.is";
 
     // Optimized Vite asset import (automatically handles format/compression)
     import avatar from "$lib/avatar.jpg?enhanced";
@@ -39,19 +38,6 @@
             </div>
 
             <div class="social-links">
-                <a
-                    href={bluesky}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="social-link"
-                >
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566 1.055 0 2.158 0 5.494c0 1.954 1.411 7.234 1.895 7.828.535.655 1.549.851 3.257.653-2.617 1.838-2.664 2.87-2.502 3.654.18.868 1.159 1.503 2.502 1.503 2.193 0 6.64-4.045 6.848-4.22.208.175 4.655 4.22 6.848 4.22 1.343 0 2.322-.635 2.502-1.503.162-.784.115-1.816-2.502-3.654 1.708.198 2.722.002 3.257-.653.484-.594 1.895-5.874 1.895-7.828 0-3.336-2.566-4.439-5.202-2.811-2.752 1.942-5.711 5.881-6.798 7.995z"
-                        />
-                    </svg>
-                    Bluesky
-                </a>
                 <a
                     href={github}
                     target="_blank"
@@ -117,26 +103,37 @@
     }
 
     .avatar {
-        width: 320px;
-        height: 320px;
+        width: min(240px, 65vw);
+        height: auto;
+        aspect-ratio: 1 / 1;
         object-fit: cover;
         border-radius: var(--border-radius);
         transition: transform 0.4s ease;
     }
 
-    .avatar-container:hover .avatar {
-        transform: scale(1.05) rotate(-2deg);
+    @media (min-width: 768px) {
+        .avatar {
+            width: 280px;
+        }
+    }
+
+    @media (hover: hover) {
+        .avatar-container:hover .avatar {
+            transform: scale(1.05) rotate(-2deg);
+        }
     }
 
     .info-container {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.25rem;
+        width: 100%;
     }
 
     h1 {
-        font-size: 2.5rem;
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        line-height: 1.15;
         background: linear-gradient(
             135deg,
             var(--c-slate-50) 0%,
@@ -147,15 +144,42 @@
     }
 
     .title {
-        font-size: 1.25rem;
+        font-size: clamp(1.05rem, 3.5vw, 1.25rem);
         color: var(--accent-color);
         font-weight: 500;
     }
 
     .description {
-        font-size: 1.05rem;
+        font-size: 1rem;
         line-height: 1.7;
-        margin-bottom: 0.5rem;
+        margin: 0 auto 0.5rem;
+        max-width: 62ch;
+    }
+
+    @media (max-width: 640px) {
+        .hero {
+            min-height: auto;
+            padding-top: 1.5rem;
+            padding-bottom: 2rem;
+        }
+
+        .hero-content {
+            gap: 1.25rem;
+        }
+
+        .description {
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .actions {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .actions .btn {
+            width: 100%;
+        }
     }
 
     .actions {
@@ -204,7 +228,8 @@
 
     .social-links {
         display: flex;
-        gap: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1.25rem 1.5rem;
         margin-top: 1rem;
         border-top: 1px solid var(--border-color);
         padding-top: 1.5rem;

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { page } from "$app/state";
   import "../app.css";
   let { children } = $props();
 
@@ -34,9 +35,9 @@
       </a>
     </div>
     <nav class="nav-links">
-      <a href="/">Home</a>
-      <a href="/resume">Resume</a>
-      <a href="/status">Status</a>
+      <a href="/" class:active={page.url.pathname === "/"}>Home</a>
+      <a href="/resume" class:active={page.url.pathname.startsWith("/resume")}>Resume</a>
+      <a href="/status" class:active={page.url.pathname.startsWith("/status")}>Status</a>
       <button
         class="theme-toggle"
         onclick={toggleTheme}
@@ -136,7 +137,8 @@
     position: relative;
   }
 
-  .nav-links a:hover {
+  .nav-links a:hover,
+  .nav-links a.active {
     color: var(--text-primary);
     text-shadow: none;
   }
@@ -154,9 +156,24 @@
     transition: transform 0.3s ease;
   }
 
-  .nav-links a:hover::after {
+  .nav-links a:hover::after,
+  .nav-links a.active::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+
+  @media (max-width: 640px) {
+    .nav-container {
+      padding: 0.75rem 1rem;
+    }
+
+    .nav-links {
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+    }
   }
 
   .page-content {
