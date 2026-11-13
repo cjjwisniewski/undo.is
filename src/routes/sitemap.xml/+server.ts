@@ -16,6 +16,11 @@ export async function GET() {
                 <priority>1.0</priority>
             </url>
             <url>
+                <loc>https://undo.is/projects/</loc>
+                <changefreq>monthly</changefreq>
+                <priority>0.8</priority>
+            </url>
+            <url>
                 <loc>https://undo.is/resume/</loc>
                 <changefreq>monthly</changefreq>
                 <priority>0.8</priority>

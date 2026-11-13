@@ -36,6 +36,7 @@
     </div>
     <nav class="nav-links">
       <a href="/" class:active={page.url.pathname === "/"}>Home</a>
+      <a href="/projects" class:active={page.url.pathname.startsWith("/projects")}>Projects</a>
       <a href="/resume" class:active={page.url.pathname.startsWith("/resume")}>Resume</a>
       <a href="/status" class:active={page.url.pathname.startsWith("/status")}>Status</a>
       <button
@@ -61,6 +62,7 @@
   <div class="container footer-container">
     <span>© {new Date().getFullYear()} Cameron Wisniewski</span>
     <div class="footer-links">
+      <a href="/projects">Projects</a>
       <a href="/status">Status</a>
       <a href="https://github.com/cjjwisniewski" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
@@ -178,11 +180,11 @@
     }
 
     .nav-links {
-      gap: 1rem;
+      gap: 0.85rem;
     }
 
     .nav-links a {
-      font-size: 0.9rem;
+      font-size: 0.875rem;
     }
   }
 

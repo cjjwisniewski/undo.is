@@ -1,0 +1,314 @@
+<script lang="ts">
+  const seekerLinks = [
+    { label: "Live Site", href: "https://seeker.cityoftraitors.com", external: true, primary: true },
+    { label: "seeker_infra", href: "https://github.com/cjjwisniewski/seeker_infra", external: true, primary: false },
+    { label: "seeker_functions", href: "https://github.com/cjjwisniewski/seeker_functions", external: true, primary: false },
+    { label: "Frontend", href: "https://github.com/cjjwisniewski/seeker.cityoftraitors.com", external: true, primary: false }
+  ];
+
+  const seekerHighlights = [
+    {
+      title: "Event-Driven Serverless Pipeline",
+      detail:
+        "Azure Functions with Queue Triggers and Table Storage orchestrate distributed stock polling and historical pricing ingestion across marketplaces."
+    },
+    {
+      title: "Zero-Contamination Data Invariant",
+      detail:
+        "Client-side attribute verification strictly validates language, finish, set, and collector number so unfiltered upstream API responses never corrupt pricing history or trigger false alerts."
+    },
+    {
+      title: "Edge, Auth & Egress Isolation",
+      detail:
+        "Protected by Azure API Management (APIM) and Discord OAuth, with WireGuard-routed scraping workers isolating marketplace egress."
+    },
+    {
+      title: "Infrastructure as Code",
+      detail:
+        "Provisioned declaratively with Terraform alongside a static SvelteKit frontend."
+    }
+  ];
+
+  const seekerTags = [
+    "Azure Functions",
+    "Table & Queue Storage",
+    "Azure APIM",
+    "Terraform",
+    "SvelteKit",
+    "Python",
+    "Discord OAuth"
+  ];
+
+  const statusTags = [
+    "Cloudflare Workers",
+    "Workers KV",
+    "InfluxDB 2.7",
+    "Grafana",
+    "Telegraf",
+    "SvelteKit"
+  ];
+</script>
+
+<svelte:head>
+  <title>Projects | undo.is</title>
+  <meta
+    name="description"
+    content="Selected cloud architecture, serverless platform, and homelab observability projects by Cameron Wisniewski."
+  />
+  <meta property="og:title" content="Projects | undo.is" />
+  <meta
+    property="og:description"
+    content="Selected cloud architecture, serverless platform, and homelab observability projects by Cameron Wisniewski."
+  />
+  <meta property="og:url" content="https://undo.is/projects/" />
+</svelte:head>
+
+<section class="container projects-page">
+  <header class="page-header">
+    <h1>Projects</h1>
+    <p class="subtitle">
+      Selected cloud architecture, serverless platforms, and homelab observability systems.
+    </p>
+  </header>
+
+  <article class="glass-panel featured-card">
+    <div class="card-header">
+      <div>
+        <span class="eyebrow">Featured Project</span>
+        <h2>Seeker — Collectible Card Stock &amp; Pricing Platform</h2>
+      </div>
+      <span class="status-pill">Live</span>
+    </div>
+
+    <p class="lead">
+      A multi-marketplace availability tracker and historical pricing engine built on Azure
+      serverless primitives, strict data-integrity invariants, and Terraform IaC.
+    </p>
+
+    <div class="highlights-grid">
+      {#each seekerHighlights as item}
+        <div class="highlight-box">
+          <h3>{item.title}</h3>
+          <p>{item.detail}</p>
+        </div>
+      {/each}
+    </div>
+
+    <div class="tag-list">
+      {#each seekerTags as tag}
+        <span class="tag">{tag}</span>
+      {/each}
+    </div>
+
+    <div class="card-actions">
+      {#each seekerLinks as link}
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="action-link"
+          class:primary={link.primary}
+        >
+          {link.label}
+        </a>
+      {/each}
+    </div>
+  </article>
+
+  <article class="glass-panel project-card">
+    <div class="card-header">
+      <div>
+        <span class="eyebrow">Observability &amp; Edge</span>
+        <h2>undo.is Outage-Proof Status &amp; Telemetry</h2>
+      </div>
+      <span class="status-pill">Live</span>
+    </div>
+
+    <p class="lead">
+      An edge-hosted status API and homelab telemetry stack engineered to report accurate health
+      even during a full home-network or power outage. A local container pushes signed heartbeats
+      to a Cloudflare Worker backed by Workers KV, while Telegraf, InfluxDB 2.7, and Grafana
+      handle deep host and UPS metrics and Discord alerting.
+    </p>
+
+    <div class="tag-list">
+      {#each statusTags as tag}
+        <span class="tag">{tag}</span>
+      {/each}
+    </div>
+
+    <div class="card-actions">
+      <a href="/status" class="action-link primary">View Live Status</a>
+      <a
+        href="https://github.com/cjjwisniewski/undo.is_infra"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-link"
+      >
+        undo.is_infra
+      </a>
+    </div>
+  </article>
+</section>
+
+<style>
+  .projects-page {
+    padding: 3rem 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.85rem, 4vw, 2.5rem);
+    margin: 0 0 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .subtitle {
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 62ch;
+  }
+
+  .featured-card,
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-color);
+    margin-bottom: 0.35rem;
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+    margin: 0;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .status-pill {
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.12);
+    border: 1px solid rgba(74, 222, 128, 0.28);
+  }
+
+  .lead {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 1rem;
+  }
+
+  .highlight-box {
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.15rem;
+  }
+
+  .highlight-box h3 {
+    margin: 0 0 0.4rem;
+    font-size: 0.98rem;
+    color: var(--text-primary);
+  }
+
+  .highlight-box p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 0.25rem;
+  }
+
+  .action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+  }
+
+  .action-link:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    text-shadow: none;
+  }
+
+  .action-link.primary {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--c-slate-950);
+    font-weight: 600;
+  }
+
+  .action-link.primary:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: var(--c-slate-950);
+  }
+
+  @media (max-width: 640px) {
+    .projects-page {
+      padding: 1.5rem 1rem;
+    }
+
+    .card-actions .action-link {
+      flex: 1 1 auto;
+    }
+  }
+</style>
