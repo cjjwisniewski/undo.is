@@ -44,7 +44,7 @@
 
   async function fetchStatus() {
     try {
-      const res = await fetch("/api/status", { cache: "no-store" });
+      const res = await fetch("https://status.undo.is/api/status", { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       data = (await res.json()) as StatusPayload;
       error = null;
