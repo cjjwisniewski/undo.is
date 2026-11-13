@@ -36,6 +36,7 @@
     <nav class="nav-links">
       <a href="/">Home</a>
       <a href="/resume">Resume</a>
+      <a href="/status">Status</a>
       <button
         class="theme-toggle"
         onclick={toggleTheme}
