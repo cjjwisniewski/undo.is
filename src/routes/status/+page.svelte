@@ -57,14 +57,30 @@
 
   onMount(() => {
     fetchStatus();
-    const timer = setInterval(fetchStatus, 30_000);
-    return () => clearInterval(timer);
+    const timer = setInterval(() => {
+      if (document.visibilityState === "visible") {
+        fetchStatus();
+      }
+    }, 30_000);
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        fetchStatus();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      clearInterval(timer);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
   });
 </script>
 
 <svelte:head>
   <title>Status | undo.is</title>
   <meta name="description" content="Live availability status for undo.is homelab servers." />
+  <meta property="og:title" content="System Status | undo.is" />
+  <meta property="og:description" content="Live availability status for undo.is homelab servers." />
+  <meta property="og:url" content="https://undo.is/status/" />
 </svelte:head>
 
 <section class="container status-page">

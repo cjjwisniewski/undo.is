@@ -20,6 +20,11 @@ export async function GET() {
                 <changefreq>monthly</changefreq>
                 <priority>0.8</priority>
             </url>
+            <url>
+                <loc>https://undo.is/status/</loc>
+                <changefreq>always</changefreq>
+                <priority>0.6</priority>
+            </url>
         </urlset>`.trim(),
         {
             headers: {

@@ -57,6 +57,16 @@
   {@render children()}
 </main>
 
+<footer class="site-footer">
+  <div class="container footer-container">
+    <span>© {new Date().getFullYear()} Cameron Wisniewski</span>
+    <div class="footer-links">
+      <a href="/status">Status</a>
+      <a href="https://github.com/cjjwisniewski" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</footer>
+
 <style>
   .navbar {
     background: var(--nav-bg);
@@ -180,5 +190,39 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .footer-links a {
+    color: var(--text-secondary);
+  }
+
+  .footer-links a:hover {
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 640px) {
+    .footer-container {
+      padding: 1rem;
+    }
   }
 </style>
