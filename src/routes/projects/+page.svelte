@@ -1,8 +1,6 @@
 <script lang="ts">
   const seekerLinks = [
     { label: "Live Site", href: "https://seeker.cityoftraitors.com", external: true, primary: true },
-    { label: "seeker_infra", href: "https://github.com/cjjwisniewski/seeker_infra", external: true, primary: false },
-    { label: "seeker_functions", href: "https://github.com/cjjwisniewski/seeker_functions", external: true, primary: false },
     { label: "Frontend", href: "https://github.com/cjjwisniewski/seeker.cityoftraitors.com", external: true, primary: false }
   ];
 
