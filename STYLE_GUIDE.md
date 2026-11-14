@@ -6,7 +6,7 @@ This document defines the visual, structural, and code conventions for **undo.is
 
 ## 1. Visual Identity & Aesthetic
 
-* **Theme:** Dark-first, high-contrast slate aesthetic (`#020617` canvas) with translucent glassmorphism surfaces and a single vibrant sky-blue accent (`#38bdf8`).
+* **Theme:** Dark-first, high-contrast slate aesthetic (`#020617` canvas with a `48px` architectural grid in `body::before` and subtle sky-blue + lower-left indigo ambient glows) with translucent glassmorphism surfaces and a single vibrant sky-blue accent (`#38bdf8`).
 * **Tone:** Clean, restrained, engineering-focused. Avoid heavy gradients, neon clutter, or gratuitous animations.
 * **Light Mode:** A `:root.light` token set exists in [src/app.css](src/app.css) (currently the navbar toggle is hidden, but all new styles **must** use CSS custom properties rather than hardcoded dark colors so light mode remains intact).
 
@@ -77,6 +77,7 @@ For operational/status indicators (e.g. `/projects` and `/status`):
   * **Primary:** `background: var(--accent-color)`, `color: var(--c-slate-950)`, `font-weight: 600`, hover `var(--accent-hover)`.
   * **Secondary:** `background: var(--bg-surface)` or `transparent`, `border: 1px solid var(--border-color)`, `color: var(--text-primary)`, hover `border-color: var(--accent-color)`.
 * **Tags:** Compact `0.8rem` chips with `var(--bg-surface)`, `1px solid var(--border-color)`, `border-radius: 6px`, `padding: 0.25rem 0.6rem`.
+* **Architecture Diagrams (`.arch-diagram`):** On `/projects`, use minimal inline SVG node-and-arrow diagrams styled with CSS custom properties (`var(--bg-surface)`, `var(--border-color)`, `var(--accent-color)`) inside an `overflow-x: auto` container for mobile scrolling.
 * **Icons:** Inline SVGs (e.g., `20px × 20px` with `fill="currentColor"`) rather than adding heavy icon libraries.
 
 ---
