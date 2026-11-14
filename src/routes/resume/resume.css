@@ -699,6 +699,17 @@ print {
 
 @media print {
 
+    body,
+    .resume-page {
+        background: #ffffff !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    header,
+    header.navbar,
+    footer,
+    .site-footer,
     #resume header,
     #footer,
     #resume aside,
@@ -710,12 +721,7 @@ print {
     #resume .adslot,
     #resume .resume-actions,
     .page-wrapper {
-        display: none;
-    }
-
-    header {
-        display: none;
-        padding: 0;
+        display: none !important;
     }
 
     .wrapper,
