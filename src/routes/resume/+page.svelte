@@ -8,6 +8,7 @@
         profile,
         objective,
         experience,
+        projects,
         skills,
         certifications,
         education,
@@ -120,16 +121,20 @@
                                     <section
                                         class="content-section-content experience-section-content-details"
                                     >
-                                        <p
-                                            class="experience-section-content-details-company"
-                                        >
-                                            {@html exp.company}
-                                        </p>
-                                        <p
-                                            class="experience-section-content-details-location"
-                                        >
-                                            {@html exp.location}
-                                        </p>
+                                        {#if exp.company}
+                                            <p
+                                                class="experience-section-content-details-company"
+                                            >
+                                                {@html exp.company}
+                                            </p>
+                                        {/if}
+                                        {#if exp.location}
+                                            <p
+                                                class="experience-section-content-details-location"
+                                            >
+                                                {@html exp.location}
+                                            </p>
+                                        {/if}
                                         <p
                                             class="experience-section-content-details-title"
                                         >
@@ -140,11 +145,13 @@
                                         >
                                             {@html exp.dates}
                                         </p>
-                                        <p
-                                            class="experience-section-content-details-description"
-                                        >
-                                            {@html exp.description}
-                                        </p>
+                                        {#if exp.description}
+                                            <p
+                                                class="experience-section-content-details-description"
+                                            >
+                                                {@html exp.description}
+                                            </p>
+                                        {/if}
                                         <div
                                             class="experience-section-content-details-description-bullets"
                                         >
@@ -340,11 +347,13 @@
                                         >
                                             {@html vol.dates}
                                         </p>
-                                        <p
-                                            class="volunteering-section-content-details-description"
-                                        >
-                                            {@html vol.description}
-                                        </p>
+                                        {#if vol.description}
+                                            <p
+                                                class="volunteering-section-content-details-description"
+                                            >
+                                                {@html vol.description}
+                                            </p>
+                                        {/if}
                                         <div
                                             class="volunteering-section-content-details-description-bullets"
                                         >
@@ -353,6 +362,72 @@
                                                     {#each vol["description-bullets"] as volBullet}
                                                         <li>
                                                             {@html volBullet.bullet}
+                                                        </li>
+                                                    {/each}
+                                                </ul>
+                                            {/if}
+                                        </div>
+                                    </section>
+                                {/each}
+                            </article>
+                        </section>
+                    </article>
+                </section>
+            {/if}
+
+            <!-- PERSONAL PROJECTS -->
+            {#if projects}
+                <section class="content-section projects">
+                    <article class="projects-section">
+                        <section
+                            class="content-section-title projects-section-title"
+                        >
+                            <div>
+                                {@html projects["section-title"] ||
+                                    "Personal Projects"}
+                            </div>
+                        </section>
+                        <section class="projects-section-content">
+                            <article class="css-grid">
+                                {#each projects.content as project}
+                                    <section
+                                        class="content-section-content projects-section-content-details"
+                                    >
+                                        <p
+                                            class="projects-section-content-details-company"
+                                        >
+                                            {@html project.company}
+                                        </p>
+                                        <p
+                                            class="projects-section-content-details-location"
+                                        >
+                                            {@html project.location}
+                                        </p>
+                                        <p
+                                            class="projects-section-content-details-title"
+                                        >
+                                            {@html project.title}
+                                        </p>
+                                        <p
+                                            class="projects-section-content-details-dates"
+                                        >
+                                            {@html project.dates}
+                                        </p>
+                                        {#if project.description}
+                                            <p
+                                                class="projects-section-content-details-description"
+                                            >
+                                                {@html project.description}
+                                            </p>
+                                        {/if}
+                                        <div
+                                            class="projects-section-content-details-description-bullets"
+                                        >
+                                            {#if project["description-bullets"]}
+                                                <ul>
+                                                    {#each project["description-bullets"] as projBullet}
+                                                        <li>
+                                                            {@html projBullet.bullet}
                                                         </li>
                                                     {/each}
                                                 </ul>

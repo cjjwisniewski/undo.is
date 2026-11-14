@@ -285,5 +285,27 @@
         ]
       }
     ]
+  },
+  "projects": {
+    "section-title": "Personal Projects",
+    "content": [
+      {
+        "company": "Seeker (seeker.cityoftraitors.com)",
+        "location": "Pittsburgh, PA",
+        "title": "Creator & Principal Cloud Architect",
+        "dates": "March 2025 to Present",
+        "description-bullets": [
+          {
+            "bullet": "Architected and built a full-stack collectible card stock tracking and historical pricing platform monitoring 9 international marketplaces via an event-driven Azure Functions (Python 3.11) and Storage Queue pipeline with ETag optimistic concurrency."
+          },
+          {
+            "bullet": "Engineered a defense-in-depth API security boundary using Azure API Management (APIM), Cloudflare edge CSP/HSTS transform rules, Discord OAuth2 with custom HS256 JWT validation, header-stripping policies, and IP-restricted serverless compute provisioned in Terraform."
+          },
+          {
+            "bullet": "Built a containerized European marketplace scraper routed through a dedicated WireGuard EU VPN sidecar alongside a SvelteKit and TypeScript SPA featuring an isolated client-side demo mode and Discord DM/slash-command alert workflows."
+          }
+        ]
+      }
+    ]
   }
 }

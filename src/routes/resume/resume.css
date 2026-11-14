@@ -80,6 +80,7 @@ b {
         "profile"
         "objective"
         "experience"
+        "projects"
         "skills"
         "certifications"
         "education"
@@ -103,9 +104,10 @@ print {
             "profile profile"
             "objective objective"
             "experience experience"
+            "projects projects"
             "skills skills"
-            "education education"
             "certifications certifications"
+            "education education"
             "volunteering volunteering"
             "interests interests"
             "references references";
@@ -121,7 +123,10 @@ print {
     color: #000000;
     text-align: center;
     font-weight: 800;
+    letter-spacing: 0.04em;
     padding: 0.5rem 0 0.25rem 0;
+    margin-bottom: 0.25rem;
+    border-bottom: 1px solid #d4d4d4;
 }
 
 #resume .content-section-title div {
@@ -526,6 +531,87 @@ print {
     }
 }
 
+#resume .projects {
+    grid-area: projects;
+}
+
+#resume .projects-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "projects-section-title"
+        "projects-section-content";
+}
+
+#resume .projects-section-title {
+    grid-area: projects-section-title;
+}
+
+#resume .projects-section-content {
+    grid-area: projects-section-content;
+}
+
+#resume .projects-section-content-details {
+    display: grid;
+    grid-template-columns: 4fr;
+    grid-template-areas:
+        "projects-section-content-details-company"
+        "projects-section-content-details-location"
+        "projects-section-content-details-title"
+        "projects-section-content-details-dates"
+        "projects-section-content-details-description"
+        "projects-section-content-details-description-bullets";
+}
+
+#resume .projects-section-content-details-company {
+    grid-area: projects-section-content-details-company;
+    font-weight: bold;
+}
+
+#resume .projects-section-content-details-location {
+    grid-area: projects-section-content-details-location;
+}
+
+#resume .projects-section-content-details-title {
+    grid-area: projects-section-content-details-title;
+}
+
+#resume .projects-section-content-details-dates {
+    grid-area: projects-section-content-details-dates;
+}
+
+#resume .projects-section-content-details-description {
+    grid-area: projects-section-content-details-description;
+    padding-top: 1em;
+}
+
+#resume .projects-section-content-details-description-bullets {
+    grid-area: projects-section-content-details-description-bullets;
+}
+
+#resume .projects-section-content-details-description-bullets ul {
+    margin: 0.5em 0em 0em 0.5rem;
+    padding-left: 1.5rem;
+}
+
+@media (min-width: 1200px),
+print {
+    #resume .projects-section-content-details {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-template-areas:
+            "projects-section-content-details-company projects-section-content-details-location"
+            "projects-section-content-details-title projects-section-content-details-dates"
+            "projects-section-content-details-description projects-section-content-details-description"
+            "projects-section-content-details-description-bullets projects-section-content-details-description-bullets";
+    }
+
+    #resume .projects-section-content-details-location,
+    #resume .projects-section-content-details-dates {
+        text-align: right;
+    }
+}
+
 #resume .interests {
     grid-area: interests;
 }
@@ -642,7 +728,13 @@ print {
         box-shadow: none;
     }
 
-    #resume div {
+    #resume .content-section-title {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    #resume .content-section-content {
+        break-inside: avoid;
         page-break-inside: avoid;
     }
 
@@ -650,7 +742,7 @@ print {
         margin: 2em 0em 2em 0em;
     }
 
-    @page: first {
+    @page :first {
         margin: 0em 0em 2em 0em;
     }
 
