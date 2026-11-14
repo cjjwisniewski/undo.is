@@ -97,6 +97,42 @@
       serverless primitives, strict data-integrity invariants, and Terraform IaC.
     </p>
 
+    <div class="arch-diagram" role="img" aria-label="Seeker architecture: Edge and Discord OAuth through Azure APIM to Azure Functions, Queue and Table Storage, and WireGuard-isolated scraping workers.">
+      <svg viewBox="0 0 760 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-seeker" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--accent-color)" />
+          </marker>
+        </defs>
+        <!-- Node 1 -->
+        <rect x="4" y="18" width="156" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
+        <text x="82" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">EDGE &amp; AUTH</text>
+        <text x="82" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Azure APIM</text>
+        <text x="82" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Discord OAuth</text>
+        <!-- Arrow 1->2 -->
+        <line x1="164" y1="56" x2="196" y2="56" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-seeker)" />
+        <!-- Node 2 -->
+        <rect x="200" y="18" width="164" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
+        <text x="282" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">COMPUTE</text>
+        <text x="282" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Azure Functions</text>
+        <text x="282" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Python Serverless</text>
+        <!-- Arrow 2->3 -->
+        <line x1="368" y1="56" x2="400" y2="56" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-seeker)" />
+        <!-- Node 3 -->
+        <rect x="404" y="18" width="164" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
+        <text x="486" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">STATE &amp; QUEUES</text>
+        <text x="486" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Table &amp; Queue</text>
+        <text x="486" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Price History + Jobs</text>
+        <!-- Arrow 3->4 -->
+        <line x1="572" y1="56" x2="604" y2="56" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-seeker)" />
+        <!-- Node 4 -->
+        <rect x="608" y="18" width="148" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--accent-color)" stroke-opacity="0.45" stroke-width="1.2" />
+        <text x="682" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">EGRESS</text>
+        <text x="682" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">WireGuard VPN</text>
+        <text x="682" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Isolated Scrapers</text>
+      </svg>
+    </div>
+
     <div class="highlights-grid">
       {#each seekerHighlights as item}
         <div class="highlight-box">
@@ -142,6 +178,47 @@
       to a Cloudflare Worker backed by Workers KV, while Telegraf, InfluxDB 2.7, and Grafana
       handle deep host and UPS metrics and Discord alerting.
     </p>
+
+    <div class="arch-diagram" role="img" aria-label="undo.is status architecture: Local host sends signed heartbeats to Cloudflare Workers and KV for edge status, while Telegraf ships metrics to InfluxDB 2.7 and Grafana.">
+      <svg viewBox="0 0 760 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-status" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--accent-color)" />
+          </marker>
+        </defs>
+        <!-- Source Node -->
+        <rect x="4" y="26" width="166" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
+        <text x="87" y="54" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">HOMELAB HOST</text>
+        <text x="87" y="73" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Docker + UPS</text>
+        <text x="87" y="89" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Signed Heartbeat</text>
+
+        <!-- Split arrows -->
+        <path d="M 174 48 L 218 32 L 246 32" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-status)" />
+        <path d="M 174 80 L 218 96 L 246 96" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-status)" />
+
+        <!-- Top Path: Edge -->
+        <rect x="250" y="6" width="215" height="52" rx="8" fill="var(--bg-surface)" stroke="var(--accent-color)" stroke-opacity="0.45" stroke-width="1.2" />
+        <text x="357" y="28" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Cloudflare Worker + KV</text>
+        <text x="357" y="45" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Outage-Proof Edge Status API</text>
+
+        <line x1="469" y1="32" x2="516" y2="32" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-status)" />
+
+        <rect x="520" y="6" width="236" height="52" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
+        <text x="638" y="28" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">undo.is/status</text>
+        <text x="638" y="45" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Public Live Telemetry View</text>
+
+        <!-- Bottom Path: Metrics -->
+        <rect x="250" y="70" width="215" height="52" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
+        <text x="357" y="92" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Telegraf &rarr; InfluxDB 2.7</text>
+        <text x="357" y="109" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Time-Series Host &amp; UPS Metrics</text>
+
+        <line x1="469" y1="96" x2="516" y2="96" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-status)" />
+
+        <rect x="520" y="70" width="236" height="52" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
+        <text x="638" y="92" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Grafana + Discord</text>
+        <text x="638" y="109" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Dashboards &amp; Incident Alerts</text>
+      </svg>
+    </div>
 
     <div class="tag-list">
       {#each statusTags as tag}
@@ -262,6 +339,26 @@
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  }
+
+  .featured-card {
+    border-top: 2px solid rgba(56, 189, 248, 0.45);
+  }
+
+  .arch-diagram {
+    background: rgba(2, 6, 23, 0.45);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 0.85rem 1rem;
+    overflow-x: auto;
+  }
+
+  .arch-diagram svg {
+    display: block;
+    width: 100%;
+    min-width: 560px;
+    height: auto;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   .card-header {
