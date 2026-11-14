@@ -7,7 +7,7 @@
         "date-obtained": "November 2025"
       },
       {
-        "certification": "Hashicorp Certified - Terraform Authoring and Operations Professional",
+        "certification": "HashiCorp Certified - Terraform Authoring and Operations Professional",
         "date-obtained": "September 2025"
       },
       {
@@ -15,7 +15,7 @@
         "date-obtained": "June 2024"
       },
       {
-        "certification": "Hashicorp Certified - Terraform Associate",
+        "certification": "HashiCorp Certified - Terraform Associate",
         "date-obtained": "September 2023"
       },
       {
@@ -49,11 +49,34 @@
     "section-title": "Professional Experience",
     "content": [
       {
+        "company": "First National Bank",
+        "location": "Pittsburgh, PA",
+        "title": "Vice President, Cloud Platform Architect",
+        "dates": "September 2026 to Present",
+        "description-bullets": [
+          {
+            "bullet": "Define and lead the enterprise cloud platform vision and target-state architecture, establishing multi-account, hybrid-cloud foundations to support mission-critical financial applications and core banking modernizations."
+          },
+          {
+            "bullet": "Partner with Enterprise Information Security and Risk Management to establish security-by-default architecture, automated compliance guardrails, and Zero Trust controls aligned with FFIEC, SOX, and regulatory standards."
+          },
+          {
+            "bullet": "Architect self-service platform engineering capabilities and automated landing zones, delivering reusable Infrastructure as Code (IaC) modules and CI/CD blueprints to accelerate product engineering velocity across banking lines of business."
+          },
+          {
+            "bullet": "Direct cloud architectural review boards, mentoring platform engineering teams and advising senior leadership on technology roadmaps, cloud financial operations (FinOps), and resilient disaster recovery strategies."
+          }
+        ]
+      },
+      {
         "company": "Crown Castle",
         "location": "Canonsburg, PA",
         "title": "Senior Cloud Platform Engineer",
-        "dates": "March 2024 to Present",
+        "dates": "March 2024 to September 2026",
         "description-bullets": [
+          {
+            "bullet": "Assumed full operational and people management ownership of a 5-person engineering team, establishing an internal architectural review program and standardized intake framework that scaled reusable patterns and accelerated delivery."
+          },
           {
             "bullet": "Led the architectural separation of a shared enterprise cloud platform into three independently governed environments during a corporate divestment, defining IAM boundaries, network isolation, data ownership, and migration sequencing to eliminate cross-entity blast radius while maintaining 100% uptime."
           },
@@ -61,16 +84,7 @@
             "bullet": "Directed the implementation of a production-ready agentic AI framework via AWS Bedrock and Lyzr, establishing enterprise-wide standards for LLM guardrails and identity-scoped access."
           },
           {
-            "bullet": "Launched the organization’s first external-facing API platform using Amazon API Gateway, establishing secure patterns for authentication, authorization, rate limiting, and customer integration at scale."
-          },
-          {
-            "bullet": "Codified a standardized platform requirements and intake framework, transforming ad-hoc infrastructure requests into a predictable, auditable delivery model aligned with security and compliance controls."
-          },
-          {
-            "bullet": "Founded and led an internal cloud platform enablement program to scale platform knowledge across engineering teams, reducing reliance on the platform team and accelerating adoption of standardized cloud patterns."
-          },
-          {
-            "bullet": "Established a technical leadership program within the platform organization to formalize mentorship, architectural review, and knowledge sharing, improving delivery consistency across initiatives."
+            "bullet": "Designed and deployed the organization\u2019s first external-facing API platform using Amazon API Gateway, establishing secure patterns for authentication, authorization, rate limiting, and customer integration at scale."
           }
         ]
       },
@@ -157,7 +171,7 @@
   },
   "objective": {
     "section-title": "Profile",
-    "content": "Technical leader with fifteen years of experience designing, securing, and scaling enterprise cloud platforms. Specialized in multi-tenant cloud architecture, security-by-default infrastructure, and platform enablement for large engineering organizations. Expert-level proficiency in AWS, Microsoft Azure, and Infrastructure as Code. Proven record of leading high-ambiguity initiatives, defining long-term technical direction, and creating force-multipliers to enable engineering organizations."
+    "content": "Technical leader with over fifteen years of experience designing, securing, and scaling enterprise cloud platforms. Specialized in multi-tenant cloud architecture, security-by-default infrastructure, and platform enablement for large engineering organizations. Expert-level proficiency in AWS, Microsoft Azure, and Infrastructure as Code. Proven record of leading high-ambiguity initiatives, defining long-term technical direction, and creating force-multipliers to enable engineering organizations."
   },
   "profile": {
     "section-title": "Profile",
@@ -173,8 +187,30 @@
     "title": null,
     "twitter_un": null,
     "github_un": "cjjwisniewski",
-    "linkedin": "LinkedIn.com/in/CameronWisniewski",
+    "linkedin": "linkedin.com/in/CameronWisniewski",
     "personal_site": "www.undo.is"
+  },
+  "projects": {
+    "section-title": "Personal Projects",
+    "content": [
+      {
+        "company": "Seeker (seeker.cityoftraitors.com)",
+        "location": "Pittsburgh, PA",
+        "title": "Creator & Principal Cloud Architect",
+        "dates": "March 2025 to Present",
+        "description-bullets": [
+          {
+            "bullet": "Architected and built a full-stack collectible card stock tracking and historical pricing platform monitoring 9 international marketplaces via an event-driven Azure Functions (Python 3.11) and Storage Queue pipeline with ETag optimistic concurrency."
+          },
+          {
+            "bullet": "Engineered a defense-in-depth API security boundary using Azure API Management (APIM), Cloudflare edge CSP/HSTS transform rules, Discord OAuth2 with custom HS256 JWT validation, header-stripping policies, and IP-restricted serverless compute provisioned in Terraform."
+          },
+          {
+            "bullet": "Built a containerized European marketplace scraper routed through a dedicated WireGuard EU VPN sidecar alongside a SvelteKit and TypeScript SPA featuring an isolated client-side demo mode and Discord DM/slash-command alert workflows."
+          }
+        ]
+      }
+    ]
   },
   "references": null,
   "skills": {
@@ -187,10 +223,16 @@
             "item": "AWS (EKS, EC2, VPC, S3, API Gateway)"
           },
           {
-            "item": "Microsoft Azure"
+            "item": "Microsoft Azure (Functions, API Management, Storage)"
           },
           {
             "item": "Multi-cloud architecture"
+          },
+          {
+            "item": "Cloudflare"
+          },
+          {
+            "item": "FinOps"
           }
         ]
       },
@@ -205,6 +247,26 @@
           },
           {
             "item": "ARM Templates"
+          }
+        ]
+      },
+      {
+        "category": "AI/ML",
+        "skills": [
+          {
+            "item": "AWS Bedrock"
+          },
+          {
+            "item": "Lyzr"
+          },
+          {
+            "item": "LLM Guardrails"
+          },
+          {
+            "item": "Identity-Scoped Access for Agents"
+          },
+          {
+            "item": "Agentic AI Frameworks"
           }
         ]
       },
@@ -229,13 +291,16 @@
         "category": "Security",
         "skills": [
           {
+            "item": "Zero Trust Architecture"
+          },
+          {
             "item": "Privileged Access Management (PAM)"
           },
           {
             "item": "Teleport"
           },
           {
-            "item": "CIS/SOX Compliance"
+            "item": "CIS/SOX/FFIEC Compliance"
           },
           {
             "item": "Cloud Security Controls"
@@ -258,7 +323,7 @@
             "item": "Citrix Cloud"
           },
           {
-            "item": "Linux (Bash) and Windows (PowerShell)"
+            "item": "Python, Linux (Bash), and Windows (PowerShell)"
           }
         ]
       }
@@ -274,35 +339,13 @@
         "dates": "January 2017 to Present",
         "description-bullets": [
           {
-            "bullet": "Orchestrated the comprehensive communication strategy for Tekko: a large-scale regional event generating an annual economic impact exceeding 5 million dollars."
+            "bullet": "Orchestrated the comprehensive communication strategy for Tekko, a large-scale regional event generating an annual economic impact exceeding 5 million dollars."
           },
           {
-            "bullet": "Developed and expanded the 'Show Your Badge' partnership framework: resulting in measurable increases in event revenue and strengthening strategic ties with local Pittsburgh businesses."
+            "bullet": "Developed and expanded the 'Show Your Badge' partnership framework, resulting in measurable increases in event revenue and strengthening strategic ties with local Pittsburgh businesses."
           },
           {
             "bullet": "Directed multi-channel brand engagement and industry outreach initiatives to expand attendee reach and maintain a high-visibility presence within the regional cultural sector."
-          }
-        ]
-      }
-    ]
-  },
-  "projects": {
-    "section-title": "Personal Projects",
-    "content": [
-      {
-        "company": "Seeker (seeker.cityoftraitors.com)",
-        "location": "Pittsburgh, PA",
-        "title": "Creator & Principal Cloud Architect",
-        "dates": "March 2025 to Present",
-        "description-bullets": [
-          {
-            "bullet": "Architected and built a full-stack collectible card stock tracking and historical pricing platform monitoring 9 international marketplaces via an event-driven Azure Functions (Python 3.11) and Storage Queue pipeline with ETag optimistic concurrency."
-          },
-          {
-            "bullet": "Engineered a defense-in-depth API security boundary using Azure API Management (APIM), Cloudflare edge CSP/HSTS transform rules, Discord OAuth2 with custom HS256 JWT validation, header-stripping policies, and IP-restricted serverless compute provisioned in Terraform."
-          },
-          {
-            "bullet": "Built a containerized European marketplace scraper routed through a dedicated WireGuard EU VPN sidecar alongside a SvelteKit and TypeScript SPA featuring an isolated client-side demo mode and Discord DM/slash-command alert workflows."
           }
         ]
       }
