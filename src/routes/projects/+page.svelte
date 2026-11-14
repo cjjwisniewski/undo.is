@@ -16,9 +16,9 @@
         "Client-side attribute verification strictly validates language, finish, set, and collector number so unfiltered upstream API responses never corrupt pricing history or trigger false alerts."
     },
     {
-      title: "Edge, Auth & Egress Isolation",
+      title: "Edge Security & IaC",
       detail:
-        "Protected by Azure API Management (APIM) and Discord OAuth, with WireGuard-routed scraping workers isolating marketplace egress and Terraform-managed infrastructure."
+        "Protected by Azure API Management (APIM) and Discord OAuth, with all serverless and storage infrastructure provisioned declaratively via Terraform."
     }
   ];
 
@@ -92,7 +92,7 @@
       serverless primitives, strict data-integrity invariants, and Terraform IaC.
     </p>
 
-    <div class="arch-diagram" role="img" aria-label="Seeker architecture: Edge and Discord OAuth through Azure APIM to Azure Functions, Queue and Table Storage, and WireGuard-isolated scraping workers.">
+    <div class="arch-diagram" role="img" aria-label="Seeker architecture: Edge and Discord OAuth through Azure APIM to Azure Functions, Queue and Table Storage, and Discord alert delivery.">
       <svg viewBox="0 0 760 112" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <marker id="arrow-seeker" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -122,9 +122,9 @@
         <line x1="572" y1="56" x2="604" y2="56" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-seeker)" />
         <!-- Node 4 -->
         <rect x="608" y="18" width="148" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--accent-color)" stroke-opacity="0.45" stroke-width="1.2" />
-        <text x="682" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">EGRESS</text>
-        <text x="682" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">WireGuard VPN</text>
-        <text x="682" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Isolated Scrapers</text>
+        <text x="682" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">DELIVERY</text>
+        <text x="682" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Discord Alerts</text>
+        <text x="682" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Restocks &amp; Drops</text>
       </svg>
     </div>
 
