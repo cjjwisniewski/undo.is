@@ -65,6 +65,8 @@
       <a href="/projects">Projects</a>
       <a href="/status">Status</a>
       <a href="https://github.com/cjjwisniewski" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://seeker.cityoftraitors.com" target="_blank" rel="noopener noreferrer">Seeker</a>
+      <a href="https://pittimps.com" target="_blank" rel="noopener noreferrer">Pitt Imps</a>
     </div>
   </div>
 </footer>
