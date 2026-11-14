@@ -82,7 +82,7 @@
     <div class="card-header">
       <div>
         <span class="eyebrow">Featured Project</span>
-        <h2>Seeker — Collectible Card Stock &amp; Pricing Platform</h2>
+        <h2>Seeker - Collectible Card Stock &amp; Pricing Platform</h2>
       </div>
       <span class="status-pill">Live</span>
     </div>
@@ -238,7 +238,7 @@
     <div class="card-header">
       <div>
         <span class="eyebrow">Editorial &amp; Community</span>
-        <h2>City of Traitors — Premodern MTG Chronicles</h2>
+        <h2>City of Traitors - Premodern MTG Chronicles</h2>
       </div>
       <span class="status-pill">Live</span>
     </div>
@@ -270,7 +270,7 @@
     <div class="card-header">
       <div>
         <span class="eyebrow">Local Community</span>
-        <h2>Pitt Imps — Pittsburgh Premodern MTG</h2>
+        <h2>Pitt Imps - Pittsburgh Premodern MTG</h2>
       </div>
       <span class="status-pill">Live</span>
     </div>

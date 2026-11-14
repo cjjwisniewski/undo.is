@@ -123,7 +123,7 @@
     <p class="updated">
       Last heartbeat: {formatUpdated(data.updated_at)}
       {#if data.stale}
-        <span class="stale-note">(stale — heartbeat older than 3 minutes)</span>
+        <span class="stale-note">(stale - heartbeat older than 3 minutes)</span>
       {/if}
     </p>
   {/if}
