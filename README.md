@@ -10,10 +10,12 @@ The personal website and technical portfolio of Cameron Wisniewski.
 * **Styling**: Vanilla CSS with customized design tokens and CSS variables.
 
 ## Key Features
-* **Modern aesthetic**: Clean "Cool Grays" (Slate) color palette with responsive glassmorphism hover interactions.
-* **Dark Mode**: Configured to natively default to a dark theme.
-* **SEO & Socials**: Dynamically generates `/sitemap.xml` and statically structures `robots.txt` + Open Graph meta tags for X, iMessage, and Discord shareability.
-* **Native Print Export**: The layout elegantly restructures itself for `window.print()` exporting via custom `@media print` CSS block logic, seamlessly acting as a digital to physical PDF resume generator.
+* **Modern Aesthetic**: Dark-first Slate color palette (`#020617`) with a `48px` architectural grid backdrop, two-tone ambient glows, and translucent glassmorphism panels (documented in [STYLE_GUIDE.md](STYLE_GUIDE.md)).
+* **Profile & Core Focus (`/`)**: Split profile hero with optimized avatar, core architecture focus areas, and direct links to projects, resume, and live status.
+* **Projects & Architecture (`/projects`)**: Showcases **Seeker**, **undo.is Outage-Proof Status & Telemetry**, **City of Traitors**, and **Pitt Imps**, complete with inline SVG system architecture diagrams.
+* **Live System Status (`/status`)**: Client-side telemetry view polling the edge-hosted Cloudflare Worker status API.
+* **Native Print Export (`/resume`)**: Restructures for `window.print()` via `@media print` CSS rules, acting as a digital-to-PDF resume generator.
+* **SEO & Socials**: Dynamically generates `/sitemap.xml` alongside `robots.txt` and Open Graph meta tags.
 
 ## Local Development
 
