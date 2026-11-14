@@ -18,12 +18,7 @@
     {
       title: "Edge, Auth & Egress Isolation",
       detail:
-        "Protected by Azure API Management (APIM) and Discord OAuth, with WireGuard-routed scraping workers isolating marketplace egress."
-    },
-    {
-      title: "Infrastructure as Code",
-      detail:
-        "Provisioned declaratively with Terraform alongside a static SvelteKit frontend."
+        "Protected by Azure API Management (APIM) and Discord OAuth, with WireGuard-routed scraping workers isolating marketplace egress and Terraform-managed infrastructure."
     }
   ];
 
