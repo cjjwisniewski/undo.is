@@ -12,6 +12,7 @@ const FILES = [
     'experience.yml',
     'objective.yml',
     'profile.yml',
+    'projects.yml',
     'references.yml',
     'skills.yml',
     'volunteering.yml'
