@@ -45,6 +45,20 @@
     "Telegraf",
     "SvelteKit"
   ];
+
+  const cityOfTraitorsTags = [
+    "SvelteKit",
+    "Static Site",
+    "Markdown",
+    "Azure Storage"
+  ];
+
+  const pittImpsTags = [
+    "Vite",
+    "TypeScript",
+    "Vanilla CSS",
+    "Azure Storage"
+  ];
 </script>
 
 <svelte:head>
@@ -144,6 +158,78 @@
         class="action-link"
       >
         undo.is_infra
+      </a>
+    </div>
+  </article>
+
+  <article class="glass-panel project-card">
+    <div class="card-header">
+      <div>
+        <span class="eyebrow">Editorial &amp; Community</span>
+        <h2>City of Traitors — Premodern MTG Chronicles</h2>
+      </div>
+      <span class="status-pill">Live</span>
+    </div>
+
+    <p class="lead">
+      A long-form tournament report and editorial hub for Premodern Magic: the Gathering, pairing
+      clean digital typography with 1998 <em>Exodus</em> visual motifs and hosting the Seeker platform.
+    </p>
+
+    <div class="tag-list">
+      {#each cityOfTraitorsTags as tag}
+        <span class="tag">{tag}</span>
+      {/each}
+    </div>
+
+    <div class="card-actions">
+      <a
+        href="https://cityoftraitors.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-link primary"
+      >
+        Visit Site
+      </a>
+    </div>
+  </article>
+
+  <article class="glass-panel project-card">
+    <div class="card-header">
+      <div>
+        <span class="eyebrow">Local Community</span>
+        <h2>Pitt Imps — Pittsburgh Premodern MTG</h2>
+      </div>
+      <span class="status-pill">Live</span>
+    </div>
+
+    <p class="lead">
+      The home for Pittsburgh's Premodern Magic: the Gathering community, featuring a lightweight
+      Markdown-driven event schedule, custom Pit Imp branding, and Discord coordination.
+    </p>
+
+    <div class="tag-list">
+      {#each pittImpsTags as tag}
+        <span class="tag">{tag}</span>
+      {/each}
+    </div>
+
+    <div class="card-actions">
+      <a
+        href="https://pittimps.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-link primary"
+      >
+        Visit Site
+      </a>
+      <a
+        href="https://github.com/cjjwisniewski/pittimps.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-link"
+      >
+        GitHub
       </a>
     </div>
   </article>
