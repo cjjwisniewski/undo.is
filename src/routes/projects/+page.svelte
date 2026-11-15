@@ -48,6 +48,24 @@
     "Azure Storage"
   ];
 
+  const seekerFlow = [
+    { eyebrow: "EDGE & AUTH", title: "Azure APIM", subtitle: "Discord OAuth" },
+    { eyebrow: "COMPUTE", title: "Azure Functions", subtitle: "Python Serverless" },
+    { eyebrow: "STATE & QUEUES", title: "Table & Queue", subtitle: "Price History + Jobs" },
+    { eyebrow: "DELIVERY", title: "Discord Alerts", subtitle: "Restocks & Drops", accent: true }
+  ];
+
+  const statusBranches = [
+    [
+      { title: "Cloudflare Worker + KV", subtitle: "Outage-Proof Edge Status API", accent: true },
+      { title: "undo.is/status", subtitle: "Public Live Telemetry View" }
+    ],
+    [
+      { title: "Telegraf → InfluxDB 2.7", subtitle: "Time-Series Host & UPS Metrics" },
+      { title: "Grafana + Discord", subtitle: "Dashboards & Incident Alerts" }
+    ]
+  ];
+
   const pittImpsTags = [
     "Vite",
     "TypeScript",
@@ -92,40 +110,23 @@
       serverless primitives, strict data-integrity invariants, and Terraform IaC.
     </p>
 
-    <div class="arch-diagram" role="img" aria-label="Seeker architecture: Edge and Discord OAuth through Azure APIM to Azure Functions, Queue and Table Storage, and Discord alert delivery.">
-      <svg viewBox="0 0 760 112" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="arrow-seeker" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--accent-color)" />
-          </marker>
-        </defs>
-        <!-- Node 1 -->
-        <rect x="4" y="18" width="156" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
-        <text x="82" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">EDGE &amp; AUTH</text>
-        <text x="82" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Azure APIM</text>
-        <text x="82" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Discord OAuth</text>
-        <!-- Arrow 1->2 -->
-        <line x1="164" y1="56" x2="196" y2="56" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-seeker)" />
-        <!-- Node 2 -->
-        <rect x="200" y="18" width="164" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
-        <text x="282" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">COMPUTE</text>
-        <text x="282" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Azure Functions</text>
-        <text x="282" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Python Serverless</text>
-        <!-- Arrow 2->3 -->
-        <line x1="368" y1="56" x2="400" y2="56" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-seeker)" />
-        <!-- Node 3 -->
-        <rect x="404" y="18" width="164" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
-        <text x="486" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">STATE &amp; QUEUES</text>
-        <text x="486" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Table &amp; Queue</text>
-        <text x="486" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Price History + Jobs</text>
-        <!-- Arrow 3->4 -->
-        <line x1="572" y1="56" x2="604" y2="56" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-seeker)" />
-        <!-- Node 4 -->
-        <rect x="608" y="18" width="148" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--accent-color)" stroke-opacity="0.45" stroke-width="1.2" />
-        <text x="682" y="46" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">DELIVERY</text>
-        <text x="682" y="65" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Discord Alerts</text>
-        <text x="682" y="81" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Restocks &amp; Drops</text>
-      </svg>
+    <div class="arch-diagram" aria-label="Seeker architecture: Edge and Discord OAuth through Azure APIM to Azure Functions, Queue and Table Storage, and Discord alert delivery.">
+      <div class="flow-linear">
+        {#each seekerFlow as node, i}
+          <div class="flow-node" class:accent={node.accent}>
+            <span class="node-eyebrow">{node.eyebrow}</span>
+            <span class="node-title">{node.title}</span>
+            <span class="node-subtitle">{node.subtitle}</span>
+          </div>
+          {#if i < seekerFlow.length - 1}
+            <div class="flow-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3 9H14M14 9L9.5 4.5M14 9L9.5 13.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          {/if}
+        {/each}
+      </div>
     </div>
 
     <div class="highlights-grid">
@@ -174,45 +175,40 @@
       handle deep host and UPS metrics and Discord alerting.
     </p>
 
-    <div class="arch-diagram" role="img" aria-label="undo.is status architecture: Local host sends signed heartbeats to Cloudflare Workers and KV for edge status, while Telegraf ships metrics to InfluxDB 2.7 and Grafana.">
-      <svg viewBox="0 0 760 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="arrow-status" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--accent-color)" />
-          </marker>
-        </defs>
-        <!-- Source Node -->
-        <rect x="4" y="26" width="166" height="76" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
-        <text x="87" y="54" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600" letter-spacing="0.06em">HOMELAB HOST</text>
-        <text x="87" y="73" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Docker + UPS</text>
-        <text x="87" y="89" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Signed Heartbeat</text>
+    <div class="arch-diagram" aria-label="undo.is status architecture: Local host sends signed heartbeats to Cloudflare Workers and KV for edge status, while Telegraf ships metrics to InfluxDB 2.7 and Grafana.">
+      <div class="flow-branch">
+        <div class="flow-node flow-source">
+          <span class="node-eyebrow">HOMELAB HOST</span>
+          <span class="node-title">Docker + UPS</span>
+          <span class="node-subtitle">Signed Heartbeat</span>
+        </div>
 
-        <!-- Split arrows -->
-        <path d="M 174 48 L 218 32 L 246 32" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-status)" />
-        <path d="M 174 80 L 218 96 L 246 96" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-status)" />
+        <div class="flow-arrow flow-split-arrow" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M3 9H14M14 9L9.5 4.5M14 9L9.5 13.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
 
-        <!-- Top Path: Edge -->
-        <rect x="250" y="6" width="215" height="52" rx="8" fill="var(--bg-surface)" stroke="var(--accent-color)" stroke-opacity="0.45" stroke-width="1.2" />
-        <text x="357" y="28" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Cloudflare Worker + KV</text>
-        <text x="357" y="45" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Outage-Proof Edge Status API</text>
-
-        <line x1="469" y1="32" x2="516" y2="32" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-status)" />
-
-        <rect x="520" y="6" width="236" height="52" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
-        <text x="638" y="28" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">undo.is/status</text>
-        <text x="638" y="45" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Public Live Telemetry View</text>
-
-        <!-- Bottom Path: Metrics -->
-        <rect x="250" y="70" width="215" height="52" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
-        <text x="357" y="92" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Telegraf &rarr; InfluxDB 2.7</text>
-        <text x="357" y="109" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Time-Series Host &amp; UPS Metrics</text>
-
-        <line x1="469" y1="96" x2="516" y2="96" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-status)" />
-
-        <rect x="520" y="70" width="236" height="52" rx="8" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="1.2" />
-        <text x="638" y="92" text-anchor="middle" fill="var(--text-primary)" font-size="12.5" font-weight="600">Grafana + Discord</text>
-        <text x="638" y="109" text-anchor="middle" fill="var(--text-muted)" font-size="10.5">Dashboards &amp; Incident Alerts</text>
-      </svg>
+        <div class="flow-branches">
+          {#each statusBranches as branch}
+            <div class="flow-branch-row">
+              {#each branch as node, i}
+                <div class="flow-node compact" class:accent={node.accent}>
+                  <span class="node-title">{node.title}</span>
+                  <span class="node-subtitle">{node.subtitle}</span>
+                </div>
+                {#if i < branch.length - 1}
+                  <div class="flow-arrow" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <path d="M3 9H14M14 9L9.5 4.5M14 9L9.5 13.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                {/if}
+              {/each}
+            </div>
+          {/each}
+        </div>
+      </div>
     </div>
 
     <div class="tag-list">
@@ -344,16 +340,79 @@
     background: rgba(2, 6, 23, 0.45);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 0.85rem 1rem;
-    overflow-x: auto;
+    padding: 0.9rem 1rem;
   }
 
-  .arch-diagram svg {
-    display: block;
-    width: 100%;
-    min-width: 560px;
-    height: auto;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  .flow-linear,
+  .flow-branch,
+  .flow-branch-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .flow-branches {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .flow-node {
+    flex: 1;
+    min-width: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 0.65rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.2rem;
+  }
+
+  .flow-node.compact {
+    padding: 0.55rem 0.75rem;
+  }
+
+  .flow-node.accent {
+    border-color: rgba(56, 189, 248, 0.45);
+  }
+
+  .flow-source {
+    flex: 0 0 185px;
+  }
+
+  .node-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--accent-color);
+    text-transform: uppercase;
+  }
+
+  .node-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.25;
+  }
+
+  .node-subtitle {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.25;
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+    flex-shrink: 0;
   }
 
   .card-header {
@@ -481,6 +540,30 @@
   @media (max-width: 640px) {
     .projects-page {
       padding: 1.5rem 1rem;
+    }
+
+    .flow-linear,
+    .flow-branch,
+    .flow-branch-row {
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .flow-source {
+      flex: 1 1 auto;
+    }
+
+    .flow-branches {
+      gap: 0.75rem;
+    }
+
+    .flow-branch-row {
+      border-left: 2px solid rgba(56, 189, 248, 0.3);
+      padding-left: 0.65rem;
+    }
+
+    .flow-arrow svg {
+      transform: rotate(90deg);
     }
 
     .card-actions .action-link {
