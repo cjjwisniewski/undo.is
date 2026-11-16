@@ -1,26 +1,25 @@
-/* Legacy Resume CSS from undo.is_old */
+/* Resume Stylesheet */
 .resume-page {
-    background: #b4b4b4;
+    background: transparent;
 }
 
 #resume {
     margin: 0;
-    background: #b4b4b4;
+    background: transparent;
     font-family: 'Montserrat', sans-serif;
     color: #000000;
-    padding-bottom: 3em;
-    padding-top: 3em;
+    padding: 2rem 1rem 3rem;
     letter-spacing: 0;
     line-height: 1.05em;
 }
 
-#resume * {
+#resume .resume * {
     color: #000000;
 }
 
 body #resume {
     font-size: 0.8em;
-    background: #b4b4b4;
+    background: transparent;
 }
 
 #content {
@@ -31,7 +30,7 @@ body #resume {
     margin-left: auto !important;
     margin-right: auto !important;
     display: grid !important;
-    background: #b4b4b4;
+    background: transparent;
 }
 
 #resume a {
@@ -39,9 +38,15 @@ body #resume {
     text-decoration: none;
 }
 
+#resume .resume a:hover {
+    color: #0284c7;
+    text-shadow: none;
+    text-decoration: underline;
+}
+
 #resume #page-wrapper {
     padding-top: 0em;
-    background: #b4b4b4;
+    background: transparent;
 }
 
 #resume p {
@@ -50,7 +55,7 @@ body #resume {
 }
 
 #resume strong,
-b {
+#resume b {
     color: #000000;
     font-weight: 800;
 }
@@ -59,20 +64,47 @@ b {
     margin: 1em;
 }
 
-#resume .list-pipe>li:not(:last-child)::after {
-    content: "|";
-    margin: 0em 0.25em 0em 0.5em;
+#resume .list-pipe {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem 0.25rem;
 }
 
-#resume .fontawesome-icon {
+#resume .list-pipe > li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+#resume .list-pipe > li:not(:last-child)::after {
+    content: "|";
+    margin: 0 0.25em 0 0.35em;
+}
+
+#resume .contact-icon {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
     color: #000000;
-    margin-right: 0.5em;
+}
+
+#resume .profile-address {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.3rem;
 }
 
 #resume .resume {
+    width: 100%;
+    max-width: 210mm;
+    margin: auto;
     background: #ffffff;
-    box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
-    padding: 1em 0em 1em 0em;
+    border-radius: var(--border-radius);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+    padding: 1.25em 0;
     display: grid;
     grid-gap: 5px;
     grid-template-columns: 1fr;
@@ -89,12 +121,13 @@ b {
         "references";
 }
 
-@media (min-width: 1200px),
+@media (min-width: 768px),
 print {
     #resume .resume {
         width: 210mm;
+        max-width: 210mm;
         background: #ffffff;
-        box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
         padding: 1em 0em 1em 0em;
         margin: auto;
         display: grid;
@@ -119,22 +152,34 @@ print {
     margin: 0.25rem 0;
 }
 
+@media (max-width: 640px) {
+    #resume {
+        padding: 1.25rem 0.75rem 2rem;
+    }
+
+    #resume .content-section {
+        padding: 0 1.15rem;
+    }
+}
+
 #resume .content-section-title {
     color: #000000;
     text-align: center;
+    font-size: 1em;
     font-weight: 800;
     letter-spacing: 0.04em;
     padding: 0.5rem 0 0.25rem 0;
-    margin-bottom: 0.25rem;
+    margin: 0 0 0.25rem 0;
     border-bottom: 1px solid #d4d4d4;
 }
 
+#resume .content-section-title span,
 #resume .content-section-title div {
     text-transform: uppercase;
 }
 
 #resume .content-section-content {
-    text-align: justify;
+    text-align: left;
     padding: 0.25rem 0 0 0;
 }
 
@@ -155,6 +200,9 @@ print {
 #resume .profile-name {
     font-weight: bold;
     font-size: 1.5em;
+    letter-spacing: 0;
+    margin: 0;
+    line-height: 1.2;
 }
 
 #resume .profile-title {
@@ -264,7 +312,7 @@ print {
     padding-left: 1.5rem;
 }
 
-@media (min-width: 1200px),
+@media (min-width: 768px),
 print {
     #resume .experience-section-content-details {
         display: grid;
@@ -361,7 +409,7 @@ print {
     grid-area: certifications-section-content-details-date-obtained;
 }
 
-@media (min-width: 1200px),
+@media (min-width: 768px),
 print {
     #resume .certifications-section-content-details {
         display: grid;
@@ -433,7 +481,7 @@ print {
     grid-area: education-section-content-details-dates;
 }
 
-@media (min-width: 1200px),
+@media (min-width: 768px),
 print {
     #resume .education-section-content-details {
         display: grid;
@@ -513,7 +561,7 @@ print {
     padding-left: 1.5rem;
 }
 
-@media (min-width: 1200px),
+@media (min-width: 768px),
 print {
     #resume .volunteering-section-content-details {
         display: grid;
@@ -594,7 +642,7 @@ print {
     padding-left: 1.5rem;
 }
 
-@media (min-width: 1200px),
+@media (min-width: 768px),
 print {
     #resume .projects-section-content-details {
         display: grid;
@@ -699,11 +747,21 @@ print {
 
 @media print {
 
+    html,
     body,
+    main.page-content,
     .resume-page {
+        display: block !important;
         background: #ffffff !important;
+        background-image: none !important;
+        min-height: 0 !important;
+        height: auto !important;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
+    }
+
+    body::before {
+        display: none !important;
     }
 
     header,
@@ -726,12 +784,16 @@ print {
 
     .wrapper,
     #page-wrapper,
+    body #resume,
     #resume {
-        padding: 0;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
     #resume .resume {
         box-shadow: none;
+        border-radius: 0;
+        padding: 0.5em 0 0 0;
     }
 
     #resume .content-section-title {
@@ -758,43 +820,71 @@ print {
 }
 
 /* -------------------------------------- */
-/* Phase 2: UX Enhancements               */
+/* Resume Actions Toolbar                 */
 /* -------------------------------------- */
 
 #resume .resume-actions {
     max-width: 210mm;
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 1.25rem;
     display: flex;
     justify-content: flex-end;
-    padding: 0 1rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
 }
 
-#resume .btn-download {
+#resume .btn-download,
+#resume .btn-print {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    background-color: var(--accent-color);
-    color: #ffffff !important;
-    padding: 0.6rem 1.2rem;
+    padding: 0.6rem 1.15rem;
     border-radius: var(--border-radius);
     font-weight: 600;
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-size: 0.92rem;
     cursor: pointer;
-    border: none;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-shadow: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-#resume .btn-download i {
-    color: #ffffff !important;
-    margin-right: 0;
+#resume .btn-download {
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    color: var(--c-slate-950);
 }
 
 #resume .btn-download:hover {
     background-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-hover);
+    color: var(--c-slate-950);
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+}
+
+#resume .btn-print {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+#resume .btn-print:hover {
+    background-color: var(--bg-surface-hover);
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+}
+
+@media (hover: hover) {
+    #resume .btn-download:hover,
+    #resume .btn-print:hover {
+        transform: translateY(-1px);
+    }
+}
+
+#resume .btn-download svg,
+#resume .btn-print svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
 
 @media print {

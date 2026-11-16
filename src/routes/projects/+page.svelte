@@ -80,12 +80,19 @@
     name="description"
     content="Selected cloud architecture, serverless platform, and homelab observability projects by Cameron Wisniewski."
   />
+  <link rel="canonical" href="https://www.undo.is/projects/" />
   <meta property="og:title" content="Projects | undo.is" />
   <meta
     property="og:description"
     content="Selected cloud architecture, serverless platform, and homelab observability projects by Cameron Wisniewski."
   />
-  <meta property="og:url" content="https://undo.is/projects/" />
+  <meta property="og:url" content="https://www.undo.is/projects/" />
+  <meta name="twitter:title" content="Projects | undo.is" />
+  <meta
+    name="twitter:description"
+    content="Selected cloud architecture, serverless platform, and homelab observability projects by Cameron Wisniewski."
+  />
+  <meta name="twitter:url" content="https://www.undo.is/projects/" />
 </svelte:head>
 
 <section class="container projects-page">
@@ -218,7 +225,7 @@
     </div>
 
     <div class="card-actions">
-      <a href="/status" class="action-link primary">View Live Status</a>
+      <a href="/status/" class="action-link primary">View Live Status</a>
       <a
         href="https://github.com/cjjwisniewski/undo.is_infra"
         target="_blank"
@@ -337,7 +344,7 @@
   }
 
   .arch-diagram {
-    background: rgba(2, 6, 23, 0.45);
+    background: var(--bg-inset);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     padding: 0.9rem 1rem;
@@ -463,7 +470,7 @@
   }
 
   .highlight-box {
-    background: rgba(15, 23, 42, 0.55);
+    background: var(--bg-elevated);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     padding: 1rem 1.15rem;

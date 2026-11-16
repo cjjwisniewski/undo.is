@@ -78,9 +78,13 @@
 <svelte:head>
   <title>Status | undo.is</title>
   <meta name="description" content="Live availability status for undo.is homelab servers." />
+  <link rel="canonical" href="https://www.undo.is/status/" />
   <meta property="og:title" content="System Status | undo.is" />
   <meta property="og:description" content="Live availability status for undo.is homelab servers." />
-  <meta property="og:url" content="https://undo.is/status/" />
+  <meta property="og:url" content="https://www.undo.is/status/" />
+  <meta name="twitter:title" content="System Status | undo.is" />
+  <meta name="twitter:description" content="Live availability status for undo.is homelab servers." />
+  <meta name="twitter:url" content="https://www.undo.is/status/" />
 </svelte:head>
 
 <section class="container status-page">
@@ -123,7 +127,7 @@
     <p class="updated">
       Last heartbeat: {formatUpdated(data.updated_at)}
       {#if data.stale}
-        <span class="stale-note">(stale - heartbeat older than 3 minutes)</span>
+        <span class="stale-note">(stale - heartbeat older than 11 minutes)</span>
       {/if}
     </p>
   {/if}

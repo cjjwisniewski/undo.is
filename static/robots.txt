@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://undo.is/sitemap.xml
+Sitemap: https://www.undo.is/sitemap.xml

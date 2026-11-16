@@ -1,53 +1,72 @@
 <script lang="ts">
     // Modern, sleek portfolio page
     const name = "Cameron Wisniewski";
-    const title = "Technical Leader / Cloud Architect";
+    const eyebrow = "Enterprise Cloud & Platform Architecture";
+    const title = "VP, Cloud Platform Architect";
     const email = "cameron@undo.is";
     const github = "https://github.com/cjjwisniewski";
     const linkedin = "https://linkedin.com/in/CameronWisniewski";
+    const metaDescription =
+        "Cameron Wisniewski, VP and Cloud Platform Architect specializing in multi-account AWS and Azure platforms, Zero Trust security, Terraform IaC, and regulated enterprise enablement.";
 
-    // Optimized Vite asset import (automatically handles format/compression)
-    import avatar from "$lib/avatar.jpg?enhanced";
+    // Optimized Vite asset imports via vite-imagetools
+    import avatarWebp from "$lib/avatar.jpg?w=440&format=webp";
+    import avatarJpeg from "$lib/avatar.jpg?w=440&format=jpeg";
 
-    const description = `Technical leader with over fifteen years of experience designing, securing, and scaling enterprise cloud platforms. Specialized in multi-tenant cloud architecture, security-by-default infrastructure, and platform enablement for large engineering organizations. Expert-level proficiency in AWS, Microsoft Azure, and Infrastructure as Code. Proven record of leading high-ambiguity initiatives, defining long-term technical direction, and creating force-multipliers to enable engineering organizations.`;
+    const description =
+        "Technical leader specializing in enterprise cloud architecture, security-by-default infrastructure, and self-service platform engineering across AWS and Microsoft Azure. Proven track record leading high-ambiguity initiatives - including zero-downtime cloud separations, Zero Trust access transformations, policy-as-code landing zones, and enterprise AI guardrails - in regulated environments.";
 
     const focusAreas = [
         {
             label: "Architecture",
             title: "Multi-Tenant Cloud",
-            detail: "High-availability AWS and Azure platforms engineered with declarative Infrastructure as Code."
+            detail: "High-availability AWS and Azure foundations built with Terraform landing zones, account isolation, and resilient hybrid-cloud patterns."
         },
         {
             label: "Governance",
             title: "Security-by-Default",
-            detail: "Least-privilege guardrails, automated compliance, and isolated network egress patterns."
+            detail: "Zero Trust access, least-privilege IAM guardrails, and policy-as-code compliance aligned with FFIEC, SOX, and SOC2 standards."
         },
         {
             label: "Enablement",
             title: "Platform Engineering",
-            detail: "Self-service developer workflows and force-multiplying tooling for large organizations."
+            detail: "Self-service CI/CD blueprints, FinOps governance, and production AI guardrails that multiply engineering velocity at scale."
         }
     ];
 </script>
 
 <svelte:head>
-    <title>Cameron Wisniewski | Portfolio</title>
-    <meta name="description" content="Cameron Wisniewski - {title}" />
-    <meta property="og:title" content="Cameron Wisniewski | Portfolio" />
-    <meta property="og:description" content="Cameron Wisniewski - {title}" />
-    <meta property="og:url" content="https://undo.is/" />
+    <title>Cameron Wisniewski | Cloud Platform Architect</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href="https://www.undo.is/" />
+    <meta property="og:title" content="Cameron Wisniewski | Cloud Platform Architect" />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content="https://www.undo.is/" />
+    <meta name="twitter:title" content="Cameron Wisniewski | Cloud Platform Architect" />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:url" content="https://www.undo.is/" />
 </svelte:head>
 
 <div class="hero container">
     <div class="hero-stack">
         <section class="glass-panel profile-card">
             <div class="avatar-wrap">
-                <img src={avatar} alt="Cameron Wisniewski" class="avatar" />
+                <picture>
+                    <source srcset={avatarWebp} type="image/webp" />
+                    <img
+                        src={avatarJpeg}
+                        alt="Cameron Wisniewski"
+                        class="avatar"
+                        width="220"
+                        height="220"
+                        fetchpriority="high"
+                    />
+                </picture>
             </div>
 
             <div class="info-container">
                 <div class="identity">
-                    <span class="eyebrow">15+ Years Cloud &amp; Platform Architecture</span>
+                    <span class="eyebrow">{eyebrow}</span>
                     <h1>{name}</h1>
                     <h2 class="title">{title}</h2>
                 </div>
@@ -57,8 +76,8 @@
                 </p>
 
                 <div class="actions">
-                    <a href="/resume" class="btn btn-primary">View Full Resume</a>
-                    <a href="/projects" class="btn btn-secondary">Explore Projects</a>
+                    <a href="/resume/" class="btn btn-primary">View Full Resume</a>
+                    <a href="/projects/" class="btn btn-secondary">Explore Projects</a>
                     <a href="mailto:{email}" class="btn btn-secondary">Contact Me</a>
                 </div>
 
@@ -84,10 +103,6 @@
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                         </svg>
                         LinkedIn
-                    </a>
-                    <a href="/status" class="social-link status-link">
-                        <span class="status-dot" aria-hidden="true"></span>
-                        System Status
                     </a>
                 </div>
             </div>
@@ -135,6 +150,10 @@
         justify-content: center;
         align-items: center;
         flex-shrink: 0;
+    }
+
+    .avatar-wrap picture {
+        display: contents;
     }
 
     .avatar-wrap::before {
@@ -287,14 +306,6 @@
     .social-link:hover {
         color: var(--accent-color);
         text-shadow: none;
-    }
-
-    .status-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background-color: #4ade80;
-        box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
     }
 
     .focus-grid {

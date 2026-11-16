@@ -1,29 +1,7 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { page } from "$app/state";
   import "../app.css";
   let { children } = $props();
-
-  let isLightMode = $state(false);
-
-  onMount(() => {
-    // Check local storage explicitly for light mode; otherwise default dark
-    if (localStorage.getItem("theme") === "light") {
-      isLightMode = true;
-      document.documentElement.classList.add("light");
-    }
-  });
-
-  function toggleTheme() {
-    isLightMode = !isLightMode;
-    if (isLightMode) {
-      document.documentElement.classList.add("light");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.documentElement.classList.remove("light");
-      localStorage.setItem("theme", "dark");
-    }
-  }
 </script>
 
 <header class="navbar">
@@ -36,20 +14,9 @@
     </div>
     <nav class="nav-links">
       <a href="/" class:active={page.url.pathname === "/"}>Home</a>
-      <a href="/projects" class:active={page.url.pathname.startsWith("/projects")}>Projects</a>
-      <a href="/resume" class:active={page.url.pathname.startsWith("/resume")}>Resume</a>
-      <a href="/status" class:active={page.url.pathname.startsWith("/status")}>Status</a>
-      <button
-        class="theme-toggle"
-        onclick={toggleTheme}
-        aria-label="Toggle theme"
-      >
-        {#if isLightMode}
-          🌙
-        {:else}
-          ☀️
-        {/if}
-      </button>
+      <a href="/projects/" class:active={page.url.pathname.startsWith("/projects")}>Projects</a>
+      <a href="/resume/" class:active={page.url.pathname.startsWith("/resume")}>Resume</a>
+      <a href="/status/" class:active={page.url.pathname.startsWith("/status")}>Status</a>
     </nav>
   </div>
 </header>
@@ -62,9 +29,12 @@
   <div class="container footer-container">
     <span>© {new Date().getFullYear()} Cameron Wisniewski</span>
     <div class="footer-links">
-      <a href="/projects">Projects</a>
-      <a href="/status">Status</a>
+      <a href="/projects/">Projects</a>
+      <a href="/resume/">Resume</a>
+      <a href="/status/">Status</a>
       <a href="https://github.com/cjjwisniewski" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/CameronWisniewski" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:cameron@undo.is">Email</a>
     </div>
   </div>
 </footer>
@@ -105,11 +75,6 @@
     height: 32px;
     border-radius: 4px;
     filter: invert(1);
-    transition: filter 0.3s ease;
-  }
-
-  :global(.light) .brand-logo {
-    filter: invert(0);
   }
 
   .brand-text {
@@ -122,23 +87,6 @@
     display: flex;
     gap: 2rem;
     align-items: center;
-  }
-
-  .theme-toggle {
-    display: none; /* Hidden by user request, keeping logic for future */
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.25rem;
-    cursor: pointer;
-    padding: 0 0.5rem;
-    transition:
-      transform 0.2s ease,
-      filter 0.2s ease;
-  }
-
-  .theme-toggle:hover {
-    transform: scale(1.1);
   }
 
   .nav-links a {
@@ -211,7 +159,8 @@
 
   .footer-links {
     display: flex;
-    gap: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
   }
 
   .footer-links a {

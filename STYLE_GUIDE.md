@@ -6,9 +6,8 @@ This document defines the visual, structural, and code conventions for **undo.is
 
 ## 1. Visual Identity & Aesthetic
 
-* **Theme:** Dark-first, high-contrast slate aesthetic (`#020617` canvas with a `48px` architectural grid in `body::before` and subtle sky-blue + lower-left indigo ambient glows) with translucent glassmorphism surfaces and a single vibrant sky-blue accent (`#38bdf8`).
+* **Theme:** Dark-only, high-contrast slate aesthetic (`#020617` canvas with a `48px` architectural grid in `body::before` and subtle sky-blue + lower-left indigo ambient glows) with translucent glassmorphism surfaces and a single vibrant sky-blue accent (`#38bdf8`).
 * **Tone:** Clean, restrained, engineering-focused. Avoid heavy gradients, neon clutter, or gratuitous animations.
-* **Light Mode:** A `:root.light` token set exists in [src/app.css](src/app.css) (currently the navbar toggle is hidden, but all new styles **must** use CSS custom properties rather than hardcoded dark colors so light mode remains intact).
 
 ---
 
@@ -21,6 +20,8 @@ Always reference the CSS custom properties defined in [src/app.css](src/app.css)
 | `--bg-color` | `#020617` (`--c-slate-950`) | Page background |
 | `--bg-surface` | `#0f172a` (`--c-slate-900`) | Solid inner cards, tags, secondary buttons |
 | `--bg-surface-hover` | `#1e293b` (`--c-slate-800`) | Hover state for solid surfaces |
+| `--bg-inset` | `rgba(2, 6, 23, 0.45)` | Nested diagram containers |
+| `--bg-elevated` | `rgba(15, 23, 42, 0.55)` | Nested highlight sub-cards |
 | `--text-primary` | `#f8fafc` (`--c-slate-50`) | Headings, primary labels, active nav links |
 | `--text-secondary` | `#cbd5e1` (`--c-slate-300`) | Body copy, descriptions, subtitles |
 | `--text-muted` | `#64748b` (`--c-slate-500`) | De-emphasized metadata, social links |
@@ -71,14 +72,14 @@ For operational/status indicators (e.g. `/projects` and `/status`):
 * **Primary Cards (`.glass-panel`):**
   Use the global `.glass-panel` class from [src/app.css](src/app.css) (`backdrop-filter: blur(12px)`, `1px solid var(--glass-border)`, `8px` radius, `2rem` padding / `1.25rem` on mobile). On hover, it lifts `-2px` and highlights its border with `var(--accent-color)`.
 * **Nested Sub-Cards (`.highlight-box`):**
-  Inside a `.glass-panel`, use `background: rgba(15, 23, 42, 0.55)`, `border: 1px solid var(--border-color)`, `border-radius: var(--border-radius)`, and `padding: 1rem 1.15rem` in a responsive grid:
+  Inside a `.glass-panel`, use `background: var(--bg-elevated)`, `border: 1px solid var(--border-color)`, `border-radius: var(--border-radius)`, and `padding: 1rem 1.15rem` in a responsive grid:
   `grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr))`.
 * **Buttons & Action Links:**
   * **Primary:** `background: var(--accent-color)`, `color: var(--c-slate-950)`, `font-weight: 600`, hover `var(--accent-hover)`.
   * **Secondary:** `background: var(--bg-surface)` or `transparent`, `border: 1px solid var(--border-color)`, `color: var(--text-primary)`, hover `border-color: var(--accent-color)`.
 * **Tags:** Compact `0.8rem` chips with `var(--bg-surface)`, `1px solid var(--border-color)`, `border-radius: 6px`, `padding: 0.25rem 0.6rem`.
-* **Architecture Diagrams (`.arch-diagram`):** On `/projects`, use minimal inline SVG node-and-arrow diagrams styled with CSS custom properties (`var(--bg-surface)`, `var(--border-color)`, `var(--accent-color)`) inside an `overflow-x: auto` container for mobile scrolling.
-* **Icons:** Inline SVGs (e.g., `20px × 20px` with `fill="currentColor"`) rather than adding heavy icon libraries.
+* **Architecture Diagrams (`.arch-diagram`):** On `/projects/`, use responsive CSS flexbox node-and-arrow diagrams (`.flow-linear`, `.flow-branch`) styled with CSS custom properties (`var(--bg-inset)`, `var(--bg-surface)`, `var(--border-color)`, `var(--accent-color)`) that stack vertically on mobile.
+* **Icons:** Inline SVGs (e.g., `18px × 18px` with `fill="currentColor"`) rather than adding external icon font CDNs.
 
 ---
 
@@ -89,19 +90,20 @@ For operational/status indicators (e.g. `/projects` and `/status`):
 * **SEO & Head Metadata:** Every route must define `<svelte:head>` with:
   * `<title>{Page Name} | undo.is</title>`
   * `<meta name="description" content="..." />`
-  * Open Graph tags (`og:title`, `og:description`, `og:url`)
+  * `<link rel="canonical" href="https://www.undo.is/..." />`
+  * Open Graph and Twitter tags (`og:title`, `og:description`, `og:url`, `twitter:title`, `twitter:description`, `twitter:url`) using canonical `https://www.undo.is/...` URLs
 * **External Links:** Always include `target="_blank" rel="noopener noreferrer"`.
 * **Navigation & Sitemap:** When adding a new top-level route, update [src/routes/+layout.svelte](src/routes/+layout.svelte) (if it belongs in the navbar/footer) and [src/routes/sitemap.xml/+server.ts](src/routes/sitemap.xml/+server.ts).
-* **Static Adapter Compatibility:** `undo.is` builds as a static site (`@sveltejs/adapter-static`). Client-only data fetching (like `/status`) must run inside `onMount` and handle loading, error, and visibility-aware refresh states gracefully.
+* **Static Adapter Compatibility:** `undo.is` builds as a static site (`@sveltejs/adapter-static`). Client-only data fetching (like `/status/`) must run inside `onMount` and handle loading, error, and visibility-aware refresh states gracefully.
 
 ---
 
 ## 7. Copy & Content Voice
 
-* **Architecture-First:** Lead with what a system does, its reliability/security properties, and the concrete stack used — avoid vague marketing fluff.
+* **Architecture-First:** Lead with what a system does, its reliability/security properties, and the concrete stack used - avoid vague marketing fluff.
 * **Formatting:**
-  * Use an em dash (`—`) for project titles (`Seeker — Collectible Card Stock & Pricing Platform`) and missing/null metric values (`—`).
-  * Keep card highlight bullets scannable: short bolded title + 1–2 sentence technical explanation.
+  * Use standard hyphens (`-`) for project titles (`Seeker - Collectible Card Stock & Pricing Platform`) and an em dash (`—`) only for missing/null metric values (`—`).
+  * Keep card highlight bullets scannable: short bolded title + 1-2 sentence technical explanation.
 
 ---
 
@@ -109,6 +111,6 @@ For operational/status indicators (e.g. `/projects` and `/status`):
 
 1. No hardcoded colors where a `--*` CSS variable exists in [src/app.css](src/app.css).
 2. Checked layout at both desktop (`>= 768px`) and mobile (`<= 640px`) widths; hover-only transforms wrapped in `@media (hover: hover)`.
-3. `<svelte:head>` includes `<title>`, `description`, and `og:*` tags.
+3. `<svelte:head>` includes `<title>`, `description`, `canonical`, `og:*`, and `twitter:*` tags.
 4. External links have `target="_blank" rel="noopener noreferrer"`.
 5. Run `npm run check` and `npm run build` (when Node/npm is available) before committing.

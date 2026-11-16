@@ -55,16 +55,16 @@
         "dates": "September 2026 to Present",
         "description-bullets": [
           {
-            "bullet": "Define and lead the enterprise cloud platform vision and target-state architecture, establishing multi-account, hybrid-cloud foundations to support mission-critical financial applications and core banking modernizations."
+            "bullet": "Lead the enterprise cloud platform vision and target-state architecture, establishing multi-account, hybrid-cloud foundations for mission-critical financial applications and core banking modernizations."
           },
           {
-            "bullet": "Partner with Enterprise Information Security and Risk Management to establish security-by-default architecture, automated compliance guardrails, and Zero Trust controls aligned with FFIEC, SOX, and regulatory standards."
+            "bullet": "Partner with Enterprise Information Security and Risk Management to embed security-by-default architecture, automated compliance guardrails, and Zero Trust controls aligned with FFIEC and SOX standards."
           },
           {
-            "bullet": "Architect self-service platform engineering capabilities and automated landing zones, delivering reusable Infrastructure as Code (IaC) modules and CI/CD blueprints to accelerate product engineering velocity across banking lines of business."
+            "bullet": "Deliver self-service platform engineering capabilities and automated landing zones through reusable Infrastructure as Code (IaC) modules and CI/CD blueprints across banking lines of business."
           },
           {
-            "bullet": "Direct cloud architectural review boards, mentoring platform engineering teams and advising senior leadership on technology roadmaps, cloud financial operations (FinOps), and resilient disaster recovery strategies."
+            "bullet": "Chair cloud architectural review boards while mentoring platform engineers and advising senior leadership on technology roadmaps, cloud financial operations (FinOps), and resilient disaster recovery strategies."
           }
         ]
       },
@@ -84,7 +84,7 @@
             "bullet": "Directed the implementation of a production-ready agentic AI framework via AWS Bedrock and Lyzr, establishing enterprise-wide standards for LLM guardrails and identity-scoped access."
           },
           {
-            "bullet": "Designed and deployed the organization\u2019s first external-facing API platform using Amazon API Gateway, establishing secure patterns for authentication, authorization, rate limiting, and customer integration at scale."
+            "bullet": "Designed and deployed the organization’s first external-facing API platform using Amazon API Gateway, establishing secure patterns for authentication, authorization, rate limiting, and customer integration at scale."
           }
         ]
       },
@@ -171,7 +171,7 @@
   },
   "objective": {
     "section-title": "Profile",
-    "content": "Technical leader with over fifteen years of experience designing, securing, and scaling enterprise cloud platforms. Specialized in multi-tenant cloud architecture, security-by-default infrastructure, and platform enablement for large engineering organizations. Expert-level proficiency in AWS, Microsoft Azure, and Infrastructure as Code. Proven record of leading high-ambiguity initiatives, defining long-term technical direction, and creating force-multipliers to enable engineering organizations."
+    "content": "Technical leader specializing in enterprise cloud architecture, security-by-default infrastructure, and self-service platform engineering across AWS and Microsoft Azure. Proven track record leading high-ambiguity initiatives - including zero-downtime cloud separations, Zero Trust access transformations, policy-as-code landing zones, and enterprise AI guardrails - in regulated environments."
   },
   "profile": {
     "section-title": "Profile",
