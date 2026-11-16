@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import undoLockup from "$lib/undo-lockup.png?w=180&format=webp";
   import "../app.css";
   let { children } = $props();
 </script>
@@ -27,7 +28,10 @@
 
 <footer class="site-footer">
   <div class="container footer-container">
-    <span>© {new Date().getFullYear()} Cameron Wisniewski</span>
+    <div class="footer-brand">
+      <img src={undoLockup} alt="undo.is" class="footer-logo" width="48" height="30" />
+      <span>© {new Date().getFullYear()} Cameron Wisniewski</span>
+    </div>
     <div class="footer-links">
       <a href="/projects/">Projects</a>
       <a href="/resume/">Resume</a>
@@ -73,8 +77,7 @@
   .brand-logo {
     width: 32px;
     height: 32px;
-    border-radius: 4px;
-    filter: invert(1);
+    object-fit: contain;
   }
 
   .brand-text {
@@ -155,6 +158,19 @@
     gap: 1rem;
     padding: 1rem 2rem;
     flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .footer-logo {
+    height: 28px;
+    width: auto;
+    display: block;
+    opacity: 0.9;
   }
 
   .footer-links {
