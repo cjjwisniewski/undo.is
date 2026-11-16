@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
-  import undoLockup from "$lib/undo-lockup.png?w=180&format=webp";
+  import undoLockup from "$lib/undo-lockup.png?w=240&format=webp";
   import "../app.css";
   let { children } = $props();
 </script>
@@ -8,9 +8,8 @@
 <header class="navbar">
   <div class="container nav-container">
     <div class="brand">
-      <a href="/" class="brand-link">
-        <img src="/undo.png" alt="undo.is logo" class="brand-logo" />
-        <span class="brand-text">undo.is</span>
+      <a href="/" class="brand-link" aria-label="undo.is home">
+        <img src={undoLockup} alt="undo.is" class="brand-logo" width="64" height="40" />
       </a>
     </div>
     <nav class="nav-links">
@@ -28,10 +27,7 @@
 
 <footer class="site-footer">
   <div class="container footer-container">
-    <div class="footer-brand">
-      <img src={undoLockup} alt="undo.is" class="footer-logo" width="48" height="30" />
-      <span>© {new Date().getFullYear()} Cameron Wisniewski</span>
-    </div>
+    <span>© {new Date().getFullYear()} Cameron Wisniewski</span>
     <div class="footer-links">
       <a href="/projects/">Projects</a>
       <a href="/resume/">Resume</a>
@@ -58,32 +54,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.75rem 2rem;
   }
 
   .brand-link {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
     color: var(--text-primary);
   }
 
   .brand-link:hover {
     color: var(--text-primary);
     text-shadow: none;
-    opacity: 0.8;
+    opacity: 0.85;
   }
 
   .brand-logo {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-  }
-
-  .brand-text {
-    font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: -0.02em;
+    height: 38px;
+    width: auto;
+    display: block;
   }
 
   .nav-links {
@@ -127,7 +116,11 @@
 
   @media (max-width: 640px) {
     .nav-container {
-      padding: 0.75rem 1rem;
+      padding: 0.65rem 1rem;
+    }
+
+    .brand-logo {
+      height: 32px;
     }
 
     .nav-links {
@@ -158,19 +151,6 @@
     gap: 1rem;
     padding: 1rem 2rem;
     flex-wrap: wrap;
-  }
-
-  .footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .footer-logo {
-    height: 28px;
-    width: auto;
-    display: block;
-    opacity: 0.9;
   }
 
   .footer-links {
