@@ -28,7 +28,7 @@ if (testFiles.length === 0) {
 	process.exit(1);
 }
 
-const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'undois-tests-'));
+const outDir = fs.mkdtempSync(path.join(repoRoot, '.test-tmp-'));
 
 try {
 	const compiledFiles = [];
