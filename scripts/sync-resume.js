@@ -57,8 +57,9 @@ export async function syncResume({
     return resumeData;
 }
 
-const isEntrypoint =
-    process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
+const isEntrypoint = Boolean(
+    process.argv[1] && path.basename(process.argv[1]) === 'sync-resume.js'
+);
 
 if (isEntrypoint) {
     syncResume().catch((err) => {
