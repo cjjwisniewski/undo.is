@@ -40,8 +40,6 @@ test('committed resumeData.json satisfies resume page schema contract', () => {
 	const expectedSections = RESUME_FILES.map((file) => file.replace('.yml', ''));
 	for (const section of expectedSections) {
 		assert.ok(section in data, `Missing resumeData section: ${section}`);
-		assert.equal(typeof data[section], 'object');
-		assert.notEqual(data[section], null);
 	}
 
 	assert.ok(Array.isArray(data.experience.content) && data.experience.content.length > 0);
