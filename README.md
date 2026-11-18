@@ -44,10 +44,21 @@ npm run generate-pdf
 npm run preview
 ```
 
-### Automated Deployment
-The repository utilizes **GitHub Actions** (`.github/workflows/deploy.yml`) for automated deployments.
+### Verification & CI-Only Tests
+The repository includes a CI-only automated test suite (`tests/site.test.mjs`) executed via `scripts/run-tests.mjs`. Tests enforce `GITHUB_ACTIONS === 'true'` and run exclusively in GitHub Actions before deployment:
 
-When code is pushed to the `main` branch (or triggered via `repository_dispatch` from `personal_resume`), the runner syncs resume YAML data, builds `/dist`, renders `/dist/resume.pdf` via headless Chromium, and utilizes Azure OIDC (`azure/login@v2`) to run `az storage blob upload-batch` into the `$web` container of the `undoissite` Azure Storage Account.
+```bash
+# Typecheck and Svelte diagnostics
+npm run check
+
+# Automated tests (GitHub Actions CI only)
+npm run test
+```
+
+### Automated Deployment
+The repository utilizes **GitHub Actions** (`.github/workflows/deploy.yml`) for automated verification and deployments.
+
+Both `push` (to `main`) and `pull_request` events run the `test` job (`npm run check` and `npm run test`). On `main` pushes or `repository_dispatch` (`resume_updated`) from `personal_resume`, the `build-and-deploy` job syncs resume YAML data, builds `/dist`, renders `/dist/resume.pdf` via headless Chromium, and utilizes Azure OIDC (`azure/login@v2`) to run `az storage blob upload-batch` into the `$web` container of the `undoissite` Azure Storage Account.
 
 ## License
 MIT License. See [LICENSE](LICENSE) for details.

@@ -24,4 +24,4 @@ This repository contains the static SvelteKit portfolio and status site for **`h
 
 ## 4. UI, Svelte 5 & Verification
 - **Follow `STYLE_GUIDE.md`**: Read `STYLE_GUIDE.md` before editing UI/CSS. Use CSS custom properties from `src/app.css` (dark-only slate aesthetic), Svelte 5 runes (`$state`, `$derived`, `$derived.by`, `$props`, `{@render children()}`), `onclick={...}` syntax, `<svelte:head>` SEO/OG/Twitter/canonical tags on every route, and `target="_blank" rel="noopener noreferrer"` on external links.
-- **Pre-commit checks**: When Node.js 20+ / `npm` is available in the environment, run `npm run check` and `npm run build` before committing.
+- **Pre-commit & CI checks**: `npm run check` (`svelte-check`) and `npm run test` (`scripts/run-tests.mjs`) run as pre-deploy gates in GitHub Actions. Automated tests enforce `GITHUB_ACTIONS === 'true'` and are designed for CI-only execution (do not run unit tests locally).
