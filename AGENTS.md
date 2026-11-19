@@ -25,3 +25,8 @@ This repository contains the static SvelteKit portfolio and status site for **`h
 ## 4. UI, Svelte 5 & Verification
 - **Follow `STYLE_GUIDE.md`**: Read `STYLE_GUIDE.md` before editing UI/CSS. Use CSS custom properties from `src/app.css` (dark-only slate aesthetic), Svelte 5 runes (`$state`, `$derived`, `$derived.by`, `$props`, `{@render children()}`), `onclick={...}` syntax, `<svelte:head>` SEO/OG/Twitter/canonical tags on every route, and `target="_blank" rel="noopener noreferrer"` on external links.
 - **Pre-commit & CI checks**: `npm run check` (`svelte-check`) and `npm run test` (`scripts/run-tests.mjs`) run as pre-deploy gates in GitHub Actions. Automated tests enforce `GITHUB_ACTIONS === 'true'` and are designed for CI-only execution (do not run unit tests locally).
+
+## 5. Privacy & GDPR Compliance
+- **Self-Host Fonts & Assets**: Do not load fonts, icons, stylesheets, or scripts from third-party CDNs (e.g., `fonts.googleapis.com`, `fonts.gstatic.com`, `cdnjs.cloudflare.com`, `unpkg.com`, `jsdelivr.net`). Bundle fonts locally (via `@fontsource-variable/*`) and use inline SVGs so visitor IP addresses are never leaked to third parties.
+- **No Third-Party Trackers**: Do not add Google Analytics, Meta pixels, third-party tracking scripts, or non-essential cookies.
+- **Keep CSP Tight**: Keep `style-src` and `font-src` restricted to `'self'` (plus `'unsafe-inline'` / `data:` where required) in `undo.is_infra/cloudflare.tf` so external asset leaks fail closed.
