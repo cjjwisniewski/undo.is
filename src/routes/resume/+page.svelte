@@ -1,4 +1,5 @@
 <script lang="ts">
+    import "@fontsource-variable/montserrat";
     import "./resume.css";
     import resumeDataRaw from "$lib/resumeData.json";
 
@@ -110,10 +111,6 @@
     <meta name="twitter:title" content="Resume | Cameron Wisniewski" />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:url" content="https://www.undo.is/resume/" />
-    <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap"
-    />
 </svelte:head>
 
 <div class="resume-page">

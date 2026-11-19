@@ -87,10 +87,42 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            # Modify --source depending on where your static files are generated/located
+            # Sync dist/ to $web and prune stale hashed assets from prior deployments
+            az storage blob sync \
+              --container '$web' \
+              --account-name undoissite \
+              --source ./dist \
+              --auth-mode login \
+              --delete-destination true
+
+            # Immutable content-hashed build assets: 1 year cache
+            az storage blob upload-batch \
+              --destination '$web' \
+              --destination-path '_app/immutable' \
+              --account-name undoissite \
+              --source ./dist/_app/immutable \
+              --auth-mode login \
+              --overwrite \
+              --content-cache-control "public, max-age=31536000, immutable"
+
+            # HTML pages: revalidate at browser, short edge TTL
             az storage blob upload-batch \
               --destination '$web' \
               --account-name undoissite \
               --source ./dist \
+              --pattern "*.html" \
               --auth-mode login \
-              --overwrite
+              --overwrite \
+              --content-cache-control "public, max-age=0, s-maxage=300, must-revalidate"
+
+            # Static root files (PDF, icons, OG card, sitemap, robots, security.txt)
+            for ext in pdf png ico xml txt; do
+              az storage blob upload-batch \
+                --destination '$web' \
+                --account-name undoissite \
+                --source ./dist \
+                --pattern "*.$ext" \
+                --auth-mode login \
+                --overwrite \
+                --content-cache-control "public, max-age=86400"
+            done

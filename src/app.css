@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 :root {
   /* Slate / Cool Grays Palette */
   --c-slate-50: #f8fafc;
@@ -23,7 +21,7 @@
 
   --text-primary: var(--c-slate-50);
   --text-secondary: var(--c-slate-300);
-  --text-muted: var(--c-slate-500);
+  --text-muted: var(--c-slate-400);
 
   --accent-color: #38bdf8;
   /* vibrant light blue accent */
@@ -46,7 +44,7 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-color);
   background-image:
     radial-gradient(ellipse 75% 45% at 50% -10%, rgba(56, 189, 248, 0.15), transparent 70%),
@@ -108,6 +106,36 @@ button:focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 200;
+  padding: 0.65rem 1rem;
+  background-color: var(--accent-color);
+  color: var(--c-slate-950);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: var(--border-radius);
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+  color: var(--c-slate-950);
+  text-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Base Layout Classes */

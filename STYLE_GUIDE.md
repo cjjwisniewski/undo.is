@@ -28,7 +28,7 @@ Always reference the CSS custom properties defined in [src/app.css](src/app.css)
 | `--bg-elevated` | `rgba(15, 23, 42, 0.55)` | Nested highlight sub-cards |
 | `--text-primary` | `#f8fafc` (`--c-slate-50`) | Headings, primary labels, active nav links |
 | `--text-secondary` | `#cbd5e1` (`--c-slate-300`) | Body copy, descriptions, subtitles |
-| `--text-muted` | `#64748b` (`--c-slate-500`) | De-emphasized metadata, social links |
+| `--text-muted` | `#94a3b8` (`--c-slate-400`) | De-emphasized metadata, social links |
 | `--accent-color` | `#38bdf8` | Primary CTAs, eyebrows, active indicators, links |
 | `--accent-hover` | `#0ea5e9` | Hover state for accent elements |
 | `--border-color` | `#1e293b` (`--c-slate-800`) | Hairline dividers, secondary button borders, tags |
@@ -46,7 +46,7 @@ For operational/status indicators (e.g. `/projects` and `/status`):
 
 ## 3. Typography
 
-* **Font Family:** `'Inter', system-ui, -apple-system, sans-serif` (weights `300`–`700`, imported in [src/app.css](src/app.css)).
+* **Font Family:** `'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif` (self-hosted via `@fontsource-variable/inter` in [src/routes/+layout.svelte](src/routes/+layout.svelte)).
 * **Headings (`h1`–`h6`):** `font-weight: 700`, `letter-spacing: -0.02em`, `color: var(--text-primary)`.
   * Page `h1`: Use fluid sizing with `clamp(...)` (e.g., `clamp(1.85rem, 4vw, 2.5rem)`).
   * Section `h2`: `clamp(1.25rem, 2.5vw, 1.55rem)`, `line-height: 1.3`.

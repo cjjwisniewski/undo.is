@@ -1,36 +1,26 @@
 export const prerender = true;
 
+const ROUTES = [
+    { path: '/', priority: '1.0' },
+    { path: '/projects/', priority: '0.8' },
+    { path: '/resume/', priority: '0.8' },
+    { path: '/status/', priority: '0.6' }
+];
+
 export async function GET() {
+    const lastmod = new Date().toISOString().split('T')[0];
+    const urls = ROUTES.map(
+        ({ path, priority }) => `    <url>
+        <loc>https://www.undo.is${path}</loc>
+        <lastmod>${lastmod}</lastmod>
+        <priority>${priority}</priority>
+    </url>`
+    ).join('\n');
+
     return new Response(
         `<?xml version="1.0" encoding="UTF-8" ?>
-<urlset
-    xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="https://www.w3.org/1999/xhtml"
-    xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
-    xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
-    xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
-    xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
->
-    <url>
-        <loc>https://www.undo.is/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://www.undo.is/projects/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.undo.is/resume/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.undo.is/status/</loc>
-        <changefreq>always</changefreq>
-        <priority>0.6</priority>
-    </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
 </urlset>`,
         {
             headers: {

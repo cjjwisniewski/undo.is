@@ -1,9 +1,12 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import "@fontsource-variable/inter";
   import undoLockup from "$lib/undo-lockup.png?w=240&format=webp";
   import "../app.css";
   let { children } = $props();
 </script>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <header class="navbar">
   <div class="container nav-container">
@@ -21,7 +24,7 @@
   </div>
 </header>
 
-<main class="page-content">
+<main id="main-content" class="page-content" tabindex="-1">
   {@render children()}
 </main>
 

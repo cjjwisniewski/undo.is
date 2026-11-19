@@ -33,6 +33,29 @@
             detail: "Self-service CI/CD blueprints, FinOps governance, and production AI guardrails that multiply engineering velocity at scale."
         }
     ];
+    const structuredData = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://www.undo.is/#website",
+                url: "https://www.undo.is/",
+                name: "undo.is",
+                description: metaDescription
+            },
+            {
+                "@type": "Person",
+                "@id": "https://www.undo.is/#person",
+                name,
+                jobTitle: title,
+                url: "https://www.undo.is/",
+                email: `mailto:${email}`,
+                image: "https://www.undo.is/og-card.png",
+                sameAs: [github, linkedin]
+            }
+        ]
+    });
+    const structuredDataTag = `<script type="application/ld+json">${structuredData}<\/script>`;
 </script>
 
 <svelte:head>
@@ -45,6 +68,7 @@
     <meta name="twitter:title" content="Cameron Wisniewski | Cloud Platform Architect" />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:url" content="https://www.undo.is/" />
+    {@html structuredDataTag}
 </svelte:head>
 
 <div class="hero container">

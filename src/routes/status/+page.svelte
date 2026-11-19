@@ -94,14 +94,20 @@
   </div>
 
   {#if loading && !data}
-    <div class="banner loading">Checking system availability...</div>
+    <div class="banner loading" role="status" aria-live="polite">Checking system availability...</div>
   {:else if error && !data}
-    <div class="banner offline">Unable to reach status API ({error})</div>
+    <div class="banner offline" role="status" aria-live="polite">Unable to reach status API ({error})</div>
   {:else if data}
-    <div class="banner {data.overall}">
-      <span class="dot"></span>
+    <div class="banner {data.overall}" role="status" aria-live="polite">
+      <span class="dot" aria-hidden="true"></span>
       <span>{bannerText}</span>
     </div>
+
+    {#if error}
+      <p class="refresh-error" role="status" aria-live="polite">
+        Unable to refresh status ({error}) — showing last known state.
+      </p>
+    {/if}
 
     <div class="grid">
       {#each data.hosts as host (host.id)}
@@ -258,9 +264,15 @@
     color: var(--text-muted);
   }
 
-  .stale-note {
+  .stale-note,
+  .refresh-error {
     color: #f87171;
     margin-left: 0.25rem;
+  }
+
+  .refresh-error {
+    margin: -1.25rem 0 1.5rem;
+    font-size: 0.85rem;
   }
 
   @media (max-width: 640px) {
