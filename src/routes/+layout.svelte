@@ -1,6 +1,8 @@
 <script lang="ts">
   import { page } from "$app/state";
   import "@fontsource-variable/inter";
+  import ContactModal from "$lib/components/ContactModal.svelte";
+  import { openContactModal } from "$lib/contactModal.svelte";
   import undoLockup from "$lib/undo-lockup.png?w=240&format=webp";
   import "../app.css";
   let { children } = $props();
@@ -37,10 +39,12 @@
       <a href="/status/">Status</a>
       <a href="https://github.com/cjjwisniewski" target="_blank" rel="me noopener noreferrer">GitHub</a>
       <a href="https://linkedin.com/in/CameronWisniewski" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
-      <a href="mailto:cameron@undo.is">Email</a>
+      <button type="button" class="footer-link-btn" onclick={() => openContactModal()}>Contact</button>
     </div>
   </div>
 </footer>
+
+<ContactModal />
 
 <style>
   .navbar {
@@ -162,11 +166,19 @@
     gap: 0.75rem 1.25rem;
   }
 
-  .footer-links a {
+  .footer-links a,
+  .footer-link-btn {
     color: var(--text-secondary);
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    transition: color 0.2s ease;
   }
 
-  .footer-links a:hover {
+  .footer-links a:hover,
+  .footer-link-btn:hover {
     color: var(--text-primary);
   }
 

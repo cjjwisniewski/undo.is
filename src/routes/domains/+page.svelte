@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { openContactModal } from "$lib/contactModal.svelte";
 
   interface DomainListing {
     name: string;
@@ -8,8 +9,6 @@
     priceNote: string;
     status: "Available" | "Reserved";
   }
-
-  const contactEmail = "cameron@undo.is";
 
   const domains: DomainListing[] = [
     {
@@ -30,12 +29,12 @@
       : null
   );
 
-  function inquiryHref(domainName: string): string {
-    const subject = encodeURIComponent(`Domain Inquiry: ${domainName}`);
-    const body = encodeURIComponent(
-      `Hi Cameron,\n\nI'm interested in acquiring ${domainName}.\n\nOffer / details:\n`
-    );
-    return `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+  function openDomainInquiry(domainName: string) {
+    openContactModal({
+      heading: `Inquire about ${domainName}`,
+      subject: `Domain Inquiry: ${domainName}`,
+      domain: domainName
+    });
   }
 
   onMount(() => {
@@ -98,9 +97,13 @@
           {/if}
         </p>
       </div>
-      <a href={inquiryHref(referredDomain)} class="action-link primary">
+      <button
+        type="button"
+        class="action-link primary"
+        onclick={() => openDomainInquiry(referredDomain!)}
+      >
         Inquire about {referredDomain}
-      </a>
+      </button>
     </div>
   {/if}
 
@@ -122,7 +125,13 @@
 
         <div class="card-footer">
           <span class="price-note">{domain.priceNote}</span>
-          <a href={inquiryHref(domain.name)} class="action-link primary">Make an Offer</a>
+          <button
+            type="button"
+            class="action-link primary"
+            onclick={() => openDomainInquiry(domain.name)}
+          >
+            Make an Offer
+          </button>
         </div>
       </article>
     {/each}
@@ -264,8 +273,11 @@
     justify-content: center;
     padding: 0.6rem 1.15rem;
     border-radius: var(--border-radius);
+    border: none;
+    font: inherit;
     font-size: 0.9rem;
     font-weight: 600;
+    cursor: pointer;
     transition: all 0.2s ease;
   }
 

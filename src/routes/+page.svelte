@@ -10,6 +10,7 @@
         "Cameron Wisniewski, VP and Cloud Platform Architect specializing in multi-account AWS and Azure platforms, Zero Trust security, Terraform IaC, and regulated enterprise enablement.";
 
     // Optimized Vite asset imports via vite-imagetools
+    import { openContactModal } from "$lib/contactModal.svelte";
     import avatarWebp from "$lib/avatar.jpg?w=440&format=webp";
     import avatarJpeg from "$lib/avatar.jpg?w=440&format=jpeg";
 
@@ -120,7 +121,9 @@
                 <div class="actions">
                     <a href="/resume/" class="btn btn-primary">View Full Resume</a>
                     <a href="/projects/" class="btn btn-secondary">Explore Projects</a>
-                    <a href="mailto:{email}" class="btn btn-secondary">Contact Me</a>
+                    <button type="button" class="btn btn-secondary" onclick={() => openContactModal()}>
+                        Contact Me
+                    </button>
                 </div>
 
                 <div class="social-links">
