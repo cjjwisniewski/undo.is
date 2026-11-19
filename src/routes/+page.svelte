@@ -44,13 +44,31 @@
                 description: metaDescription
             },
             {
+                "@type": "ProfilePage",
+                "@id": "https://www.undo.is/#profilepage",
+                url: "https://www.undo.is/",
+                name: "Cameron Wisniewski | Cloud Platform Architect",
+                isPartOf: { "@id": "https://www.undo.is/#website" },
+                mainEntity: { "@id": "https://www.undo.is/#person" }
+            },
+            {
                 "@type": "Person",
                 "@id": "https://www.undo.is/#person",
                 name,
                 jobTitle: title,
+                description: metaDescription,
                 url: "https://www.undo.is/",
                 email: `mailto:${email}`,
                 image: "https://www.undo.is/og-card.png",
+                knowsAbout: [
+                    "Cloud Platform Architecture",
+                    "Amazon Web Services (AWS)",
+                    "Microsoft Azure",
+                    "Zero Trust Security",
+                    "Terraform Infrastructure as Code",
+                    "Platform Engineering",
+                    "Enterprise AI Guardrails"
+                ],
                 sameAs: [github, linkedin]
             }
         ]
@@ -109,7 +127,7 @@
                     <a
                         href={github}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="me noopener noreferrer"
                         class="social-link"
                     >
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -120,7 +138,7 @@
                     <a
                         href={linkedin}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="me noopener noreferrer"
                         class="social-link"
                     >
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

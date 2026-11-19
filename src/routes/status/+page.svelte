@@ -73,6 +73,14 @@
       document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   });
+  const breadcrumbJsonLd = `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.undo.is/" },
+      { "@type": "ListItem", position: 2, name: "Status", item: "https://www.undo.is/status/" }
+    ]
+  })}<\/script>`;
 </script>
 
 <svelte:head>
@@ -85,6 +93,7 @@
   <meta name="twitter:title" content="System Status | undo.is" />
   <meta name="twitter:description" content="Live availability status for undo.is homelab servers." />
   <meta name="twitter:url" content="https://www.undo.is/status/" />
+  {@html breadcrumbJsonLd}
 </svelte:head>
 
 <section class="container status-page">

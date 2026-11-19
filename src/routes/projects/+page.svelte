@@ -72,6 +72,14 @@
     "Vanilla CSS",
     "Azure Storage"
   ];
+  const breadcrumbJsonLd = `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.undo.is/" },
+      { "@type": "ListItem", position: 2, name: "Projects", item: "https://www.undo.is/projects/" }
+    ]
+  })}<\/script>`;
 </script>
 
 <svelte:head>
@@ -93,6 +101,7 @@
     content="Selected cloud architecture, serverless platform, and homelab observability projects by Cameron Wisniewski."
   />
   <meta name="twitter:url" content="https://www.undo.is/projects/" />
+  {@html breadcrumbJsonLd}
 </svelte:head>
 
 <section class="container projects-page">

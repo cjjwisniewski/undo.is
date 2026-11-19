@@ -35,8 +35,8 @@
       <a href="/projects/">Projects</a>
       <a href="/resume/">Resume</a>
       <a href="/status/">Status</a>
-      <a href="https://github.com/cjjwisniewski" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://linkedin.com/in/CameronWisniewski" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/cjjwisniewski" target="_blank" rel="me noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/CameronWisniewski" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
       <a href="mailto:cameron@undo.is">Email</a>
     </div>
   </div>

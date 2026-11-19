@@ -99,6 +99,14 @@
     function printResume() {
         window.print();
     }
+    const breadcrumbJsonLd = `<script type="application/ld+json">${JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://www.undo.is/" },
+            { "@type": "ListItem", position: 2, name: "Resume", item: "https://www.undo.is/resume/" }
+        ]
+    })}<\/script>`;
 </script>
 
 <svelte:head>
@@ -111,6 +119,7 @@
     <meta name="twitter:title" content="Resume | Cameron Wisniewski" />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:url" content="https://www.undo.is/resume/" />
+    {@html breadcrumbJsonLd}
 </svelte:head>
 
 <div class="resume-page">
