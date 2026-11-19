@@ -14,7 +14,7 @@
     import avatarJpeg from "$lib/avatar.jpg?w=440&format=jpeg";
 
     const description =
-        "Technical leader specializing in enterprise cloud architecture, security-by-default infrastructure, and self-service platform engineering across AWS and Microsoft Azure. Proven track record leading high-ambiguity initiatives - including zero-downtime cloud separations, Zero Trust access transformations, policy-as-code landing zones, and enterprise AI guardrails - in regulated environments.";
+        "Technical leader specializing in enterprise cloud architecture, security-by-default infrastructure, and self-service platform engineering across AWS and Microsoft Azure. Proven track record leading high-ambiguity initiatives including zero-downtime cloud separations, Zero Trust access transformations, policy-as-code landing zones, and enterprise AI guardrails.";
 
     const focusAreas = [
         {
