@@ -6,7 +6,7 @@ import path from 'node:path';
 
 import { prerender as layoutPrerender, trailingSlash } from '../src/routes/+layout.ts';
 import { GET as getSitemap, prerender as sitemapPrerender } from '../src/routes/sitemap.xml/+server.ts';
-import { RESUME_FILES, syncResume } from '../scripts/sync-resume.js';
+import { RESUME_FILES, sanitizeResumeHtml, syncResume } from '../scripts/sync-resume.js';
 
 const repoRoot = process.cwd();
 
@@ -81,6 +81,21 @@ test('syncResume parses YAML sections into JSON and rejects missing dataDir', as
 	} finally {
 		fs.rmSync(tmpRoot, { recursive: true, force: true });
 	}
+});
+
+test('sanitizeResumeHtml strips unsafe markup and preserves allowed formatting', () => {
+	assert.equal(
+		sanitizeResumeHtml('Active Certifications<br><div style="font-size:0.8em; font-weight:normal">(Date)</div>'),
+		'Active Certifications<br><div style="font-size:0.8em; font-weight:normal">(Date)</div>'
+	);
+	assert.equal(
+		sanitizeResumeHtml('Hello <script>alert(1)</script><img src=x onerror=alert(1)><b>World</b>'),
+		'Hello <b>World</b>'
+	);
+	assert.equal(
+		sanitizeResumeHtml('<a href="javascript:alert(1)">bad</a> <a href="https://www.undo.is/">ok</a>'),
+		'<a>bad</a> <a href="https://www.undo.is/" target="_blank" rel="noopener noreferrer">ok</a>'
+	);
 });
 
 test('svelte.config.js configures adapter-static dist output with 404.html fallback', () => {

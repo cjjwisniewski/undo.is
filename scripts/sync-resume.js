@@ -18,6 +18,104 @@ export const RESUME_FILES = [
     'volunteering.yml'
 ];
 
+const ALLOWED_TAGS = new Set(['br', 'b', 'strong', 'i', 'em', 'u', 'span', 'div', 'a']);
+const SAFE_CSS_PROPS = new Set(['font-size', 'font-weight', 'font-style', 'text-decoration']);
+
+function sanitizeStyleAttr(rawStyle) {
+    const kept = [];
+    for (const decl of String(rawStyle).split(';')) {
+        const idx = decl.indexOf(':');
+        if (idx === -1) continue;
+        const prop = decl.slice(0, idx).trim().toLowerCase();
+        const val = decl.slice(idx + 1).trim();
+        if (
+            SAFE_CSS_PROPS.has(prop) &&
+            /^[a-z0-9.%-\s]+$/i.test(val) &&
+            !/url\s*\(|expression\s*\(/i.test(val)
+        ) {
+            kept.push(`${prop}:${val}`);
+        }
+    }
+    return kept.join('; ');
+}
+
+function sanitizeHrefAttr(rawHref) {
+    const trimmed = String(rawHref).trim();
+    if (/^(https?:\/\/|mailto:)/i.test(trimmed)) {
+        return trimmed.replace(/"/g, '&quot;');
+    }
+    return null;
+}
+
+/**
+ * Sanitizes inline HTML in resume YAML fields before writing resumeData.json,
+ * stripping executable tags, event handlers, and unsafe URIs while preserving
+ * simple formatting markup used by the resume template.
+ */
+export function sanitizeResumeHtml(input) {
+    if (typeof input !== 'string' || !input.includes('<')) {
+        return input;
+    }
+
+    // Remove script/style/iframe/object/embed/svg blocks including their contents
+    let cleaned = input.replace(
+        /<\s*(script|style|iframe|object|embed|svg)\b[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi,
+        ''
+    );
+
+    // Filter remaining tags against strict allowlist
+    cleaned = cleaned.replace(/<\s*(\/?)\s*([a-z0-9-]+)([^>]*)>/gi, (match, slash, rawTag, rawAttrs) => {
+        const tag = rawTag.toLowerCase();
+        if (!ALLOWED_TAGS.has(tag)) {
+            return '';
+        }
+        if (slash) {
+            return tag === 'br' ? '' : `</${tag}>`;
+        }
+        if (tag === 'br') {
+            return '<br>';
+        }
+
+        const safeAttrs = [];
+        const attrRe = /([a-z0-9-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
+        let attrMatch;
+        while ((attrMatch = attrRe.exec(rawAttrs)) !== null) {
+            const attrName = attrMatch[1].toLowerCase();
+            const attrVal = attrMatch[2] ?? attrMatch[3] ?? attrMatch[4] ?? '';
+            if (attrName === 'style' && (tag === 'div' || tag === 'span')) {
+                const safeStyle = sanitizeStyleAttr(attrVal);
+                if (safeStyle) safeAttrs.push(`style="${safeStyle}"`);
+            } else if (attrName === 'href' && tag === 'a') {
+                const safeHref = sanitizeHrefAttr(attrVal);
+                if (safeHref) {
+                    safeAttrs.push(`href="${safeHref}"`, 'target="_blank"', 'rel="noopener noreferrer"');
+                }
+            }
+        }
+
+        return safeAttrs.length > 0 ? `<${tag} ${safeAttrs.join(' ')}>` : `<${tag}>`;
+    });
+
+    return cleaned;
+}
+
+function sanitizeResumeValue(value) {
+    if (typeof value === 'string') {
+        return sanitizeResumeHtml(value);
+    }
+    if (Array.isArray(value)) {
+        return value.map(sanitizeResumeValue);
+    }
+    if (value && typeof value === 'object') {
+        const out = {};
+        for (const [k, v] of Object.entries(value)) {
+            out[k] = sanitizeResumeValue(v);
+        }
+        return out;
+    }
+    return value;
+}
+
 export async function syncResume({
     dataDir = DEFAULT_DATA_DIR,
     outputFile = DEFAULT_OUTPUT_FILE
@@ -34,7 +132,7 @@ export async function syncResume({
         if (fs.existsSync(filePath)) {
             try {
                 const rawYaml = fs.readFileSync(filePath, 'utf8');
-                const parsed = yaml.load(rawYaml);
+                const parsed = sanitizeResumeValue(yaml.load(rawYaml));
                 const sectionName = filename.replace('.yml', '');
                 resumeData[sectionName] = parsed;
                 console.log(`- Synced ${filename}`);
