@@ -13,9 +13,13 @@
 
   let dialogEl = $state<HTMLDivElement | null>(null);
   let nameInputEl = $state<HTMLInputElement | null>(null);
+  let lastFocusedEl: HTMLElement | null = null;
 
   $effect(() => {
     if (contactModal.open) {
+      lastFocusedEl =
+        document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      document.body.style.overflow = "hidden";
       subject = contactModal.subject;
       submitted = false;
       error = null;
@@ -23,12 +27,37 @@
       queueMicrotask(() => {
         nameInputEl?.focus();
       });
+
+      return () => {
+        document.body.style.overflow = "";
+        lastFocusedEl?.focus();
+        lastFocusedEl = null;
+      };
     }
   });
 
   function handleKeydown(event: KeyboardEvent) {
-    if (event.key === "Escape" && contactModal.open && !submitting) {
+    if (!contactModal.open) return;
+    if (event.key === "Escape" && !submitting) {
       closeContactModal();
+      return;
+    }
+    if (event.key === "Tab" && dialogEl) {
+      const focusables = Array.from(
+        dialogEl.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => el.offsetParent !== null);
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   }
 

@@ -18,7 +18,9 @@
 
   let data = $state<StatusPayload | null>(null);
   let loading = $state(true);
+  let refreshing = $state(false);
   let error = $state<string | null>(null);
+  let nowTick = $state(Date.now());
 
   const bannerText = $derived.by(() => {
     if (!data) return "Checking status...";
@@ -42,16 +44,30 @@
     return new Date(ts).toLocaleString();
   }
 
-  async function fetchStatus() {
+  function formatRelative(ts: number | null, now: number): string {
+    if (!ts) return "";
+    const diffSec = Math.max(0, Math.floor((now - ts) / 1000));
+    if (diffSec < 60) return `${diffSec}s ago`;
+    const diffMin = Math.floor(diffSec / 60);
+    if (diffMin < 60) return `${diffMin}m ago`;
+    const diffHr = Math.floor(diffMin / 60);
+    if (diffHr < 24) return `${diffHr}h ago`;
+    return `${Math.floor(diffHr / 24)}d ago`;
+  }
+
+  async function fetchStatus(manual = false) {
+    if (manual) refreshing = true;
     try {
       const res = await fetch("https://status.undo.is/api/status", { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       data = (await res.json()) as StatusPayload;
+      nowTick = Date.now();
       error = null;
     } catch (err) {
       error = err instanceof Error ? err.message : "Failed to load status";
     } finally {
       loading = false;
+      refreshing = false;
     }
   }
 
@@ -62,14 +78,19 @@
         fetchStatus();
       }
     }, 30_000);
+    const clockTimer = setInterval(() => {
+      nowTick = Date.now();
+    }, 15_000);
     const onVisibilityChange = () => {
       if (document.visibilityState === "visible") {
+        nowTick = Date.now();
         fetchStatus();
       }
     };
     document.addEventListener("visibilitychange", onVisibilityChange);
     return () => {
       clearInterval(timer);
+      clearInterval(clockTimer);
       document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   });
@@ -98,8 +119,18 @@
 
 <section class="container status-page">
   <div class="header">
-    <h1>System Status</h1>
-    <p class="subtitle">Live availability for undo.is servers and game hosts.</p>
+    <div>
+      <h1>System Status</h1>
+      <p class="subtitle">Live availability for undo.is servers and game hosts.</p>
+    </div>
+    <button
+      type="button"
+      class="refresh-btn"
+      onclick={() => fetchStatus(true)}
+      disabled={refreshing || loading}
+    >
+      {refreshing ? "Refreshing..." : "Refresh"}
+    </button>
   </div>
 
   {#if loading && !data}
@@ -139,8 +170,11 @@
       {/each}
     </div>
 
-    <p class="updated">
+    <p class="updated" aria-live="polite">
       Last heartbeat: {formatUpdated(data.updated_at)}
+      {#if data.updated_at}
+        <span class="relative-time">({formatRelative(data.updated_at, nowTick)})</span>
+      {/if}
       {#if data.stale}
         <span class="stale-note">(stale - heartbeat older than 11 minutes)</span>
       {/if}
@@ -156,7 +190,41 @@
   }
 
   .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
     margin-bottom: 2rem;
+  }
+
+  .refresh-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .refresh-btn:hover:not(:disabled) {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: var(--bg-surface-hover);
+  }
+
+  .refresh-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .relative-time {
+    color: var(--text-secondary);
+    margin-left: 0.25rem;
   }
 
   h1 {

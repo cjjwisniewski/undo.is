@@ -17,11 +17,27 @@
         <img src={undoLockup} alt="undo.is" class="brand-logo" width="64" height="40" />
       </a>
     </div>
-    <nav class="nav-links">
-      <a href="/" class:active={page.url.pathname === "/"}>Home</a>
-      <a href="/projects/" class:active={page.url.pathname.startsWith("/projects")}>Projects</a>
-      <a href="/resume/" class:active={page.url.pathname.startsWith("/resume")}>Resume</a>
-      <a href="/status/" class:active={page.url.pathname.startsWith("/status")}>Status</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a
+        href="/"
+        class:active={page.url.pathname === "/"}
+        aria-current={page.url.pathname === "/" ? "page" : undefined}
+      >Home</a>
+      <a
+        href="/projects/"
+        class:active={page.url.pathname.startsWith("/projects")}
+        aria-current={page.url.pathname.startsWith("/projects") ? "page" : undefined}
+      >Projects</a>
+      <a
+        href="/resume/"
+        class:active={page.url.pathname.startsWith("/resume")}
+        aria-current={page.url.pathname.startsWith("/resume") ? "page" : undefined}
+      >Resume</a>
+      <a
+        href="/status/"
+        class:active={page.url.pathname.startsWith("/status")}
+        aria-current={page.url.pathname.startsWith("/status") ? "page" : undefined}
+      >Status</a>
     </nav>
   </div>
 </header>

@@ -832,6 +832,26 @@ print {
     flex-wrap: wrap;
 }
 
+@media (max-width: 640px) {
+    #resume .resume-actions {
+        position: sticky;
+        top: 60px;
+        z-index: 40;
+        justify-content: stretch;
+        padding: 0.65rem 0.75rem;
+        border-radius: var(--border-radius);
+        background: rgba(15, 23, 42, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-color);
+    }
+
+    #resume .resume-actions .btn-download,
+    #resume .resume-actions .btn-print {
+        flex: 1 1 auto;
+    }
+}
+
 #resume .btn-download,
 #resume .btn-print {
     display: inline-flex;
