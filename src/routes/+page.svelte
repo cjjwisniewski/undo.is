@@ -331,9 +331,10 @@
     .focus-band {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        border-top: 1px solid var(--border-color);
-        border-bottom: 1px solid var(--border-color);
-        background: rgba(11, 17, 32, 0.72);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        background: var(--bg-surface);
+        overflow: hidden;
     }
 
     .focus-item {
