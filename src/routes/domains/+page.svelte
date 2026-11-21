@@ -165,11 +165,11 @@
 
   .eyebrow {
     display: inline-block;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent-color);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
   }
 
   h1 {

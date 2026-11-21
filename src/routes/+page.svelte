@@ -109,9 +109,12 @@
 
             <div class="info-container">
                 <div class="identity">
-                    <span class="eyebrow">{eyebrow}</span>
                     <h1>{name}</h1>
-                    <h2 class="title">{title}</h2>
+                    <p class="title">
+                        <span>{title}</span>
+                        <span class="title-sep" aria-hidden="true">/</span>
+                        <span class="title-domain">{eyebrow}</span>
+                    </p>
                 </div>
 
                 <p class="description">
@@ -153,11 +156,11 @@
             </div>
         </section>
 
-        <section class="focus-grid" aria-label="Core Focus Areas">
-            {#each focusAreas as area}
-                <div class="glass-panel focus-card">
-                    <span class="eyebrow">{area.label}</span>
-                    <h3>{area.title}</h3>
+        <section class="focus-band" aria-label="Core Focus Areas">
+            {#each focusAreas as area, i}
+                <div class="focus-item">
+                    <span class="focus-index">0{i + 1} · {area.label}</span>
+                    <h2>{area.title}</h2>
                     <p>{area.detail}</p>
                 </div>
             {/each}
@@ -201,15 +204,6 @@
         display: contents;
     }
 
-    .avatar-wrap::before {
-        content: "";
-        position: absolute;
-        inset: -10px;
-        border-radius: 14px;
-        background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, transparent 70%);
-        pointer-events: none;
-    }
-
     .avatar {
         position: relative;
         width: 220px;
@@ -218,13 +212,6 @@
         object-fit: cover;
         border-radius: var(--border-radius);
         border: 1px solid var(--border-color);
-        transition: transform 0.35s ease;
-    }
-
-    @media (hover: hover) {
-        .profile-card:hover .avatar {
-            transform: scale(1.02);
-        }
     }
 
     .info-container {
@@ -237,34 +224,33 @@
     .identity {
         display: flex;
         flex-direction: column;
-        gap: 0.3rem;
-    }
-
-    .eyebrow {
-        font-size: 0.78rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--accent-color);
+        gap: 0.35rem;
     }
 
     h1 {
-        font-size: clamp(1.85rem, 4vw, 2.5rem);
-        line-height: 1.15;
-        background: linear-gradient(
-            135deg,
-            var(--c-slate-50) 0%,
-            var(--c-slate-300) 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        font-size: clamp(1.9rem, 4vw, 2.55rem);
+        line-height: 1.12;
+        color: var(--text-primary);
     }
 
     .title {
-        font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.45rem;
+        font-size: clamp(0.98rem, 2.2vw, 1.1rem);
         color: var(--text-secondary);
         font-weight: 500;
+    }
+
+    .title-sep {
+        color: var(--border-strong);
+    }
+
+    .title-domain {
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        color: var(--accent-color);
     }
 
     .description {
@@ -284,11 +270,11 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 0.65rem 1.25rem;
+        padding: 0.62rem 1.2rem;
         border-radius: var(--border-radius);
         font-weight: 600;
-        font-size: 0.92rem;
-        transition: all 0.2s ease;
+        font-size: 0.9rem;
+        transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
         cursor: pointer;
     }
 
@@ -299,29 +285,19 @@
 
     .btn-primary:hover {
         background-color: var(--accent-hover);
-        box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
         color: var(--c-slate-950);
-        text-shadow: none;
     }
 
     .btn-secondary {
-        background-color: var(--bg-surface);
+        background-color: var(--bg-elevated);
         border: 1px solid var(--border-color);
         color: var(--text-primary);
     }
 
     .btn-secondary:hover {
         background-color: var(--bg-surface-hover);
-        border-color: var(--accent-color);
+        border-color: var(--border-strong);
         color: var(--text-primary);
-        text-shadow: none;
-    }
-
-    @media (hover: hover) {
-        .btn-primary:hover,
-        .btn-secondary:hover {
-            transform: translateY(-1px);
-        }
     }
 
     .social-links {
@@ -330,7 +306,7 @@
         gap: 1rem 1.5rem;
         margin-top: 0.35rem;
         border-top: 1px solid var(--border-color);
-        padding-top: 1.15rem;
+        padding-top: 1.1rem;
         align-items: center;
     }
 
@@ -350,29 +326,41 @@
 
     .social-link:hover {
         color: var(--accent-color);
-        text-shadow: none;
     }
 
-    .focus-grid {
+    .focus-band {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1.25rem;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        background: rgba(11, 17, 32, 0.72);
     }
 
-    .focus-card {
+    .focus-item {
         padding: 1.35rem 1.5rem;
         display: flex;
         flex-direction: column;
         gap: 0.4rem;
     }
 
-    .focus-card h3 {
-        font-size: 1.05rem;
+    .focus-item + .focus-item {
+        border-left: 1px solid var(--border-color);
+    }
+
+    .focus-index {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        color: var(--text-muted);
+        letter-spacing: 0.03em;
+    }
+
+    .focus-item h2 {
+        font-size: 1.02rem;
         color: var(--text-primary);
     }
 
-    .focus-card p {
-        font-size: 0.9rem;
+    .focus-item p {
+        font-size: 0.89rem;
         line-height: 1.55;
         color: var(--text-secondary);
     }
@@ -382,6 +370,10 @@
             grid-template-columns: 1fr;
             text-align: center;
             gap: 1.5rem;
+        }
+
+        .title {
+            justify-content: center;
         }
 
         .avatar {
@@ -397,8 +389,13 @@
             justify-content: center;
         }
 
-        .focus-grid {
+        .focus-band {
             grid-template-columns: 1fr;
+        }
+
+        .focus-item + .focus-item {
+            border-left: none;
+            border-top: 1px solid var(--border-color);
         }
     }
 

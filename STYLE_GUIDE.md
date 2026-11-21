@@ -6,7 +6,7 @@ This document defines the visual, structural, and code conventions for **undo.is
 
 ## 1. Visual Identity & Aesthetic
 
-* **Theme:** Dark-only, high-contrast slate aesthetic (`#020617` canvas with a `48px` architectural grid in `body::before` and subtle sky-blue + lower-left indigo ambient glows) with translucent glassmorphism surfaces and a single vibrant sky-blue accent (`#38bdf8`).
+* **Theme:** Dark-only, high-contrast architectural slate aesthetic (`#020617` canvas with a `48px` architectural grid in `body::before`, no ambient glow blobs) paired with flat solid surfaces (`#0b1120`), crisp `1px` borders, monospace metadata labels, and a single sky-blue accent (`#38bdf8`).
 * **Brand & Logo:**
   * **Navbar:** Uses the full Cloud + `UNDO` lockup (`src/lib/undo-lockup.png` imported via `vite-imagetools` `?w=240&format=webp`, `38px` height on desktop / `32px` on mobile) in `#f8fafc` + `#38bdf8`.
   * **Favicon:** Uses the tightly cropped Cloud + Undo-Arrow mark (`static/favicon.png`, `128×128`) in `#64748b` + `#0ea5e9` for legibility on both light and dark browser tabs.
